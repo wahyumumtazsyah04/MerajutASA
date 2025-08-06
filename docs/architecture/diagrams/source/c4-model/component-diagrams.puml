@@ -1,0 +1,131 @@
+@startuml component-diagrams
+!include <C4/C4_Component>
+
+title "MerajutASA Platform - Component Diagrams"
+
+' External actors and systems
+Person_Ext(stakeholders, "Platform Stakeholders", "Government, Business, Academic, Community, and Media users")
+System_Ext(external_systems, "External Systems", "Government, payment, research, and media systems")
+ContainerDb_Ext(database, "Database Systems", "PostgreSQL, ClickHouse, OpenSearch")
+Container_Ext(message_queue, "Message Queue", "RabbitMQ for async communication")
+
+' Child Management Service Components
+Container_Boundary(child_service, "Child Management Service") {
+    Component(child_controller, "Child Profile Controller", "Express.js Router", "REST API endpoints for child profile management with comprehensive security and audit logging")
+    Component(child_auth, "Child Access Authorization", "Custom Middleware", "Multi-layered access control for child data with emergency access protocols and audit trails")
+    Component(child_validation, "Child Data Validator", "Joi/Yup", "Input validation, data sanitization, and privacy protection with child-specific safety rules")
+    Component(child_business, "Child Case Manager", "Business Logic", "Child case management, safety monitoring, and intervention tracking with automated alerts")
+    Component(child_encryption, "Child Data Encryption", "Crypto Service", "AES-256 encryption for child PII with key rotation and secure key management")
+    Component(child_audit, "Child Audit Logger", "Audit Service", "Comprehensive audit trail for all child data access and modifications with compliance reporting")
+    Component(child_repository, "Child Data Repository", "TypeORM Repository", "Data access layer with row-level security and encrypted storage for child records")
+    Component(child_events, "Child Event Publisher", "Event Emitter", "Publishes child safety events and case updates for real-time monitoring and analytics")
+}
+
+' Authentication Service Components
+Container_Boundary(auth_service, "Authentication Service") {
+    Component(auth_controller, "Authentication Controller", "Express.js Router", "Login, logout, and session management endpoints with multi-factor authentication support")
+    Component(auth_mfa, "Multi-Factor Authentication", "TOTP/SMS Service", "Time-based OTP and SMS verification for enhanced security with emergency bypass protocols")
+    Component(auth_rbac, "Role-Based Access Control", "RBAC Engine", "Permission management and role assignment with dynamic policy evaluation and inheritance")
+    Component(auth_session, "Session Manager", "JWT/Redis Service", "Secure session management with token rotation and distributed session storage")
+    Component(auth_integration, "Identity Provider Integration", "OAuth/SAML Client", "Integration with Keycloak and external identity providers for federated authentication")
+    Component(auth_audit, "Authentication Audit", "Audit Logger", "Security event logging for authentication attempts, failures, and policy violations")
+    Component(auth_repository, "User Repository", "TypeORM Repository", "User credential storage with encryption and secure password handling")
+}
+
+' Stakeholder Service Components
+Container_Boundary(stakeholder_service, "Stakeholder Service") {
+    Component(stakeholder_controller, "Stakeholder Controller", "Express.js Router", "Stakeholder profile management and penta-helix workflow coordination APIs")
+    Component(stakeholder_workflow, "Penta-Helix Workflow", "Workflow Engine", "Multi-stakeholder collaboration workflows with approval chains and automated notifications")
+    Component(stakeholder_permission, "Permission Manager", "Policy Engine", "Dynamic permission evaluation based on stakeholder type, role, and context")
+    Component(stakeholder_collaboration, "Collaboration Tools", "Real-time Service", "Chat, document sharing, and collaborative editing with audit trails and moderation")
+    Component(stakeholder_notification, "Stakeholder Notifications", "Notification Router", "Stakeholder-specific notification routing with preference management and delivery tracking")
+    Component(stakeholder_analytics, "Stakeholder Analytics", "Analytics Engine", "Engagement tracking, collaboration metrics, and stakeholder satisfaction measurement")
+    Component(stakeholder_repository, "Stakeholder Repository", "TypeORM Repository", "Stakeholder profile data with role management and preference storage")
+}
+
+' Donation Service Components
+Container_Boundary(donation_service, "Donation Service") {
+    Component(donation_controller, "Donation Controller", "Express.js Router", "Donation processing endpoints with secure payment handling and receipt generation")
+    Component(donation_processor, "Payment Processor", "Payment Gateway Integration", "Multi-gateway payment processing with fraud detection and PCI DSS compliance")
+    Component(donation_validation, "Donation Validator", "Financial Validator", "Amount validation, currency conversion, and anti-money laundering checks")
+    Component(donation_tracking, "Impact Tracker", "Analytics Service", "Donation impact measurement and transparency reporting with real-time dashboard updates")
+    Component(donation_receipt, "Receipt Generator", "Document Service", "Automated receipt generation with tax compliance and donor acknowledgment features")
+    Component(donation_audit, "Financial Audit", "Compliance Logger", "Financial transaction audit trails with regulatory compliance and fraud monitoring")
+    Component(donation_repository, "Donation Repository", "TypeORM Repository", "Financial transaction storage with encryption and comprehensive audit capabilities")
+    Component(donation_events, "Donation Events", "Event Publisher", "Real-time donation events for analytics, notifications, and impact measurement")
+}
+
+' Analytics Service Components
+Container_Boundary(analytics_service, "Analytics Service") {
+    Component(analytics_controller, "Analytics Controller", "Express.js Router", "Analytics API endpoints with stakeholder-specific reporting and data access controls")
+    Component(analytics_aggregator, "Data Aggregator", "ETL Pipeline", "Real-time data aggregation from multiple sources with anonymization and privacy protection")
+    Component(analytics_privacy, "Privacy Protector", "Anonymization Engine", "Child data anonymization using differential privacy and k-anonymity techniques")
+    Component(analytics_reporting, "Report Generator", "Reporting Engine", "Automated report generation with stakeholder-specific formats and scheduling")
+    Component(analytics_dashboard, "Dashboard Service", "Visualization Engine", "Real-time dashboard updates with interactive visualizations and drill-down capabilities")
+    Component(analytics_compliance, "Compliance Reporter", "Regulatory Engine", "Automated compliance reporting with government and regulatory body integration")
+    Component(analytics_repository, "Analytics Repository", "ClickHouse Client", "High-performance analytics data storage with time-series optimization")
+}
+
+' Component relationships within Child Management Service
+Rel(stakeholders, child_controller, "Manages child profiles and cases", "HTTPS/REST")
+Rel(child_controller, child_auth, "Validates access permissions", "Function call")
+Rel(child_controller, child_validation, "Validates input data", "Function call")
+Rel(child_controller, child_business, "Executes business logic", "Function call")
+Rel(child_business, child_encryption, "Encrypts sensitive data", "Function call")
+Rel(child_business, child_audit, "Logs data access", "Function call")
+Rel(child_business, child_repository, "Persists child data", "Function call")
+Rel(child_business, child_events, "Publishes safety events", "Event emission")
+Rel(child_repository, database, "Stores encrypted child data", "Encrypted SQL")
+Rel(child_events, message_queue, "Publishes child events", "AMQP")
+
+' Component relationships within Authentication Service
+Rel(stakeholders, auth_controller, "Authentication requests", "HTTPS/REST")
+Rel(auth_controller, auth_mfa, "Multi-factor verification", "Function call")
+Rel(auth_controller, auth_rbac, "Permission evaluation", "Function call")
+Rel(auth_controller, auth_session, "Session management", "Function call")
+Rel(auth_controller, auth_integration, "External identity providers", "Function call")
+Rel(auth_rbac, auth_audit, "Security event logging", "Function call")
+Rel(auth_session, auth_repository, "User credential access", "Function call")
+Rel(auth_repository, database, "Stores user data", "Encrypted SQL")
+Rel(auth_integration, external_systems, "Federated authentication", "OAuth/SAML")
+
+' Component relationships within Stakeholder Service
+Rel(stakeholders, stakeholder_controller, "Stakeholder management", "HTTPS/REST")
+Rel(stakeholder_controller, stakeholder_workflow, "Workflow coordination", "Function call")
+Rel(stakeholder_controller, stakeholder_permission, "Permission management", "Function call")
+Rel(stakeholder_controller, stakeholder_collaboration, "Collaboration tools", "Function call")
+Rel(stakeholder_workflow, stakeholder_notification, "Workflow notifications", "Function call")
+Rel(stakeholder_collaboration, stakeholder_analytics, "Engagement tracking", "Function call")
+Rel(stakeholder_permission, stakeholder_repository, "Role data access", "Function call")
+Rel(stakeholder_repository, database, "Stakeholder profiles", "Encrypted SQL")
+
+' Component relationships within Donation Service
+Rel(stakeholders, donation_controller, "Donation processing", "HTTPS/REST")
+Rel(donation_controller, donation_processor, "Payment processing", "Function call")
+Rel(donation_controller, donation_validation, "Input validation", "Function call")
+Rel(donation_processor, donation_tracking, "Impact measurement", "Function call")
+Rel(donation_processor, donation_receipt, "Receipt generation", "Function call")
+Rel(donation_processor, donation_audit, "Financial auditing", "Function call")
+Rel(donation_tracking, donation_repository, "Transaction storage", "Function call")
+Rel(donation_repository, database, "Financial records", "Encrypted SQL")
+Rel(donation_events, message_queue, "Donation events", "AMQP")
+Rel(donation_processor, external_systems, "Payment gateways", "PCI DSS API")
+
+' Component relationships within Analytics Service
+Rel(stakeholders, analytics_controller, "Analytics access", "HTTPS/REST")
+Rel(analytics_controller, analytics_aggregator, "Data processing", "Function call")
+Rel(analytics_aggregator, analytics_privacy, "Data anonymization", "Function call")
+Rel(analytics_aggregator, analytics_reporting, "Report generation", "Function call")
+Rel(analytics_reporting, analytics_dashboard, "Dashboard updates", "Function call")
+Rel(analytics_compliance, analytics_repository, "Compliance data", "Function call")
+Rel(analytics_repository, database, "Analytics storage", "ClickHouse SQL")
+Rel(analytics_compliance, external_systems, "Regulatory reporting", "Secure API")
+
+' Cross-service component interactions
+Rel(child_events, analytics_aggregator, "Child safety metrics", "Event stream")
+Rel(donation_events, analytics_aggregator, "Financial metrics", "Event stream")
+Rel(stakeholder_notification, external_systems, "External notifications", "API calls")
+Rel(auth_rbac, stakeholder_permission, "Role synchronization", "Service call")
+Rel(child_auth, auth_rbac, "Permission validation", "Service call")
+
+@enduml

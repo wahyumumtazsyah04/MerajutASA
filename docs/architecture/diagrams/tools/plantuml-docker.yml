@@ -1,0 +1,79 @@
+version: '3.8'
+
+services:
+  plantuml:
+    image: plantuml/plantuml-server:latest
+    container_name: merajutasa-plantuml
+    ports:
+      - "8080:8080"
+    environment:
+      - PLANTUML_LIMIT_SIZE=8192
+      - JAVA_OPTS=-Xmx1g
+    restart: unless-stopped
+    volumes:
+      - ./docs/architecture/diagrams/source:/app/source:ro
+      - ./docs/architecture/diagrams/rendered:/app/rendered
+    networks:
+      - diagram-network
+
+  plantuml-cli:
+    image: plantuml/plantuml:latest
+    container_name: merajutasa-plantuml-cli
+    working_dir: /app
+    volumes:
+      - ./docs/architecture/diagrams/source:/app/source:ro
+      - ./docs/architecture/diagrams/rendered:/app/rendered
+    networks:
+      - diagram-network
+    command: >
+      sh -c "
+        echo 'PlantUML CLI Container Ready';
+        echo 'Usage: docker exec merajutasa-plantuml-cli java -jar /opt/plantuml.jar [options] source/*.puml';
+        echo 'Available formats: -tpng, -tsvg, -tpdf, -teps, -tlatex';
+        tail -f /dev/null
+      "
+
+  mermaid:
+    image: minlag/mermaid-cli:latest
+    container_name: merajutasa-mermaid
+    working_dir: /app
+    volumes:
+      - ./docs/architecture/diagrams/source:/app/source:ro
+      - ./docs/architecture/diagrams/rendered:/app/rendered
+    networks:
+      - diagram-network
+    command: >
+      sh -c "
+        echo 'Mermaid CLI Container Ready';
+        echo 'Usage: docker exec merajutasa-mermaid mmdc -i source/file.mmd -o rendered/file.png';
+        tail -f /dev/null
+      "
+
+  diagram-automation:
+    image: alpine:latest
+    container_name: merajutasa-diagram-automation
+    working_dir: /app
+    volumes:
+      - ./docs/architecture/diagrams:/app
+      - ./scripts:/app/scripts:ro
+    networks:
+      - diagram-network
+    depends_on:
+      - plantuml
+      - plantuml-cli
+      - mermaid
+    command: >
+      sh -c "
+        apk add --no-cache curl jq bash git;
+        echo 'Diagram Automation Container Ready';
+        echo 'Run: docker exec merajutasa-diagram-automation /app/scripts/generate-diagrams.sh';
+        tail -f /dev/null
+      "
+
+networks:
+  diagram-network:
+    driver: bridge
+
+volumes:
+  diagram-cache:
+    driver: local

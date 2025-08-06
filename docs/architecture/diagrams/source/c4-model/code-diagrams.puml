@@ -1,0 +1,362 @@
+@startuml code-diagrams
+!include <C4/C4_Component>
+
+' Title and description
+!define TITLE "MerajutASA Platform - Code-Level Diagrams"
+!define DESCRIPTION "Implementation-level views showing class hierarchies, interfaces, design patterns, and critical code structures for child protection and stakeholder collaboration"
+
+' Custom styling for different code elements
+!define INTERFACE_COLOR #3498DB
+!define CLASS_COLOR #2ECC71
+!define ABSTRACT_COLOR #E74C3C
+!define ENUM_COLOR #F39C12
+!define EXCEPTION_COLOR #FF6B6B
+!define UTILITY_COLOR #9B59B6
+
+LAYOUT_WITH_LEGEND()
+LAYOUT_AS_SKETCH()
+
+title TITLE
+caption DESCRIPTION
+
+' Child Protection Domain Model
+package "Child Protection Domain" {
+    abstract class ChildEntity {
+        - id: UUID
+        - encryptedPersonalInfo: EncryptedData
+        - caseNumber: string
+        - safetyStatus: SafetyStatus
+        - createdAt: Date
+        - updatedAt: Date
+        - auditTrail: AuditEntry[]
+        + encrypt(data: PersonalInfo): EncryptedData
+        + decrypt(encryptedData: EncryptedData): PersonalInfo
+        + updateSafetyStatus(status: SafetyStatus): void
+        + addAuditEntry(entry: AuditEntry): void
+        + validateDataAccess(user: User): boolean
+    }
+
+    class Child extends ChildEntity {
+        - dateOfBirth: EncryptedDate
+        - medicalInfo: EncryptedMedicalData
+        - educationLevel: string
+        - guardianInfo: EncryptedGuardianData
+        - emergencyContacts: EncryptedContactInfo[]
+        + updateMedicalInfo(info: MedicalData, user: User): void
+        + addEmergencyContact(contact: ContactInfo, user: User): void
+        + getAgeAppropriateInterface(): InterfaceConfig
+        + triggerSafetyAlert(alert: SafetyAlert): void
+        + validateEmergencyAccess(emergency: EmergencyContext): boolean
+    }
+
+    class ChildCase {
+        - id: UUID
+        - childId: UUID
+        - caseType: CaseType
+        - priority: Priority
+        - status: CaseStatus
+        - assignedWorker: SocialWorker
+        - interventions: Intervention[]
+        - timeline: CaseTimeline
+        + escalate(reason: string, user: User): void
+        + addIntervention(intervention: Intervention): void
+        + updateStatus(status: CaseStatus, user: User): void
+        + generateComplianceReport(): ComplianceReport
+        + checkEmergencyProtocols(): EmergencyAction[]
+    }
+
+    enum SafetyStatus {
+        SAFE
+        AT_RISK
+        CRITICAL
+        EMERGENCY
+        PROTECTIVE_CUSTODY
+    }
+
+    enum CaseType {
+        ROUTINE_CARE
+        MEDICAL_ATTENTION
+        EDUCATIONAL_SUPPORT
+        PSYCHOLOGICAL_SUPPORT
+        EMERGENCY_INTERVENTION
+        LEGAL_PROTECTION
+    }
+
+    interface ChildProtectionPolicy {
+        + validateAccess(user: User, child: Child): AccessResult
+        + auditDataAccess(user: User, child: Child, action: string): void
+        + checkEmergencyProtocols(child: Child): EmergencyProtocol[]
+        + enforceDataMinimization(data: ChildData): ChildData
+        + generatePrivacyReport(): PrivacyReport
+    }
+
+    class ChildProtectionService implements ChildProtectionPolicy {
+        - encryptionService: EncryptionService
+        - auditService: AuditService
+        - emergencyService: EmergencyService
+        - complianceService: ComplianceService
+        + createChildProfile(data: ChildData, user: User): Child
+        + updateChildData(childId: UUID, data: ChildData, user: User): void
+        + deleteChildData(childId: UUID, user: User, reason: string): void
+        + handleEmergency(emergency: EmergencyContext): EmergencyResponse
+        + generateAuditReport(timeframe: TimeRange): AuditReport
+    }
+}
+
+' Stakeholder Management Domain
+package "Stakeholder Domain" {
+    abstract class StakeholderEntity {
+        - id: UUID
+        - type: StakeholderType
+        - profile: StakeholderProfile
+        - permissions: Permission[]
+        - collaborationHistory: CollaborationRecord[]
+        - verificationStatus: VerificationStatus
+        + updateProfile(profile: StakeholderProfile): void
+        + addPermission(permission: Permission): void
+        + removePermission(permission: Permission): void
+        + getAccessibleResources(): Resource[]
+        + validateCollaboration(other: StakeholderEntity): boolean
+    }
+
+    class GovernmentStakeholder extends StakeholderEntity {
+        - agency: GovernmentAgency
+        - jurisdiction: string
+        - regulatoryPowers: RegulatoryPower[]
+        - complianceRequirements: ComplianceRequirement[]
+        + enforceCompliance(requirement: ComplianceRequirement): void
+        + generateRegulatoryReport(): RegulatoryReport
+        + coordinateEmergencyResponse(emergency: EmergencyContext): void
+        + validateInterAgencyAccess(agency: GovernmentAgency): boolean
+    }
+
+    class BusinessStakeholder extends StakeholderEntity {
+        - company: Company
+        - csrPrograms: CSRProgram[]
+        - partnerships: Partnership[]
+        - donationHistory: Donation[]
+        + createCSRProgram(program: CSRProgram): void
+        + trackImpactMetrics(): ImpactMetrics
+        + processDonation(donation: Donation): DonationResult
+        + generateESGReport(): ESGReport
+    }
+
+    class AcademicStakeholder extends StakeholderEntity {
+        - institution: AcademicInstitution
+        - researchProjects: ResearchProject[]
+        - ethicsApprovals: EthicsApproval[]
+        - publications: Publication[]
+        + submitResearchProposal(proposal: ResearchProposal): void
+        + accessAnonymizedData(request: DataRequest): Dataset
+        + publishFindings(publication: Publication): void
+        + maintainEthicsCompliance(): ComplianceStatus
+    }
+
+    class CommunityStakeholder extends StakeholderEntity {
+        - organization: CommunityOrganization
+        - volunteerActivities: VolunteerActivity[]
+        - localResources: LocalResource[]
+        - communityEvents: CommunityEvent[]
+        + coordinateVolunteers(activity: VolunteerActivity): void
+        + shareLocalResources(resource: LocalResource): void
+        + organizeEvent(event: CommunityEvent): void
+        + facilitateCommunitySupport(): SupportNetwork
+    }
+
+    class MediaStakeholder extends StakeholderEntity {
+        - mediaOutlet: MediaOutlet
+        - publications: MediaPublication[]
+        - campaigns: AwarenessCampaign[]
+        - ethicsGuidelines: MediaEthicsGuideline[]
+        + createContent(story: Story, consent: ConsentRecord): MediaContent
+        + publishStory(content: MediaContent): PublicationResult
+        + launchCampaign(campaign: AwarenessCampaign): void
+        + ensureEthicalReporting(): EthicsComplianceReport
+    }
+
+    enum StakeholderType {
+        GOVERNMENT
+        BUSINESS
+        ACADEMIC
+        COMMUNITY
+        MEDIA
+    }
+
+    interface PentaHelixCollaboration {
+        + initiateCollaboration(stakeholders: StakeholderEntity[]): Collaboration
+        + facilitateWorkflow(workflow: Workflow): WorkflowResult
+        + resolveConflicts(conflict: Conflict): Resolution
+        + measureCollaborationEffectiveness(): EffectivenessMetrics
+        + ensureEquitableParticipation(): ParticipationReport
+    }
+}
+
+' Security and Encryption Infrastructure
+package "Security Infrastructure" {
+    interface EncryptionService {
+        + encrypt(data: any, keyId: string): EncryptedData
+        + decrypt(encryptedData: EncryptedData, keyId: string): any
+        + rotateKeys(): KeyRotationResult
+        + generateKeyPair(): KeyPair
+        + validateKeyIntegrity(): IntegrityReport
+    }
+
+    class AESEncryptionService implements EncryptionService {
+        - keyManager: KeyManager
+        - algorithm: string = "AES-256-GCM"
+        - keyRotationInterval: Duration
+        + encryptChildData(data: ChildData): EncryptedChildData
+        + decryptChildData(encryptedData: EncryptedChildData): ChildData
+        + createDataKey(purpose: string): DataKey
+        + auditKeyUsage(): KeyUsageReport
+    }
+
+    interface AuditService {
+        + logAccess(user: User, resource: Resource, action: string): void
+        + logSecurityEvent(event: SecurityEvent): void
+        + generateAuditTrail(resource: Resource): AuditTrail
+        + detectAnomalousActivity(): AnomalyReport
+        + exportComplianceReport(timeframe: TimeRange): ComplianceReport
+    }
+
+    class ComprehensiveAuditService implements AuditService {
+        - auditRepository: AuditRepository
+        - anomalyDetector: AnomalyDetector
+        - complianceValidator: ComplianceValidator
+        + logChildDataAccess(user: User, child: Child, action: string): void
+        + trackStakeholderActivity(stakeholder: StakeholderEntity): void
+        + generateRealTimeAlerts(): SecurityAlert[]
+        + performComplianceCheck(): ComplianceStatus
+    }
+
+    class AccessControlManager {
+        - rbacEngine: RBACEngine
+        - policyEngine: PolicyEngine
+        - emergencyOverride: EmergencyOverride
+        + validateAccess(user: User, resource: Resource, action: string): AccessResult
+        + grantTemporaryAccess(user: User, resource: Resource, duration: Duration): TemporaryAccess
+        + handleEmergencyAccess(emergency: EmergencyContext): EmergencyAccessResult
+        + enforceDataMinimization(request: DataRequest): FilteredDataRequest
+        + auditAccessDecisions(): AccessAuditReport
+    }
+
+    exception SecurityException {
+        - errorCode: string
+        - severity: SecuritySeverity
+        - affectedResources: Resource[]
+        - recommendedActions: string[]
+        + triggerIncidentResponse(): void
+        + notifySecurityTeam(): void
+        + generateIncidentReport(): IncidentReport
+    }
+
+    exception ChildDataAccessException extends SecurityException {
+        - childId: UUID
+        - attemptedAction: string
+        - accessAttemptUser: User
+        - childProtectionViolation: ProtectionViolation
+        + escalateToChildProtectionTeam(): void
+        + triggerEmergencyProtocols(): void
+        + notifyLegalGuardians(): void
+    }
+}
+
+' Analytics and Reporting Infrastructure
+package "Analytics Infrastructure" {
+    interface AnalyticsEngine {
+        + aggregateData(sources: DataSource[]): AggregatedData
+        + generateInsights(data: AggregatedData): Insight[]
+        + createDashboard(stakeholder: StakeholderType): Dashboard
+        + scheduleReport(report: ReportDefinition): ScheduledReport
+        + exportData(request: ExportRequest): ExportResult
+    }
+
+    class PrivacyPreservingAnalytics implements AnalyticsEngine {
+        - anonymizer: DataAnonymizer
+        - differentialPrivacy: DifferentialPrivacyEngine
+        - aggregationEngine: AggregationEngine
+        + anonymizeChildData(data: ChildData[]): AnonymizedData[]
+        + calculateImpactMetrics(donations: Donation[]): ImpactMetrics
+        + generateStakeholderInsights(activities: Activity[]): StakeholderInsights
+        + createComplianceMetrics(): ComplianceMetrics
+        + performTrendAnalysis(timeframe: TimeRange): TrendAnalysis
+    }
+
+    class RealTimeDashboard {
+        - dataStreams: DataStream[]
+        - visualizations: Visualization[]
+        - alerts: Alert[]
+        - permissions: DashboardPermission[]
+        + updateRealTimeMetrics(): void
+        + addVisualization(viz: Visualization): void
+        + configureAlerts(alertConfig: AlertConfiguration): void
+        + shareWithStakeholders(stakeholders: StakeholderEntity[]): void
+        + exportDashboard(format: ExportFormat): ExportResult
+    }
+
+    interface ComplianceReporting {
+        + generateGDPRReport(): GDPRComplianceReport
+        + generateCOPPAReport(): COPPAComplianceReport
+        + generateIndonesianComplianceReport(): IndonesianComplianceReport
+        + generateUNICEFStandardsReport(): UNICEFStandardsReport
+        + validateComplianceStatus(): ComplianceValidationResult
+    }
+}
+
+' Relationships and Dependencies
+ChildEntity --> ChildProtectionPolicy : "protected by"
+Child --> ChildCase : "associated with"
+ChildProtectionService --> EncryptionService : "uses"
+ChildProtectionService --> AuditService : "logs activities"
+StakeholderEntity --> AccessControlManager : "access controlled by"
+GovernmentStakeholder --> ComplianceReporting : "generates reports"
+BusinessStakeholder --> AnalyticsEngine : "tracks impact"
+AcademicStakeholder --> PrivacyPreservingAnalytics : "accesses anonymized data"
+CommunityStakeholder --> RealTimeDashboard : "views community metrics"
+MediaStakeholder --> ComplianceReporting : "ensures ethical reporting"
+AESEncryptionService --> KeyManager : "manages keys"
+ComprehensiveAuditService --> AnomalyDetector : "detects anomalies"
+AccessControlManager --> RBACEngine : "enforces roles"
+PrivacyPreservingAnalytics --> DataAnonymizer : "anonymizes data"
+
+note top of ChildEntity
+  **Child Protection Features:**
+  • AES-256 encryption for all PII
+  • Comprehensive audit trail logging
+  • Emergency access protocols
+  • Safety status monitoring
+  • Data minimization enforcement
+  • Privacy by design architecture
+end note
+
+note bottom of StakeholderEntity
+  **Penta-Helix Collaboration:**
+  • Role-based access control
+  • Multi-stakeholder workflows
+  • Collaboration history tracking
+  • Permission management
+  • Verification status monitoring
+  • Equitable participation ensuring
+end note
+
+note right of EncryptionService
+  **Security Implementation:**
+  • AES-256-GCM encryption algorithm
+  • Automatic key rotation
+  • Secure key management
+  • Data integrity validation
+  • Performance optimization
+  • Compliance with international standards
+end note
+
+note left of AnalyticsEngine
+  **Privacy-Preserving Analytics:**
+  • Differential privacy implementation
+  • K-anonymity guarantees
+  • Real-time data processing
+  • Stakeholder-specific insights
+  • Compliance metric generation
+  • Impact measurement tracking
+end note
+
+@enduml

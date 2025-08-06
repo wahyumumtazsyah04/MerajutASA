@@ -1,0 +1,307 @@
+@startuml donation-processing
+!include <C4/C4_Sequence>
+
+!define TITLE "MerajutASA Platform - Donation Processing Sequence"
+!define DESCRIPTION "Secure donation flow with multi-payment gateway integration, compliance tracking, and impact attribution for child welfare support"
+
+' Enhanced color palette with psychological design principles
+!define PRIMARY_BLUE #2980B9
+!define SUCCESS_GREEN #27AE60
+!define WARNING_ORANGE #F39C12
+!define DANGER_RED #E74C3C
+!define INFO_PURPLE #8E44AD
+!define NEUTRAL_GRAY #7F8C8D
+!define LIGHT_GRAY #BDC3C7
+!define DONATION_GREEN #2ECC71
+!define PAYMENT_BLUE #3498DB
+!define SECURITY_RED #E74C3C
+!define COMPLIANCE_PURPLE #9B59B6
+!define NOTIFICATION_ORANGE #F39C12
+
+title <size:20><b>💰 TITLE</b></size>
+caption <size:12><i>DESCRIPTION</i></size>
+
+' Define participants with enhanced visual hierarchy and icons
+actor "<size:14><b>💝 Donor</b></size>" as Donor #FFEAA7
+participant "<size:12><b>📱 Web/Mobile App</b></size>\n<size:10><i>User Interface</i></size>" as App PAYMENT_BLUE
+participant "<size:12><b>🔐 API Gateway</b></size>\n<size:10><i>Security Layer</i></size>" as Gateway SUCCESS_GREEN
+participant "<size:12><b>💰 Donation Service</b></size>\n<size:10><i>Core Logic</i></size>" as DonationService DONATION_GREEN
+participant "<size:12><b>💳 Payment Service</b></size>\n<size:10><i>Transaction Handler</i></size>" as PaymentService PAYMENT_BLUE
+participant "<size:12><b>🛡️ Fraud Detection</b></size>\n<size:10><i>Security Monitor</i></size>" as FraudService SECURITY_RED
+participant "<size:12><b>📋 Compliance Service</b></size>\n<size:10><i>Regulatory Check</i></size>" as ComplianceService COMPLIANCE_PURPLE
+participant "<size:12><b>📢 Notification Service</b></size>\n<size:10><i>Communication Hub</i></size>" as NotificationService NOTIFICATION_ORANGE
+participant "<size:12><b>📊 Analytics Service</b></size>\n<size:10><i>Impact Tracking</i></size>" as AnalyticsService NEUTRAL_GRAY
+participant "<size:12><b>🏠 Orphanage Service</b></size>\n<size:10><i>Beneficiary Mgmt</i></size>" as OrphanageService WARNING_ORANGE
+participant "<size:12><b>🧾 Tax Service</b></size>\n<size:10><i>Receipt Generator</i></size>" as TaxService INFO_PURPLE
+
+' External payment providers with distinctive styling
+participant "<size:12><b>🇮🇩 Midtrans Gateway</b></size>\n<size:10><i>Indonesian Payment</i></size>" as Midtrans #16A085
+participant "<size:12><b>🏦 Bank Transfer</b></size>\n<size:10><i>Traditional Banking</i></size>" as BankTransfer PRIMARY_BLUE
+participant "<size:12><b>📱 Digital Wallet</b></size>\n<size:10><i>OVO/GoPay/DANA</i></size>" as DigitalWallet SUCCESS_GREEN
+participant "<size:12><b>💳 Credit Card</b></size>\n<size:10><i>Visa/Mastercard</i></size>" as CreditCard DANGER_RED
+
+' Databases with enhanced visual distinction
+database "<size:12><b>💰 Donation Database</b></size>\n<size:10><i>PostgreSQL</i></size>" as DonationDB LIGHT_GRAY
+database "<size:12><b>💳 Payment Database</b></size>\n<size:10><i>Transaction Store</i></size>" as PaymentDB NEUTRAL_GRAY
+database "<size:12><b>📋 Audit Database</b></size>\n<size:10><i>Compliance Log</i></size>" as AuditDB NEUTRAL_GRAY
+database "<size:12><b>📊 Analytics Database</b></size>\n<size:10><i>Impact Metrics</i></size>" as AnalyticsDB NEUTRAL_GRAY
+
+== <size:18><b>🎯 Donation Initiation</b></size> ==
+
+Donor -> App: <b>Browse orphanages</b> and select donation target
+activate App #E8F6F3
+
+App -> Gateway: <b>GET</b> /api/v1/orphanages/{id}/donation-info
+activate Gateway #E8F8F5
+
+Gateway -> OrphanageService: <b>Get orphanage</b> donation details
+activate OrphanageService #FEF9E7
+
+OrphanageService -> Gateway: <b>Return</b> donation requirements and goals
+deactivate OrphanageService
+
+Gateway -> App: <b>Orphanage donation</b> information
+deactivate Gateway
+
+App -> Donor: <b>Display donation form</b> with impact goals
+deactivate App
+
+== <size:18><b>⚙️ Donation Configuration</b></size> ==
+
+Donor -> App: <b>Configure donation</b>\n<size:10><i>(amount, frequency, purpose, anonymity preference)</i></size>
+activate App #E8F6F3
+
+App -> Gateway: <b>POST</b> /api/v1/donations/configure
+activate Gateway #E8F8F5
+
+Gateway -> DonationService: <b>Validate</b> donation configuration
+activate DonationService #E8F6F3
+
+DonationService -> ComplianceService: <b>Check</b> donation limits and compliance
+activate ComplianceService #F4ECF7
+
+ComplianceService -> ComplianceService: <b>Validate against</b>\n<b>•</b> Anti-money laundering rules\n<b>•</b> Indonesian donation regulations\n<b>•</b> Tax deduction limits\n<b>•</b> Donor verification requirements
+
+alt <size:14><b>❌ Donation exceeds compliance limits</b></size>
+    ComplianceService -> DonationService: <b>Compliance violation</b>
+    DonationService -> Gateway: <b>Donation limit</b> exceeded
+    Gateway -> App: <b>Compliance error</b> with explanation
+    App -> Donor: <b>❌ Donation exceeds permitted limits</b>\n<size:10><i>(provide alternative options)</i></size>
+    note over Donor #FADBD8: <b>🔄 Adjustment Required</b>\nDonor can adjust amount\nor complete verification for higher limits
+else <size:14><b>✅ Donation within limits</b></size>
+    ComplianceService -> DonationService: <b>Compliance approved</b>
+    deactivate ComplianceService
+    
+    DonationService -> DonationDB: <b>Create</b> donation record (pending)
+    activate DonationDB #F8F9FA
+    DonationDB -> DonationService: <b>Donation ID</b> generated
+    deactivate DonationDB
+    
+    DonationService -> PaymentService: <b>Get available</b> payment methods
+    activate PaymentService #EBF5FB
+    
+    PaymentService -> Gateway: <b>Available</b> payment options
+    deactivate PaymentService
+    DonationService -> Gateway: <b>Donation configured</b> successfully
+    deactivate DonationService
+    Gateway -> App: <b>Payment options</b> and donation summary
+    deactivate Gateway
+    App -> Donor: <b>Display</b> payment method selection
+    deactivate App
+end
+
+== <size:18><b>💳 Payment Method Selection</b></size> ==
+
+Donor -> App: <b>Select payment method</b> and provide details
+activate App #E8F6F3
+
+App -> Gateway: <b>POST</b> /api/v1/donations/{id}/payment
+activate Gateway #E8F8F5
+
+Gateway -> PaymentService: <b>Process</b> payment request
+activate PaymentService #EBF5FB
+
+== <size:18><b>🛡️ Fraud Detection</b></size> ==
+
+PaymentService -> FraudService: <b>Analyze transaction</b> for fraud risk
+activate FraudService #FDEDEC
+
+FraudService -> FraudService: <b>🔍 Risk assessment</b>\n<b>•</b> Donor behavior analysis\n<b>•</b> Payment pattern detection\n<b>•</b> Device fingerprinting\n<b>•</b> Geographic anomaly detection
+
+alt <size:14><b>🚨 High fraud risk detected</b></size>
+    FraudService -> PaymentService: <b>High risk</b> - additional verification required
+    PaymentService -> Gateway: <b>Additional verification</b> needed
+    Gateway -> App: <b>Request</b> additional verification
+    App -> Donor: <b>🔐 Additional security verification</b> required
+    note over Donor #FADBD8: <b>🔐 Security Check</b>\n2FA, identity verification,\nor manual review process
+else <size:14><b>✅ Low/Medium risk</b></size>
+    FraudService -> PaymentService: <b>Transaction approved</b> for processing
+    deactivate FraudService
+    
+    == <size:18><b>💳 Payment Gateway Integration</b></size> ==
+    
+    alt <size:14><b>🏦 Indonesian Bank Transfer</b></size>
+        PaymentService -> BankTransfer: <b>Initiate</b> bank transfer
+        activate BankTransfer #EBF5FB
+        BankTransfer -> PaymentService: <b>Transfer</b> instructions
+        deactivate BankTransfer
+        PaymentService -> Donor: <b>🏦 Bank transfer instructions</b> via App
+        
+    else <size:14><b>📱 Digital Wallet (OVO, GoPay, DANA)</b></size>
+        PaymentService -> DigitalWallet: <b>Process</b> wallet payment
+        activate DigitalWallet #E8F6F3
+        DigitalWallet -> PaymentService: <b>Payment confirmation</b>/redirect
+        deactivate DigitalWallet
+        
+    else <size:14><b>💳 Credit/Debit Card</b></size>
+        PaymentService -> Midtrans: <b>Process</b> card payment
+        activate Midtrans #E8F6F3
+        Midtrans -> CreditCard: <b>Card authorization</b>
+        activate CreditCard #FDEDEC
+        CreditCard -> Midtrans: <b>Authorization</b> result
+        deactivate CreditCard
+        Midtrans -> PaymentService: <b>Payment processing</b> result
+        deactivate Midtrans
+        
+    else <size:14><b>₿ Cryptocurrency (Future)</b></size>
+        PaymentService -> PaymentService: <b>Cryptocurrency processing</b>\n<size:10><i>(planned for Phase 2)</i></size>
+    end
+    
+    == <size:18><b>✅ Payment Confirmation</b></size> ==
+    
+    PaymentService -> PaymentDB: <b>Update</b> payment status
+    activate PaymentDB #F8F9FA
+    PaymentDB -> PaymentService: <b>Payment status</b> updated
+    deactivate PaymentDB
+    
+    alt <size:14><b>🎉 Payment Successful</b></size>
+        PaymentService -> DonationService: <b>Payment confirmed</b>
+        activate DonationService #E8F6F3
+        
+        DonationService -> DonationDB: <b>Update donation status</b> to confirmed
+        activate DonationDB #F8F9FA
+        DonationDB -> DonationService: <b>Donation confirmed</b>
+        deactivate DonationDB
+        
+        == <size:18><b>📊 Impact Attribution</b></size> ==
+        
+        DonationService -> AnalyticsService: <b>Record</b> donation impact
+        activate AnalyticsService #F8F9FA
+        AnalyticsService -> AnalyticsDB: <b>Store</b> impact metrics
+        activate AnalyticsDB #F8F9FA
+        AnalyticsDB -> AnalyticsService: <b>Impact</b> recorded
+        deactivate AnalyticsDB
+        deactivate AnalyticsService
+        
+        == <size:18><b>🧾 Tax Receipt Generation</b></size> ==
+        
+        DonationService -> TaxService: <b>Generate</b> tax receipt
+        activate TaxService #F4ECF7
+        TaxService -> TaxService: <b>Calculate tax deduction amount</b>\n<size:10><i>(Indonesian tax regulations)</i></size>
+        TaxService -> DonationService: <b>Tax receipt</b> generated
+        deactivate TaxService
+        
+        == <size:18><b>📢 Stakeholder Notifications</b></size> ==
+        
+        DonationService -> NotificationService: <b>Send confirmation</b> notifications
+        activate NotificationService #FEF9E7
+        
+        NotificationService -> Donor: <b>📧 Donation confirmation</b> email/SMS
+        NotificationService -> OrphanageService: <b>Notify orphanage</b> of new donation
+        activate OrphanageService #FEF9E7
+        OrphanageService -> NotificationService: <b>Orphanage notification</b> sent
+        deactivate OrphanageService
+        
+        alt <size:14><b>🏢 Corporate Donation</b></size>
+            NotificationService -> NotificationService: <b>Notify CSR department</b>\nand generate impact report
+        end
+        
+        deactivate NotificationService
+        
+        == <size:18><b>📋 Audit and Compliance</b></size> ==
+        
+        DonationService -> ComplianceService: <b>Log</b> successful donation
+        activate ComplianceService #F4ECF7
+        ComplianceService -> AuditDB: <b>Store</b> compliance audit trail
+        activate AuditDB #F8F9FA
+        AuditDB -> ComplianceService: <b>Audit</b> logged
+        deactivate AuditDB
+        deactivate ComplianceService
+        
+        DonationService -> PaymentService: <b>Donation processing</b> complete
+        deactivate DonationService
+        PaymentService -> Gateway: <b>Payment successful</b>
+        deactivate PaymentService
+        Gateway -> App: <b>Donation successful</b> with receipt
+        deactivate Gateway
+        App -> Donor: <b>🎉 Success confirmation</b> with impact preview
+        deactivate App
+        
+    else <size:14><b>❌ Payment Failed</b></size>
+        PaymentService -> DonationService: <b>Payment failed</b>
+        activate DonationService #E8F6F3
+        DonationService -> DonationDB: <b>Update donation status</b> to failed
+        activate DonationDB #F8F9FA
+        DonationDB -> DonationService: <b>Status</b> updated
+        deactivate DonationDB
+        
+        DonationService -> NotificationService: <b>Send failure</b> notification
+        activate NotificationService #FEF9E7
+        NotificationService -> Donor: <b>❌ Payment failure notification</b> with retry options
+        deactivate NotificationService
+        
+        DonationService -> PaymentService: <b>Payment failure</b> handled
+        deactivate DonationService
+        PaymentService -> Gateway: <b>Payment failed</b>
+        deactivate PaymentService
+        Gateway -> App: <b>Payment failure</b> with retry options
+        deactivate Gateway
+        App -> Donor: <b>❌ Payment unsuccessful</b> - retry options provided
+        deactivate App
+    end
+end
+
+== <size:18><b>🔄 Recurring Donation Handling</b></size> ==
+
+note over PaymentService, DonationService #E8F6F3
+    <size:14><b>🔄 Recurring Donations:</b></size>
+    <b>•</b> Scheduled processing via cron jobs
+    <b>•</b> Automatic retry logic for failed payments
+    <b>•</b> Donor notification before each charge
+    <b>•</b> Easy cancellation and modification options
+    <b>•</b> Impact tracking across multiple donations
+end note
+
+== <size:18><b>🛡️ Security and Compliance Features</b></size> ==
+
+note over Donor, AuditDB #FEF9E7
+    <size:16><b>🛡️ Security Controls:</b></size>
+    <b>•</b> PCI DSS compliance for card payments
+    <b>•</b> End-to-end encryption for sensitive data
+    <b>•</b> Multi-layer fraud detection
+    <b>•</b> Secure tokenization of payment methods
+    <b>•</b> Comprehensive audit logging
+    
+    <size:16><b>🇮🇩 Indonesian Compliance:</b></size>
+    <b>•</b> Bank Indonesia payment regulations
+    <b>•</b> Anti-money laundering (AML) compliance
+    <b>•</b> Tax receipt generation per Indonesian law
+    <b>•</b> Donor privacy protection (GDPR equivalent)
+    <b>•</b> Charitable organization reporting requirements
+    
+    <size:16><b>👶 Child Protection Integration:</b></size>
+    <b>•</b> Transparent fund allocation tracking
+    <b>•</b> Impact measurement and reporting
+    <b>•</b> Orphanage verification and monitoring
+    <b>•</b> Donor communication preferences
+    <b>•</b> Emergency fund allocation protocols
+    
+    <size:16><b>🔒 Payment Security:</b></size>
+    <b>•</b> Tokenized card storage (no raw card data)
+    <b>•</b> Real-time fraud monitoring
+    <b>•</b> Geographic risk assessment
+    <b>•</b> Device fingerprinting
+    <b>•</b> Behavioral analysis for anomaly detection
+end note
+
+@enduml

@@ -1,0 +1,105 @@
+@startuml system-context
+
+!include <C4/C4_Context>
+
+' Title and description
+title "MerajutASA Platform - System Context Diagram"
+
+' Central MerajutASA Platform
+System(merajutasa, "MerajutASA Platform", "Child welfare management platform implementing penta-helix collaboration model with comprehensive child protection, stakeholder engagement, and impact measurement capabilities")
+
+' Child Safety Boundary
+System_Boundary(child_safety, "Child Protection Perimeter") {
+    System(child_data, "Child Data Protection System", "Encrypted child profiles, case files, medical records, and legal documents with comprehensive audit trails and emergency access protocols")
+    System(emergency_response, "Emergency Response System", "Real-time child safety alert system with automated escalation, emergency communication, and crisis intervention coordination")
+}
+
+' Government Stakeholder Systems
+Person(govt_officials, "Government Officials", "Policy makers, social service agencies, and regulatory authorities responsible for child welfare oversight and compliance monitoring")
+System_Ext(govt_systems, "Government Systems", "Ministry of Social Affairs, regional social services, legal databases, and regulatory compliance systems for child protection")
+System_Ext(legal_systems, "Legal & Compliance Systems", "Court systems, legal document management, regulatory reporting, and audit trail systems for child protection compliance")
+
+' Business Stakeholder Systems  
+Person(corporate_partners, "Corporate Partners", "Businesses, foundations, and CSR programs providing funding, resources, and partnership support for orphanage operations")
+System_Ext(payment_systems, "Payment & Banking Systems", "Secure donation processing, financial transaction management, and corporate giving platforms with comprehensive audit trails")
+System_Ext(crm_systems, "Corporate CRM Systems", "Salesforce, HubSpot, and corporate partnership management systems for CSR tracking and relationship management")
+
+' Academic Stakeholder Systems
+Person(researchers, "Academic Researchers", "Universities, research institutions, and scholars conducting evidence-based research on child welfare interventions and outcomes")
+System_Ext(research_systems, "Research Data Systems", "Academic databases, institutional repositories, and research collaboration platforms for evidence-based child welfare studies")
+System_Ext(ethics_systems, "Ethics & IRB Systems", "Institutional Review Boards, ethics approval systems, and research compliance platforms ensuring child protection in research")
+
+' Community Stakeholder Systems
+Person(volunteers, "Community Volunteers", "Local volunteers, community organizations, and civic groups providing direct support and engagement with orphanages")
+Person(donors, "Individual Donors", "Private donors, community fundraisers, and local supporters contributing resources and time to child welfare initiatives")
+System_Ext(community_systems, "Community Platforms", "Volunteer management systems, local organization networks, and community resource sharing platforms")
+System_Ext(social_media, "Social Media Platforms", "Facebook, Instagram, Twitter, and community engagement platforms for awareness, fundraising, and volunteer coordination")
+
+' Media Stakeholder Systems
+Person(journalists, "Media Professionals", "Journalists, content creators, and communication specialists amplifying child welfare stories and raising public awareness")
+System_Ext(media_systems, "Media Distribution Systems", "News platforms, content management systems, and digital media distribution networks for child welfare advocacy")
+System_Ext(content_platforms, "Content Management Platforms", "Editorial systems, asset management platforms, and publication distribution systems for child welfare storytelling")
+
+' Core Supporting Systems
+System_Ext(notification_systems, "Communication Systems", "Multi-channel notification systems including SMS, email, push notifications, and emergency alerts for stakeholder coordination")
+System_Ext(analytics_systems, "Analytics & Reporting Systems", "Business intelligence platforms, impact measurement tools, and compliance reporting systems for data-driven decision making")
+System_Ext(identity_systems, "Identity & Security Systems", "Authentication providers, security monitoring, and access control systems ensuring comprehensive platform security")
+
+' Government Relationships
+Rel(govt_officials, merajutasa, "Monitors compliance, accesses reports, coordinates social services", "HTTPS/OAuth 2.0")
+Rel(merajutasa, govt_systems, "Submits regulatory reports, shares anonymized data, coordinates interventions", "Secure API/HTTPS")
+Rel(merajutasa, legal_systems, "Maintains legal document archives, ensures compliance, manages audit trails", "Encrypted API")
+Rel(govt_officials, child_data, "Emergency access during child protection incidents", "Multi-factor authentication")
+
+' Business Relationships  
+Rel(corporate_partners, merajutasa, "Manages CSR programs, tracks impact, coordinates partnerships", "HTTPS/API")
+Rel(merajutasa, payment_systems, "Processes donations, manages financial transactions, generates receipts", "PCI DSS Secure API")
+Rel(merajutasa, crm_systems, "Synchronizes partnership data, tracks engagement, manages relationships", "OAuth 2.0/REST API")
+Rel(corporate_partners, child_data, "Views anonymized impact data with strict privacy controls", "Role-based access")
+
+' Academic Relationships
+Rel(researchers, merajutasa, "Accesses anonymized research data, conducts studies, publishes findings", "Secure API/HTTPS")
+Rel(merajutasa, research_systems, "Shares de-identified datasets, collaborates on studies, validates interventions", "Research API")
+Rel(merajutasa, ethics_systems, "Maintains ethics compliance, manages consent, ensures child protection", "Compliance API")
+Rel(researchers, child_data, "Accesses anonymized data with IRB approval and ethics oversight", "Ethics-controlled access")
+
+' Community Relationships
+Rel(volunteers, merajutasa, "Coordinates volunteer activities, manages schedules, tracks contributions", "Mobile App/Web")
+Rel(donors, merajutasa, "Makes donations, tracks impact, receives updates", "Secure Web/Mobile")
+Rel(merajutasa, community_systems, "Integrates volunteer management, coordinates resources, facilitates engagement", "API Integration")
+Rel(merajutasa, social_media, "Shares success stories, promotes awareness, coordinates campaigns", "Social Media APIs")
+Rel(volunteers, emergency_response, "Receives emergency alerts, coordinates crisis response", "Push notifications")
+
+' Media Relationships
+Rel(journalists, merajutasa, "Accesses press resources, obtains impact stories, coordinates coverage", "Media Portal/API")
+Rel(merajutasa, media_systems, "Distributes press releases, shares approved content, provides media assets", "Content API")
+Rel(merajutasa, content_platforms, "Manages brand assets, maintains messaging consistency, coordinates campaigns", "CMS Integration")
+Rel(journalists, child_data, "Accesses anonymized statistics with consent and privacy protection", "Controlled media access")
+
+' Supporting System Relationships
+Rel(merajutasa, notification_systems, "Sends alerts, coordinates communications, manages emergency notifications", "Multi-channel API")
+Rel(merajutasa, analytics_systems, "Generates reports, measures impact, tracks performance metrics", "Analytics API")
+Rel(merajutasa, identity_systems, "Authenticates users, manages access, monitors security", "OAuth 2.0/SAML")
+
+' Child Safety Emergency Flows
+Rel(emergency_response, notification_systems, "Triggers emergency alerts across all stakeholder groups", "Priority messaging")
+Rel(emergency_response, govt_systems, "Activates government emergency response protocols", "Emergency API")
+Rel(emergency_response, community_systems, "Mobilizes community volunteer emergency response", "Crisis coordination")
+
+' Cross-stakeholder collaboration flows
+Rel(govt_officials, corporate_partners, "Coordinates public-private partnerships for child welfare", "Platform-mediated")
+Rel(researchers, govt_officials, "Provides evidence-based policy recommendations", "Research reporting")
+Rel(corporate_partners, researchers, "Funds evidence-based research initiatives", "Partnership agreements")
+Rel(volunteers, media_systems, "Shares community stories and impact testimonials", "Content collaboration")
+Rel(researchers, community_systems, "Conducts participatory research with community input", "Research collaboration")
+Rel(volunteers, journalists, "Shares community stories and impact testimonials", "Story coordination")
+Rel(corporate_partners, community_systems, "Supports employee volunteer programs", "Corporate engagement")
+
+' Security and compliance flows
+Rel(child_safety, identity_systems, "Enforces strict access controls and audit logging", "Security integration")
+Rel(child_safety, analytics_systems, "Provides anonymized data while protecting individual privacy", "Privacy-preserving analytics")
+Rel(legal_systems, child_safety, "Maintains legal compliance and regulatory requirements", "Compliance monitoring")
+
+SHOW_LEGEND()
+
+@enduml

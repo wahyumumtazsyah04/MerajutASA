@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  mermaid-cli:
+    image: minlag/mermaid-cli:latest
+    container_name: merajutasa-mermaid-cli
+    working_dir: /app
+    volumes:
+      - ./docs/architecture/diagrams/source:/app/source:ro
+      - ./docs/architecture/diagrams/rendered:/app/rendered
+      - ./docs/architecture/diagrams/tools/mermaid-config.json:/app/config.json:ro
+    environment:
+      - PUPPETEER_ARGS=--no-sandbox --disable-setuid-sandbox --disable-dev-shm-usage
+      - MERMAID_CONFIG_FILE=/app/config.json
+    networks:
+      - mermaid-network
+    command: >
+      sh -c "
+        echo 'Starting Mermaid CLI Service...';
+        echo 'Available commands:';
+        echo '  - Generate PNG: mmdc -i source/file.mmd -o rendered/file.png -t dark -b transparent';
+        echo '  - Generate SVG: mmdc -i source/file.mmd -o rendered/file.svg -t dark -b transparent';
+        echo '  - Generate PDF: mmdc -i source/file.mmd -o rendered/file.pdf -t dark -b transparent';
+        echo '  - Batch process: find source -name \"*.mmd\" -exec mmdc -i {} -o rendered/{}.png \;';
+        echo 'Service ready for diagram generation...';
+        tail -f /dev/null
+      "
+
+  mermaid-live-editor:
+    image: nginx:alpine
+    container_name: merajutasa-mermaid-editor
+    ports:
+      - "8081:80"
+    volumes:
+      - ./docs/architecture/diagrams/tools/mermaid-editor:/usr/share/nginx/html:ro
+    networks:
+      - mermaid-network
+    restart: unless-stopped
+
+  mermaid-automation:
+    image: node:18-alpine
+    container_name: merajutasa-mermaid-automation
+    working_dir: /app
+    volumes:
+      - ./docs/architecture/diagrams:/app
+      - ./scripts:/app/scripts:ro
+    networks:
+      - mermaid-network
+    depends_on:
+      - mermaid-cli
+    command: >
+      sh -c "
+        npm install -g @mermaid-js/mermaid-cli;
+        apk add --no-cache bash curl git;
+        echo 'Mermaid Automation Container Ready';
+        echo 'Run batch processing with: /app/scripts/mermaid-batch.sh';
+        tail -f /dev/null
+      "
+
+networks:
+  mermaid-network:
+    driver: bridge
+
+volumes:
+  mermaid-cache:
+    driver: local

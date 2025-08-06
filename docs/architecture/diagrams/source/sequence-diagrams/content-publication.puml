@@ -1,0 +1,352 @@
+@startuml content-publication
+!include <C4/C4_Sequence>
+
+!define TITLE "MerajutASA Platform - Content Publication Sequence"
+!define DESCRIPTION "Child-safe content workflow with multi-stakeholder approval, privacy protection, and impact storytelling for orphanage support"
+
+' Enhanced color palette with psychological design principles
+!define PRIMARY_BLUE #2980B9
+!define SUCCESS_GREEN #27AE60
+!define WARNING_ORANGE #F39C12
+!define DANGER_RED #E74C3C
+!define INFO_PURPLE #8E44AD
+!define NEUTRAL_GRAY #7F8C8D
+!define LIGHT_GRAY #BDC3C7
+!define CONTENT_BLUE #3498DB
+!define REVIEW_RED #E74C3C
+!define PRIVACY_PURPLE #9B59B6
+!define APPROVAL_GREEN #27AE60
+!define DISTRIBUTION_ORANGE #F39C12
+
+title <size:20><b>📝 TITLE</b></size>
+caption <size:12><i>DESCRIPTION</i></size>
+
+' Define participants with enhanced visual hierarchy and icons
+actor "<size:14><b>✍️ Content Creator</b></size>" as Creator #FFEAA7
+participant "<size:12><b>📝 Content Management</b></size>\n<size:10><i>Creation Interface</i></size>" as ContentApp CONTENT_BLUE
+participant "<size:12><b>🔐 API Gateway</b></size>\n<size:10><i>Security Layer</i></size>" as Gateway SUCCESS_GREEN
+participant "<size:12><b>📄 Content Service</b></size>\n<size:10><i>Core Logic</i></size>" as ContentService CONTENT_BLUE
+participant "<size:12><b>🔒 Privacy Protection</b></size>\n<size:10><i>Safety Scanner</i></size>" as PrivacyService PRIVACY_PURPLE
+participant "<size:12><b>👁️ Review Service</b></size>\n<size:10><i>Quality Control</i></size>" as ReviewService REVIEW_RED
+participant "<size:12><b>✅ Approval Workflow</b></size>\n<size:10><i>Process Manager</i></size>" as ApprovalService APPROVAL_GREEN
+participant "<size:12><b>💾 Media Storage</b></size>\n<size:10><i>Asset Manager</i></size>" as MediaService NEUTRAL_GRAY
+participant "<size:12><b>📢 Notification Service</b></size>\n<size:10><i>Communication Hub</i></size>" as NotificationService DISTRIBUTION_ORANGE
+participant "<size:12><b>📊 Analytics Service</b></size>\n<size:10><i>Performance Tracker</i></size>" as AnalyticsService NEUTRAL_GRAY
+
+' Stakeholder reviewers with role-specific styling
+participant "<size:12><b>👶 Child Protection Officer</b></size>\n<size:10><i>Safety Guardian</i></size>" as ChildProtection #FF6B6B
+participant "<size:12><b>⚖️ Legal Reviewer</b></size>\n<size:10><i>Compliance Expert</i></size>" as LegalReview INFO_PURPLE
+participant "<size:12><b>🏠 Orphanage Coordinator</b></size>\n<size:10><i>Impact Validator</i></size>" as OrphanageCoord WARNING_ORANGE
+participant "<size:12><b>📈 Marketing Reviewer</b></size>\n<size:10><i>Brand Guardian</i></size>" as MarketingReview #1ABC9C
+
+' External distribution channels with platform-specific styling
+participant "<size:12><b>🌐 Website CMS</b></size>\n<size:10><i>Web Platform</i></size>" as Website PRIMARY_BLUE
+participant "<size:12><b>📱 Social Media API</b></size>\n<size:10><i>Social Platforms</i></size>" as SocialMedia #16A085
+participant "<size:12><b>📧 Email Marketing</b></size>\n<size:10><i>Newsletter System</i></size>" as EmailSystem INFO_PURPLE
+participant "<size:12><b>📲 Mobile Push</b></size>\n<size:10><i>App Notifications</i></size>" as PushNotification DANGER_RED
+
+' Databases with enhanced visual distinction
+database "<size:12><b>📄 Content Database</b></size>\n<size:10><i>PostgreSQL</i></size>" as ContentDB LIGHT_GRAY
+database "<size:12><b>📋 Audit Database</b></size>\n<size:10><i>Compliance Log</i></size>" as AuditDB NEUTRAL_GRAY
+database "<size:12><b>📊 Analytics Database</b></size>\n<size:10><i>Performance Data</i></size>" as AnalyticsDB NEUTRAL_GRAY
+
+== <size:18><b>🚀 Content Creation Initiation</b></size> ==
+
+Creator -> ContentApp: <b>Access</b> content creation interface
+activate ContentApp #E8F6F3
+
+ContentApp -> Gateway: <b>GET</b> /api/v1/content/templates
+activate Gateway #E8F8F5
+
+Gateway -> ContentService: <b>Get content templates</b> by type
+activate ContentService #EBF5FB
+
+ContentService -> Gateway: <b>Return available templates</b>\n<size:10><i>(success story, event, appeal, update)</i></size>
+deactivate ContentService
+
+Gateway -> ContentApp: <b>Content templates</b> and guidelines
+deactivate Gateway
+
+ContentApp -> Creator: <b>Display content creation form</b> with child protection guidelines
+deactivate ContentApp
+
+== <size:18><b>✍️ Content Drafting</b></size> ==
+
+Creator -> ContentApp: <b>Create content draft</b>\n<size:10><i>(text, images, videos, metadata)</i></size>
+activate ContentApp #E8F6F3
+
+ContentApp -> Gateway: <b>POST</b> /api/v1/content/draft
+activate Gateway #E8F8F5
+
+Gateway -> ContentService: <b>Process</b> content draft
+activate ContentService #EBF5FB
+
+== <size:18><b>🔍 Initial Content Validation</b></size> ==
+
+ContentService -> PrivacyService: <b>Scan content</b> for privacy violations
+activate PrivacyService #F4ECF7
+
+PrivacyService -> PrivacyService: <b>🔍 Automated privacy checks</b>\n<b>•</b> Personal information detection\n<b>•</b> Child identification scanning\n<b>•</b> Location data analysis\n<b>•</b> Biometric data detection
+
+alt <size:14><b>❌ Privacy violations detected</b></size>
+    PrivacyService -> ContentService: <b>Privacy violations</b> found
+    ContentService -> Gateway: <b>Content contains</b> privacy violations
+    Gateway -> ContentApp: <b>Privacy check failed</b> with details
+    ContentApp -> Creator: <b>❌ Privacy violations detected</b>\n<size:10><i>(specific issues highlighted for correction)</i></size>
+    note over Creator #FADBD8: <b>🔧 Action Required</b>\nCreator must address\nprivacy issues before proceeding
+else <size:14><b>✅ Privacy check passed</b></size>
+    PrivacyService -> ContentService: <b>Privacy validation</b> successful
+    deactivate PrivacyService
+    
+    == <size:18><b>💾 Content Storage and Processing</b></size> ==
+    
+    ContentService -> MediaService: <b>Upload and process</b> media files
+    activate MediaService #F8F9FA
+    
+    MediaService -> MediaService: <b>🎨 Media processing</b>\n<b>•</b> Image optimization and watermarking\n<b>•</b> Video transcoding and compression\n<b>•</b> Audio enhancement and normalization\n<b>•</b> Metadata extraction and sanitization
+    
+    MediaService -> ContentService: <b>Media processing</b> complete
+    deactivate MediaService
+    
+    ContentService -> ContentDB: <b>Save</b> draft content
+    activate ContentDB #F8F9FA
+    ContentDB -> ContentService: <b>Draft saved</b> with ID
+    deactivate ContentDB
+    
+    ContentService -> Gateway: <b>Draft created</b> successfully
+    deactivate ContentService
+    Gateway -> ContentApp: <b>Content draft</b> saved
+    deactivate Gateway
+    ContentApp -> Creator: <b>✅ Draft saved</b> - ready for review submission
+    deactivate ContentApp
+end
+
+== <size:18><b>🔄 Review Process Initiation</b></size> ==
+
+Creator -> ContentApp: <b>Submit content</b> for review
+activate ContentApp #E8F6F3
+
+ContentApp -> Gateway: <b>POST</b> /api/v1/content/{id}/submit-review
+activate Gateway #E8F8F5
+
+Gateway -> ReviewService: <b>Initiate</b> review workflow
+activate ReviewService #FDEDEC
+
+ReviewService -> ApprovalService: <b>Create</b> approval workflow
+activate ApprovalService #E8F6F3
+
+== <size:18><b>🔍 Multi-Stage Review Process</b></size> ==
+
+ApprovalService -> ApprovalService: <b>Determine review requirements</b>\nbased on content type and sensitivity
+
+=== <size:16><b>👶 Stage 1: Child Protection Review</b></size> ===
+
+ApprovalService -> ChildProtection: <b>Request</b> child protection review
+activate ChildProtection #FADBD8
+
+ChildProtection -> ContentService: <b>Access content</b> for review
+activate ContentService #EBF5FB
+ContentService -> ChildProtection: <b>Provide content</b> for assessment
+deactivate ContentService
+
+ChildProtection -> ChildProtection: <b>👶 Child protection assessment</b>\n<b>•</b> Child safety evaluation\n<b>•</b> Consent verification\n<b>•</b> Dignity and rights compliance\n<b>•</b> Psychological impact assessment
+
+alt <size:14><b>❌ Child protection concerns</b></size>
+    ChildProtection -> ApprovalService: <b>Rejection</b> with child protection feedback
+    ApprovalService -> NotificationService: <b>Notify content creator</b> of rejection
+    activate NotificationService #FEF9E7
+    NotificationService -> Creator: <b>❌ Content rejected</b> - child protection concerns
+    deactivate NotificationService
+else <size:14><b>✅ Child protection approved</b></size>
+    ChildProtection -> ApprovalService: <b>Child protection</b> approval
+    deactivate ChildProtection
+    
+    === <size:16><b>⚖️ Stage 2: Legal Compliance Review</b></size> ===
+    
+    ApprovalService -> LegalReview: <b>Request</b> legal compliance review
+    activate LegalReview #F4ECF7
+    
+    LegalReview -> ContentService: <b>Access content</b> for legal review
+    activate ContentService #EBF5FB
+    ContentService -> LegalReview: <b>Provide content</b> for legal assessment
+    deactivate ContentService
+    
+    LegalReview -> LegalReview: <b>⚖️ Legal compliance check</b>\n<b>•</b> Copyright and intellectual property\n<b>•</b> Defamation and privacy laws\n<b>•</b> Indonesian content regulations\n<b>•</b> International compliance (if applicable)
+    
+    alt <size:14><b>❌ Legal issues identified</b></size>
+        LegalReview -> ApprovalService: <b>Legal rejection</b> with feedback
+        ApprovalService -> NotificationService: <b>Notify</b> content creator
+        activate NotificationService #FEF9E7
+        NotificationService -> Creator: <b>❌ Content rejected</b> - legal concerns
+        deactivate NotificationService
+    else <size:14><b>✅ Legal approval granted</b></size>
+        LegalReview -> ApprovalService: <b>Legal approval</b>
+        deactivate LegalReview
+        
+        === <size:16><b>🏠 Stage 3: Orphanage Coordination Review</b></size> ===
+        
+        ApprovalService -> OrphanageCoord: <b>Request</b> orphanage review
+        activate OrphanageCoord #FEF9E7
+        
+        OrphanageCoord -> ContentService: <b>Access content</b> for orphanage review
+        activate ContentService #EBF5FB
+        ContentService -> OrphanageCoord: <b>Provide content</b> for assessment
+        deactivate ContentService
+        
+        OrphanageCoord -> OrphanageCoord: <b>🏠 Orphanage impact assessment</b>\n<b>•</b> Accuracy of orphanage information\n<b>•</b> Impact story verification\n<b>•</b> Resource allocation alignment\n<b>•</b> Community sensitivity check
+        
+        alt <size:14><b>❌ Orphanage concerns</b></size>
+            OrphanageCoord -> ApprovalService: <b>Rejection</b> with orphanage feedback
+            ApprovalService -> NotificationService: <b>Notify</b> content creator
+            activate NotificationService #FEF9E7
+            NotificationService -> Creator: <b>❌ Content rejected</b> - orphanage concerns
+            deactivate NotificationService
+        else <size:14><b>✅ Orphanage approval</b></size>
+            OrphanageCoord -> ApprovalService: <b>Orphanage approval</b>
+            deactivate OrphanageCoord
+            
+            === <size:16><b>📈 Stage 4: Marketing and Brand Review</b></size> ===
+            
+            ApprovalService -> MarketingReview: <b>Request</b> marketing review
+            activate MarketingReview #E8F6F3
+            
+            MarketingReview -> ContentService: <b>Access content</b> for marketing review
+            activate ContentService #EBF5FB
+            ContentService -> MarketingReview: <b>Provide content</b> for brand assessment
+            deactivate ContentService
+            
+            MarketingReview -> MarketingReview: <b>📈 Brand and messaging review</b>\n<b>•</b> Brand guideline compliance\n<b>•</b> Message consistency\n<b>•</b> Target audience appropriateness\n<b>•</b> Campaign alignment
+            
+            alt <size:14><b>✅ Marketing approval</b></size>
+                MarketingReview -> ApprovalService: <b>Marketing approval</b>
+                deactivate MarketingReview
+                
+                == <size:18><b>🎉 Final Approval and Publication</b></size> ==
+                
+                ApprovalService -> ContentService: <b>All approvals complete</b> - approve for publication
+                activate ContentService #EBF5FB
+                
+                ContentService -> ContentDB: <b>Update content status</b> to approved
+                activate ContentDB #F8F9FA
+                ContentDB -> ContentService: <b>Status</b> updated
+                deactivate ContentDB
+                
+                == <size:18><b>📢 Publication Distribution</b></size> ==
+                
+                ContentService -> ContentService: <b>Prepare content</b> for distribution
+                
+                ContentService -> Website: <b>🌐 Publish to website</b>
+                activate Website #EBF5FB
+                Website -> ContentService: <b>Website publication</b> successful
+                deactivate Website
+                
+                ContentService -> SocialMedia: <b>📱 Distribute to social platforms</b>
+                activate SocialMedia #E8F6F3
+                SocialMedia -> ContentService: <b>Social media posts</b> scheduled
+                deactivate SocialMedia
+                
+                ContentService -> EmailSystem: <b>📧 Include in email campaigns</b>
+                activate EmailSystem #F4ECF7
+                EmailSystem -> ContentService: <b>Email distribution</b> queued
+                deactivate EmailSystem
+                
+                ContentService -> PushNotification: <b>📲 Send push notifications</b>
+                activate PushNotification #FDEDEC
+                PushNotification -> ContentService: <b>Push notifications</b> sent
+                deactivate PushNotification
+                
+                == <size:18><b>📊 Analytics and Impact Tracking</b></size> ==
+                
+                ContentService -> AnalyticsService: <b>Initialize</b> content tracking
+                activate AnalyticsService #F8F9FA
+                AnalyticsService -> AnalyticsDB: <b>Create</b> content analytics profile
+                activate AnalyticsDB #F8F9FA
+                AnalyticsDB -> AnalyticsService: <b>Analytics tracking</b> initialized
+                deactivate AnalyticsDB
+                deactivate AnalyticsService
+                
+                == <size:18><b>📢 Stakeholder Notifications</b></size> ==
+                
+                ContentService -> NotificationService: <b>Send publication</b> notifications
+                activate NotificationService #FEF9E7
+                
+                NotificationService -> Creator: <b>🎉 Content published</b> successfully
+                NotificationService -> ChildProtection: <b>Content publication</b> notification
+                NotificationService -> OrphanageCoord: <b>New content</b> published
+                
+                deactivate NotificationService
+                
+                == <size:18><b>📋 Audit Logging</b></size> ==
+                
+                ContentService -> AuditDB: <b>Log publication</b> audit trail
+                activate AuditDB #F8F9FA
+                AuditDB -> ContentService: <b>Audit</b> logged
+                deactivate AuditDB
+                
+                ContentService -> ApprovalService: <b>Publication</b> complete
+                deactivate ContentService
+                ApprovalService -> ReviewService: <b>Workflow</b> completed
+                deactivate ApprovalService
+                ReviewService -> Gateway: <b>Content published</b> successfully
+                deactivate ReviewService
+                Gateway -> ContentApp: <b>Publication</b> successful
+                deactivate Gateway
+                ContentApp -> Creator: <b>🎉 Content published and distributed</b>
+                deactivate ContentApp
+                
+            else <size:14><b>❌ Marketing rejection</b></size>
+                MarketingReview -> ApprovalService: <b>Marketing rejection</b> with feedback
+                deactivate MarketingReview
+                ApprovalService -> NotificationService: <b>Notify</b> content creator
+                activate NotificationService #FEF9E7
+                NotificationService -> Creator: <b>❌ Content rejected</b> - marketing concerns
+                deactivate NotificationService
+            end
+        end
+    end
+end
+
+== <size:18><b>📈 Content Performance Monitoring</b></size> ==
+
+note over AnalyticsService, AnalyticsDB #E8F6F3
+    <size:14><b>📊 Ongoing Content Monitoring:</b></size>
+    <b>•</b> Real-time engagement tracking
+    <b>•</b> Impact measurement and reporting
+    <b>•</b> Audience sentiment analysis
+    <b>•</b> Conversion tracking (donations, volunteers)
+    <b>•</b> A/B testing for optimization
+end note
+
+== <size:18><b>🛡️ Child Protection and Privacy Features</b></size> ==
+
+note over Creator, AuditDB #FEF9E7
+    <size:16><b>👶 Child Protection Controls:</b></size>
+    <b>•</b> Mandatory child protection officer review
+    <b>•</b> Automated privacy scanning and detection
+    <b>•</b> Consent tracking and verification
+    <b>•</b> Right to erasure implementation
+    <b>•</b> Age-appropriate content guidelines
+    
+    <size:16><b>🔒 Privacy Protection Measures:</b></size>
+    <b>•</b> Automated PII detection and redaction
+    <b>•</b> Image face detection and blurring
+    <b>•</b> Location data sanitization
+    <b>•</b> Parental consent verification
+    <b>•</b> Data retention policy enforcement
+    
+    <size:16><b>📝 Content Safety Features:</b></size>
+    <b>•</b> Multi-stakeholder review process
+    <b>•</b> Legal compliance verification
+    <b>•</b> Brand guideline enforcement
+    <b>•</b> Community sensitivity assessment
+    <b>•</b> Impact measurement integration
+    
+    <size:16><b>📢 Distribution Controls:</b></size>
+    <b>•</b> Platform-specific optimization
+    <b>•</b> Audience targeting and segmentation
+    <b>•</b> Scheduled publication timing
+    <b>•</b> Performance tracking and optimization
+    <b>•</b> Crisis communication protocols
+end note
+
+@enduml

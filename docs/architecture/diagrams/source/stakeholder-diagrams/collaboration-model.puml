@@ -1,0 +1,185 @@
+@startuml collaboration-model-complete
+!include <C4/C4_Container>
+
+!define TITLE "MerajutASA Platform - Complete Penta-Helix Collaboration Model"
+!define DESCRIPTION "Comprehensive stakeholder interaction patterns and collaboration workflows for sustainable child welfare ecosystem development"
+
+' Modern color scheme with better contrast
+skinparam backgroundColor #FAFBFC
+skinparam component {
+    BackgroundColor #FFFFFF
+    BorderColor #E2E8F0
+    BorderThickness 1
+    FontColor #1F2937
+    FontSize 9
+}
+skinparam package {
+    BorderThickness 2
+    FontColor #374151
+    FontSize 11
+}
+skinparam arrow {
+    Color #64748B
+    Thickness 1
+}
+
+title <size:22><b><color:#1E3A8A>🤝 TITLE</color></b></size>
+caption <size:12><color:#64748B><i>DESCRIPTION</i></color></size>
+
+' CENTRAL PLATFORM HUB
+package "<size:14><b><color:#475569>🏛️ MERAJUTASA PLATFORM HUB</color></b></size>" as platform #F1F5F9 {
+    [<size:10><b>🎯 Collaboration Engine</b></size>\n<size:8>Multi-stakeholder Orchestration</size>] as collaboration_engine #FFFFFF
+    [<size:10><b>📊 Impact Measurement</b></size>\n<size:8>Cross-stakeholder Analytics</size>] as impact_measurement #FFFFFF  
+    [<size:10><b>💬 Communication Hub</b></size>\n<size:8>Multi-channel Integration</size>] as communication_hub #FFFFFF
+    [<size:10><b>🔄 Resource Coordination</b></size>\n<size:8>Asset & Capability Matching</size>] as resource_coordination #FFFFFF
+}
+
+' GOVERNMENT ECOSYSTEM - COMPLETE STRUCTURE
+package "<size:14><b><color:#1E40AF>🏛️ GOVERNMENT STAKEHOLDER ECOSYSTEM</color></b></size>" as government #EFF6FF {
+    
+    package "<size:11><b>🏢 National Government Level</b></size>" as national_gov #DBEAFE {
+        [<size:9><b>Ministry of Social Affairs</b></size>\n<size:7>Policy & Oversight</size>] as ministry_social #FFFFFF
+        [<size:9><b>Ministry of Education</b></size>\n<size:7>Educational Standards</size>] as ministry_education #FFFFFF
+        [<size:9><b>Ministry of Health</b></size>\n<size:7>Health Standards</size>] as ministry_health #FFFFFF
+        [<size:9><b>Legal & Regulatory</b></size>\n<size:7>Child Protection Laws</size>] as legal_framework #FFFFFF
+    }
+    
+    package "<size:11><b>🏘️ Regional Government Level</b></size>" as regional_gov #DBEAFE {
+        [<size:9><b>Provincial Social Services</b></size>\n<size:7>Regional Coordination</size>] as provincial_social #FFFFFF
+        [<size:9><b>Local Government</b></size>\n<size:7>Community Services</size>] as local_government #FFFFFF
+        [<size:9><b>Government Social Workers</b></size>\n<size:7>Direct Case Management</size>] as social_workers #FFFFFF
+    }
+    
+    package "<size:11><b>👁️ Oversight and Monitoring</b></size>" as oversight #DBEAFE {
+        [<size:9><b>Child Protection Commission</b></size>\n<size:7>Rights Monitoring</size>] as child_protection_commission #FFFFFF
+        [<size:9><b>Ombudsman Services</b></size>\n<size:7>Rights Protection</size>] as ombudsman #FFFFFF
+        [<size:9><b>Government Audit Board</b></size>\n<size:7>Accountability</size>] as audit_board #FFFFFF
+    }
+}
+
+' BUSINESS ECOSYSTEM - COMPLETE STRUCTURE  
+package "<size:14><b><color:#059669>🏢 BUSINESS STAKEHOLDER ECOSYSTEM</color></b></size>" as business #F0FDF4 {
+    
+    package "<size:11><b>🏭 Corporate Partners</b></size>" as corporate #DCFCE7 {
+        [<size:9><b>Large Corporations</b></size>\n<size:7>Strategic CSR Programs</size>] as large_corporations #FFFFFF
+        [<size:9><b>Medium Enterprises</b></size>\n<size:7>Regional Partnerships</size>] as medium_enterprises #FFFFFF
+        [<size:9><b>Startup Community</b></size>\n<size:7>Innovation Solutions</size>] as startup_community #FFFFFF
+        [<size:9><b>Social Enterprises</b></size>\n<size:7>Mission-Driven Collaboration</size>] as social_enterprises #FFFFFF
+    }
+    
+    package "<size:11><b>💰 Financial Services</b></size>" as financial #DCFCE7 {
+        [<size:9><b>Banking Partners</b></size>\n<size:7>Payment Processing</size>] as banks #FFFFFF
+        [<size:9><b>Fintech Companies</b></size>\n<size:7>Digital Solutions</size>] as fintech #FFFFFF
+        [<size:9><b>Microfinance Institutions</b></size>\n<size:7>Financial Inclusion</size>] as microfinance #FFFFFF
+    }
+    
+    package "<size:11><b>🤝 Industry Networks</b></size>" as industry #DCFCE7 {
+        [<size:9><b>Chambers of Commerce</b></size>\n<size:7>Business Coordination</size>] as business_chambers #FFFFFF
+        [<size:9><b>CSR Networks</b></size>\n<size:7>Best Practices</size>] as csr_networks #FFFFFF
+        [<size:9><b>Professional Associations</b></size>\n<size:7>Specialized Support</size>] as professional_associations #FFFFFF
+    }
+}
+
+' ACADEMIC ECOSYSTEM - COMPLETE STRUCTURE
+package "<size:14><b><color:#7C3AED>🎓 ACADEMIC STAKEHOLDER ECOSYSTEM</color></b></size>" as academic #FAF5FF {
+    
+    package "<size:11><b>🏫 Higher Education Institutions</b></size>" as universities_group #F3E8FF {
+        [<size:9><b>Public Universities</b></size>\n<size:7>Research & Education</size>] as public_universities #FFFFFF
+        [<size:9><b>Private Universities</b></size>\n<size:7>Specialized Programs</size>] as private_universities #FFFFFF
+        [<size:9><b>International Universities</b></size>\n<size:7>Global Perspective</size>] as international_universities #FFFFFF
+    }
+    
+    package "<size:11><b>🔬 Research Organizations</b></size>" as research #F3E8FF {
+        [<size:9><b>Child Welfare Research Centers</b></size>\n<size:7>Evidence-based Development</size>] as child_welfare_institutes #FFFFFF
+        [<size:9><b>Policy Think Tanks</b></size>\n<size:7>Policy Analysis</size>] as policy_think_tanks #FFFFFF
+        [<size:9><b>Data Science Centers</b></size>\n<size:7>Advanced Analytics</size>] as data_science_centers #FFFFFF
+    }
+    
+    package "<size:11><b>👥 Educational Networks</b></size>" as educational #F3E8FF {
+        [<size:9><b>Student Organizations</b></size>\n<size:7>Volunteer Programs</size>] as student_organizations #FFFFFF
+        [<size:9><b>Faculty Networks</b></size>\n<size:7>Academic Collaboration</size>] as faculty_networks #FFFFFF
+        [<size:9><b>Alumni Networks</b></size>\n<size:7>Professional Support</size>] as alumni_associations #FFFFFF
+    }
+}
+
+' COMMUNITY ECOSYSTEM - COMPLETE STRUCTURE
+package "<size:14><b><color:#EA580C>🤲 COMMUNITY STAKEHOLDER ECOSYSTEM</color></b></size>" as community #FEF7ED {
+    
+    package "<size:11><b>🏘️ Civil Society Organizations</b></size>" as civil_society #FED7AA {
+        [<size:9><b>Child-Focused NGOs</b></size>\n<size:7>Direct Services</size>] as child_ngos #FFFFFF
+        [<size:9><b>Community Organizations</b></size>\n<size:7>Local Engagement</size>] as community_organizations #FFFFFF
+        [<size:9><b>Faith-Based Organizations</b></size>\n<size:7>Spiritual Support</size>] as faith_based_groups #FFFFFF
+        [<size:9><b>Volunteer Networks</b></size>\n<size:7>Human Resources</size>] as volunteer_networks #FFFFFF
+    }
+    
+    package "<size:11><b>👨‍👩‍👧‍👦 Local Communities</b></size>" as local_communities #FED7AA {
+        [<size:9><b>Neighborhood Groups</b></size>\n<size:7>Local Advocacy</size>] as neighborhood_groups #FFFFFF
+        [<size:9><b>Parent Associations</b></size>\n<size:7>Family Support</size>] as parent_associations #FFFFFF
+        [<size:9><b>Youth Organizations</b></size>\n<size:7>Peer Support</size>] as youth_groups #FFFFFF
+    }
+    
+    package "<size:11><b>🎨 Cultural Organizations</b></size>" as cultural #FED7AA {
+        [<size:9><b>Traditional Leaders</b></size>\n<size:7>Cultural Guidance</size>] as traditional_leaders #FFFFFF
+        [<size:9><b>Arts & Culture Groups</b></size>\n<size:7>Creative Expression</size>] as arts_organizations #FFFFFF
+        [<size:9><b>Sports Organizations</b></size>\n<size:7>Physical Development</size>] as sports_clubs #FFFFFF
+    }
+}
+
+' MEDIA ECOSYSTEM - COMPLETE STRUCTURE
+package "<size:14><b><color:#E11D48>📺 MEDIA STAKEHOLDER ECOSYSTEM</color></b></size>" as media #FFF1F2 {
+    
+    package "<size:11><b>📻 Traditional Media</b></size>" as traditional_media #FECDD3 {
+        [<size:9><b>Television Stations</b></size>\n<size:7>Mass Awareness</size>] as television_stations #FFFFFF
+        [<size:9><b>Newspapers & Magazines</b></size>\n<size:7>In-depth Reporting</size>] as newspapers #FFFFFF
+        [<size:9><b>Radio Stations</b></size>\n<size:7>Community Reach</size>] as radio_stations #FFFFFF
+    }
+    
+    package "<size:11><b>📱 Digital Media Platforms</b></size>" as digital_media #FECDD3 {
+        [<size:9><b>Social Media Influencers</b></size>\n<size:7>Digital Influence</size>] as social_media_influencers #FFFFFF
+        [<size:9><b>Content Creators</b></size>\n<size:7>Educational Content</size>] as content_creators #FFFFFF
+        [<size:9><b>Podcast Networks</b></size>\n<size:7>Long-form Storytelling</size>] as podcast_networks #FFFFFF
+    }
+    
+    package "<size:11><b>📢 Communication Agencies</b></size>" as comm_agencies #FECDD3 {
+        [<size:9><b>PR & Communication Agencies</b></size>\n<size:7>Strategic Communication</size>] as pr_agencies #FFFFFF
+        [<size:9><b>Advertising Agencies</b></size>\n<size:7>Campaign Development</size>] as advertising_agencies #FFFFFF
+        [<size:9><b>Digital Marketing Agencies</b></size>\n<size:7>Online Presence</size>] as digital_agencies #FFFFFF
+    }
+}
+
+' STRATEGIC CONNECTIONS - ORGANIZED BY PRIORITY
+
+' Tier 1: Core Platform Integration (Thickest lines)
+ministry_social --> collaboration_engine : <b><color:#1E40AF>Policy Guidance</color></b>
+large_corporations --> resource_coordination : <b><color:#059669>CSR Investment</color></b>
+public_universities --> impact_measurement : <b><color:#7C3AED>Research Data</color></b>
+child_ngos --> collaboration_engine : <b><color:#EA580C>Service Coordination</color></b>
+television_stations --> communication_hub : <b><color:#E11D48>Public Broadcasting</color></b>
+
+' Tier 2: Secondary Platform Connections  
+provincial_social --> impact_measurement : <size:8><color:#1E40AF>Regional Data</color></size>
+banks --> resource_coordination : <size:8><color:#059669>Financial Services</color></size>
+child_welfare_institutes --> collaboration_engine : <size:8><color:#7C3AED>Evidence-based Recommendations</color></size>
+volunteer_networks --> resource_coordination : <size:8><color:#EA580C>Human Resources</color></size>
+social_media_influencers --> communication_hub : <size:8><color:#E11D48>Digital Reach</color></size>
+
+' Tier 3: Supporting Connections
+social_workers --> communication_hub : <size:7><color:#1E40AF>Field Reports</color></size>
+business_chambers --> communication_hub : <size:7><color:#059669>Business Coordination</color></size>
+student_organizations --> resource_coordination : <size:7><color:#7C3AED>Volunteer Programs</color></size>
+neighborhood_groups --> communication_hub : <size:7><color:#EA580C>Community Feedback</color></size>
+pr_agencies --> collaboration_engine : <size:7><color:#E11D48>Strategic Campaigns</color></size>
+
+' Platform Internal Coordination
+collaboration_engine <--> impact_measurement : <b><color:#475569>Coordination Data</color></b>
+impact_measurement <--> communication_hub : <b><color:#475569>Performance Insights</color></b>
+communication_hub <--> resource_coordination : <b><color:#475569>Resource Requests</color></b>
+
+' Key Cross-Stakeholder Partnerships (Dotted to minimize visual clutter)
+ministry_social ..> large_corporations : <size:7><color:#64748B>Policy-Corporate Alignment</color></size>
+child_welfare_institutes ..> ministry_social : <size:7><color:#64748B>Evidence-based Policy</color></size>
+volunteer_networks ..> large_corporations : <size:7><color:#64748B>Employee Volunteering</color></size>
+television_stations ..> child_ngos : <size:7><color:#64748B>Impact Storytelling</color></size>
+public_universities ..> local_government : <size:7><color:#64748B>Academic Partnerships</color></size>
+
+@enduml

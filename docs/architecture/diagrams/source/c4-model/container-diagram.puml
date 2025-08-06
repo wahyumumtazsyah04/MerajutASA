@@ -1,0 +1,146 @@
+@startuml container-diagram
+!include <C4/C4_Container>
+
+title "MerajutASA Platform - Container Diagram"
+
+' External stakeholders
+Person_Ext(government, "Government Stakeholders", "Policy makers and social service agencies")
+Person_Ext(business, "Business Stakeholders", "Corporate partners and CSR programs") 
+Person_Ext(academic, "Academic Stakeholders", "Researchers and universities")
+Person_Ext(community, "Community Stakeholders", "Volunteers and donors")
+Person_Ext(media, "Media Stakeholders", "Journalists and content creators")
+
+' External systems
+System_Ext(external_govt, "Government Systems", "Ministry systems and legal databases")
+System_Ext(external_payment, "Payment Systems", "Banking and donation processing")
+System_Ext(external_research, "Research Systems", "Academic databases and IRB systems")
+System_Ext(external_social, "Social Media", "Community engagement platforms")
+System_Ext(external_media, "Media Systems", "Content distribution networks")
+
+' Security and Infrastructure Layer
+Container_Boundary(security_layer, "Security and Infrastructure Layer") {
+    Container(waf, "Web Application Firewall", "CloudFlare", "DDoS protection, bot mitigation, and traffic filtering")
+    Container(load_balancer, "Load Balancer", "AWS ALB", "SSL termination, traffic distribution, and health checking")
+    Container(api_gateway, "API Gateway", "Kong", "API management, authentication, rate limiting, and security policy enforcement")
+}
+
+' Application Layer
+Container_Boundary(application_layer, "Application Layer") {
+    Container(web_app, "Web Application", "React/TypeScript", "Responsive web application with accessibility features")
+    Container(mobile_app, "Mobile Application", "React Native", "Cross-platform mobile app with offline capabilities")
+    Container(admin_portal, "Admin Portal", "React/TypeScript", "Administrative interface for platform management")
+}
+
+' Microservices Layer
+Container_Boundary(microservices_layer, "Microservices Layer") {
+    Container(auth_service, "Authentication Service", "Node.js/TypeScript", "Multi-factor authentication, authorization, and session management")
+    Container(child_service, "Child Management Service", "Node.js/TypeScript", "Child profile management, case tracking, and safety monitoring")
+    Container(orphanage_service, "Orphanage Service", "Node.js/TypeScript", "Orphanage management, capacity tracking, and resource coordination")
+    Container(stakeholder_service, "Stakeholder Service", "Node.js/TypeScript", "Multi-stakeholder coordination and collaboration tools")
+    Container(donation_service, "Donation Service", "Node.js/TypeScript", "Donation processing, impact tracking, and financial transparency")
+    Container(volunteer_service, "Volunteer Service", "Node.js/TypeScript", "Volunteer matching, scheduling, and coordination")
+    Container(notification_service, "Notification Service", "Node.js/TypeScript", "Multi-channel notifications and emergency alerts")
+    Container(analytics_service, "Analytics Service", "Node.js/TypeScript", "Impact measurement, compliance reporting, and data analytics")
+    Container(media_service, "Media Management Service", "Node.js/TypeScript", "Content management, asset storage, and media distribution")
+}
+
+' Data Layer
+Container_Boundary(data_layer, "Data Layer") {
+    ContainerDb(primary_db, "Primary Database", "PostgreSQL", "Encrypted child data, transactional records, and audit logs")
+    ContainerDb(analytics_db, "Analytics Database", "ClickHouse", "Real-time analytics, impact metrics, and compliance reporting")
+    ContainerDb(search_db, "Search Database", "OpenSearch", "Full-text search, content discovery, and stakeholder-specific filtering")
+    Container(file_storage, "File Storage", "AWS S3", "Secure document storage, media assets, and backup files")
+    Container(cache, "Cache Layer", "Redis Cluster", "Session storage, application cache, and real-time data")
+}
+
+' Message Queue and Integration Layer
+Container_Boundary(integration_layer, "Integration and Messaging Layer") {
+    Container(message_queue, "Message Queue", "RabbitMQ", "Asynchronous communication and reliable message delivery")
+    Container(event_bus, "Event Bus", "Apache Kafka", "Event-driven architecture and real-time data streaming")
+    Container(workflow_engine, "Workflow Engine", "Temporal", "Business process automation and task orchestration")
+}
+
+' Monitoring and Observability Layer
+Container_Boundary(monitoring_layer, "Monitoring and Observability Layer") {
+    Container(metrics, "Metrics Collection", "Prometheus", "System metrics, performance monitoring, and alerting")
+    Container(logging, "Centralized Logging", "ELK Stack", "Log aggregation, search, and analysis")
+    Container(apm, "Application Monitoring", "DataDog", "Performance monitoring, error tracking, and distributed tracing")
+    Container(security_monitoring, "Security Monitoring", "SIEM", "Security event correlation and threat detection")
+}
+
+' External stakeholder connections
+Rel(government, waf, "Accesses platform", "HTTPS")
+Rel(business, waf, "Manages CSR programs", "HTTPS")
+Rel(academic, waf, "Conducts research", "HTTPS")
+Rel(community, waf, "Volunteers and donates", "HTTPS")
+Rel(media, waf, "Accesses media resources", "HTTPS")
+
+' Security layer flow
+Rel(waf, load_balancer, "Filters traffic", "HTTPS")
+Rel(load_balancer, api_gateway, "Distributes requests", "HTTPS")
+Rel(api_gateway, web_app, "Routes to web app", "HTTPS")
+Rel(api_gateway, mobile_app, "Serves mobile API", "REST API")
+Rel(api_gateway, admin_portal, "Administrative access", "HTTPS")
+
+' Application to services
+Rel(web_app, auth_service, "Authentication", "REST API")
+Rel(mobile_app, auth_service, "Mobile auth", "REST API")
+Rel(admin_portal, auth_service, "Admin auth", "REST API")
+
+' Inter-service communication
+Rel(auth_service, stakeholder_service, "User management", "gRPC")
+Rel(stakeholder_service, child_service, "Case assignment", "gRPC")
+Rel(child_service, orphanage_service, "Child placement", "gRPC")
+Rel(donation_service, analytics_service, "Financial tracking", "gRPC")
+Rel(volunteer_service, notification_service, "Volunteer alerts", "gRPC")
+Rel(media_service, stakeholder_service, "Content approval", "gRPC")
+
+' Database connections
+Rel(auth_service, primary_db, "User data", "SQL")
+Rel(child_service, primary_db, "Child profiles", "SQL")
+Rel(orphanage_service, primary_db, "Orphanage records", "SQL")
+Rel(stakeholder_service, primary_db, "Stakeholder data", "SQL")
+Rel(donation_service, primary_db, "Financial records", "SQL")
+Rel(volunteer_service, primary_db, "Volunteer profiles", "SQL")
+
+' Analytics and search
+Rel(analytics_service, analytics_db, "Impact metrics", "ClickHouse")
+Rel(analytics_service, search_db, "Search indexing", "OpenSearch")
+Rel(media_service, file_storage, "Media storage", "S3 API")
+
+' Cache connections
+Rel(auth_service, cache, "Session cache", "Redis")
+Rel(stakeholder_service, cache, "User cache", "Redis")
+Rel(analytics_service, cache, "Report cache", "Redis")
+
+' Message queue connections
+Rel(child_service, message_queue, "Safety events", "AMQP")
+Rel(donation_service, message_queue, "Payment events", "AMQP")
+Rel(volunteer_service, message_queue, "Volunteer events", "AMQP")
+Rel(notification_service, message_queue, "Message delivery", "AMQP")
+
+' Event bus connections
+Rel(child_service, event_bus, "Audit events", "Kafka")
+Rel(auth_service, event_bus, "Auth events", "Kafka")
+Rel(donation_service, event_bus, "Transaction events", "Kafka")
+Rel(event_bus, analytics_service, "Analytics processing", "Kafka")
+
+' Workflow orchestration
+Rel(stakeholder_service, workflow_engine, "Approval processes", "gRPC")
+Rel(child_service, workflow_engine, "Case workflows", "gRPC")
+Rel(donation_service, workflow_engine, "Payment workflows", "gRPC")
+
+' External integrations
+Rel(api_gateway, external_govt, "Government integration", "API")
+Rel(donation_service, external_payment, "Payment processing", "API")
+Rel(analytics_service, external_research, "Research data", "API")
+Rel(notification_service, external_social, "Social media", "API")
+Rel(media_service, external_media, "Content distribution", "API")
+
+' Monitoring connections
+Rel(microservices_layer, metrics, "Service metrics", "Prometheus")
+Rel(microservices_layer, logging, "Application logs", "Logs")
+Rel(microservices_layer, apm, "Performance traces", "APM")
+Rel(security_layer, security_monitoring, "Security events", "SIEM")
+
+@enduml

@@ -1,0 +1,273 @@
+@startuml network-topology
+!include <C4/C4_Container>
+
+' Title and description
+!define TITLE "MerajutASA Platform - Network Topology"
+!define DESCRIPTION "Network architecture with security zones, traffic isolation, and Indonesian geographic distribution for child welfare platform"
+
+title TITLE
+caption DESCRIPTION
+
+' Define network topology layers
+System_Boundary(internet, "Internet & CDN Layer") {
+    System_Boundary(cdn_layer, "CloudFlare CDN") {
+        Container(cf_singapore, "CloudFlare Singapore", "CDN", "Primary edge for Southeast Asia", $sprite="cloudflare")
+        Container(cf_jakarta, "CloudFlare Jakarta", "CDN", "Indonesia-specific content delivery", $sprite="cloudflare")
+        Container(cf_surabaya, "CloudFlare Surabaya", "CDN", "East Java regional cache", $sprite="cloudflare")
+        Container(cf_medan, "CloudFlare Medan", "CDN", "Sumatra regional cache", $sprite="cloudflare")
+    }
+    
+    Container(waf_shield, "CloudFlare WAF + DDoS Protection", "Security", "Global threat protection", $sprite="security")
+    Container(dns_management, "CloudFlare DNS", "DNS", "Global DNS with failover", $sprite="dns")
+}
+
+System_Boundary(aws_singapore, "AWS ap-southeast-1 (Singapore) - Primary Region") {
+    
+    System_Boundary(vpc_prod, "Production VPC (10.0.0.0/16)") {
+        
+        ' Public Subnets
+        System_Boundary(public_subnets, "Public Subnets (DMZ)") {
+            System_Boundary(public_az1, "AZ-1a Public (10.0.1.0/24)") {
+                Container(alb_1a, "ALB Primary", "Load Balancer", "Primary traffic distribution", $sprite="aws-elb")
+                Container(nat_1a, "NAT Gateway 1a", "NAT", "Outbound internet access", $sprite="aws-nat")
+            }
+            
+            System_Boundary(public_az2, "AZ-1b Public (10.0.2.0/24)") {
+                Container(alb_1b, "ALB Secondary", "Load Balancer", "Secondary traffic distribution", $sprite="aws-elb")
+                Container(nat_1b, "NAT Gateway 1b", "NAT", "Outbound internet access", $sprite="aws-nat")
+            }
+            
+            System_Boundary(public_az3, "AZ-1c Public (10.0.3.0/24)") {
+                Container(bastion, "Bastion Host", "EC2", "Secure administrative access", $sprite="aws-ec2")
+                Container(nat_1c, "NAT Gateway 1c", "NAT", "Outbound internet access", $sprite="aws-nat")
+            }
+        }
+        
+        ' Private Application Subnets
+        System_Boundary(app_subnets, "Application Subnets") {
+            System_Boundary(app_az1, "AZ-1a App (10.0.11.0/24)") {
+                Container(eks_nodes_1a, "EKS Worker Nodes", "Kubernetes", "Primary app containers", $sprite="k8s")
+                Container(frontend_pods_1a, "Frontend Pods", "React/NGINX", "Web applications", $sprite="web")
+                Container(api_pods_1a, "API Pods", "Node.js", "Microservices", $sprite="api")
+            }
+            
+            System_Boundary(app_az2, "AZ-1b App (10.0.12.0/24)") {
+                Container(eks_nodes_1b, "EKS Worker Nodes", "Kubernetes", "Secondary app containers", $sprite="k8s")
+                Container(frontend_pods_1b, "Frontend Pods", "React/NGINX", "Web applications", $sprite="web")
+                Container(api_pods_1b, "API Pods", "Node.js", "Microservices", $sprite="api")
+            }
+            
+            System_Boundary(app_az3, "AZ-1c App (10.0.13.0/24)") {
+                Container(eks_nodes_1c, "EKS Worker Nodes", "Kubernetes", "Tertiary app containers", $sprite="k8s")
+                Container(frontend_pods_1c, "Frontend Pods", "React/NGINX", "Web applications", $sprite="web")
+                Container(api_pods_1c, "API Pods", "Node.js", "Microservices", $sprite="api")
+            }
+        }
+        
+        ' Private Data Subnets
+        System_Boundary(data_subnets, "Data Subnets (Isolated)") {
+            System_Boundary(data_az1, "AZ-1a Data (10.0.21.0/24)") {
+                ContainerDb(rds_primary, "RDS PostgreSQL Primary", "Database", "Main application data", $sprite="aws-rds")
+                ContainerDb(redis_primary, "ElastiCache Primary", "Cache", "Session and cache data", $sprite="aws-elasticache")
+            }
+            
+            System_Boundary(data_az2, "AZ-1b Data (10.0.22.0/24)") {
+                ContainerDb(rds_replica_1, "RDS PostgreSQL Replica", "Database", "Read replica", $sprite="aws-rds")
+                ContainerDb(redis_replica_1, "ElastiCache Replica", "Cache", "Cache replica", $sprite="aws-elasticache")
+            }
+            
+            System_Boundary(data_az3, "AZ-1c Data (10.0.23.0/24)") {
+                ContainerDb(rds_replica_2, "RDS PostgreSQL Replica", "Database", "Read replica", $sprite="aws-rds")
+                ContainerDb(clickhouse_cluster, "ClickHouse Cluster", "Analytics", "Analytics database", $sprite="analytics")
+            }
+        }
+    }
+    
+    System_Boundary(vpc_staging, "Staging VPC (10.1.0.0/16)") {
+        Container(staging_alb, "Staging ALB", "Load Balancer", "Staging traffic", $sprite="aws-elb")
+        Container(staging_eks, "Staging EKS", "Kubernetes", "Pre-production environment", $sprite="k8s")
+        ContainerDb(staging_rds, "Staging RDS", "Database", "Test data", $sprite="aws-rds")
+    }
+    
+    System_Boundary(vpc_dev, "Development VPC (10.2.0.0/16)") {
+        Container(dev_alb, "Development ALB", "Load Balancer", "Dev traffic", $sprite="aws-elb")
+        Container(dev_eks, "Development EKS", "Kubernetes", "Development environment", $sprite="k8s")
+        ContainerDb(dev_rds, "Development RDS", "Database", "Development data", $sprite="aws-rds")
+    }
+    
+    ' Shared Services VPC
+    System_Boundary(vpc_shared, "Shared Services VPC (10.10.0.0/16)") {
+        Container(vpn_gateway, "VPN Gateway", "VPN", "Site-to-site connectivity", $sprite="aws-vpn")
+        Container(directory_service, "AWS Directory Service", "AD", "Centralized authentication", $sprite="aws-directory")
+        Container(shared_monitoring, "Shared Monitoring", "CloudWatch", "Cross-VPC monitoring", $sprite="aws-cloudwatch")
+        Container(backup_service, "AWS Backup", "Backup", "Centralized backup management", $sprite="aws-backup")
+    }
+}
+
+System_Boundary(aws_jakarta, "AWS ap-southeast-3 (Jakarta) - DR Region") {
+    System_Boundary(vpc_dr, "Disaster Recovery VPC (10.100.0.0/16)") {
+        Container(dr_alb, "DR ALB", "Load Balancer", "Disaster recovery traffic", $sprite="aws-elb")
+        Container(dr_eks, "DR EKS Cluster", "Kubernetes", "DR environment (cold standby)", $sprite="k8s")
+        ContainerDb(dr_rds, "DR RDS", "Database", "Cross-region replica", $sprite="aws-rds")
+        Container(dr_s3, "DR S3 Bucket", "Storage", "Cross-region backup", $sprite="aws-s3")
+    }
+}
+
+' External Partner Networks
+System_Boundary(partner_networks, "Partner Networks") {
+    System_Boundary(government_network, "Government Networks") {
+        Container(kemendikbud, "Kemendikbud Network", "VPN", "Education ministry integration", $sprite="government")
+        Container(kemensos, "Kemensos Network", "VPN", "Social affairs ministry", $sprite="government")
+        Container(local_gov, "Local Government", "VPN", "Regional government systems", $sprite="government")
+    }
+    
+    System_Boundary(business_networks, "Business Partner Networks") {
+        Container(bank_networks, "Banking Networks", "API", "Payment gateway connections", $sprite="bank")
+        Container(corporate_vpn, "Corporate VPNs", "VPN", "Business partner access", $sprite="business")
+        Container(payment_networks, "Payment Gateways", "API", "Midtrans, DANA, OVO", $sprite="payment")
+    }
+    
+    System_Boundary(academic_networks, "Academic Networks") {
+        Container(university_networks, "University VPNs", "VPN", "Research institution access", $sprite="university")
+        Container(research_networks, "Research Networks", "API", "Academic data sharing", $sprite="research")
+    }
+}
+
+' Security and Monitoring Layer
+System_Boundary(security_layer, "Security & Monitoring Layer") {
+    Container(security_hub, "AWS Security Hub", "Security", "Centralized security monitoring", $sprite="aws-security")
+    Container(guardduty, "AWS GuardDuty", "Threat Detection", "AI-powered threat detection", $sprite="aws-guardduty")
+    Container(config, "AWS Config", "Compliance", "Resource compliance monitoring", $sprite="aws-config")
+    Container(cloudtrail, "AWS CloudTrail", "Audit", "API audit logging", $sprite="aws-cloudtrail")
+    Container(inspector, "AWS Inspector", "Vulnerability", "Vulnerability assessment", $sprite="aws-inspector")
+}
+
+' Network Connections
+' Internet to CDN
+Rel(internet, cf_singapore, "Global traffic", "HTTPS")
+Rel(internet, cf_jakarta, "Indonesian traffic", "HTTPS")
+Rel(internet, cf_surabaya, "East Java traffic", "HTTPS")
+Rel(internet, cf_medan, "Sumatra traffic", "HTTPS")
+
+' CDN to WAF
+Rel(cf_singapore, waf_shield, "Filtered traffic", "HTTPS")
+Rel(cf_jakarta, waf_shield, "Filtered traffic", "HTTPS")
+Rel(cf_surabaya, waf_shield, "Filtered traffic", "HTTPS")
+Rel(cf_medan, waf_shield, "Filtered traffic", "HTTPS")
+
+' WAF to Load Balancers
+Rel(waf_shield, alb_1a, "Clean traffic", "HTTPS")
+Rel(waf_shield, alb_1b, "Clean traffic", "HTTPS")
+
+' Load Balancers to Application Tier
+Rel(alb_1a, eks_nodes_1a, "App traffic", "HTTPS")
+Rel(alb_1b, eks_nodes_1b, "App traffic", "HTTPS")
+Rel(alb_1a, eks_nodes_1c, "App traffic", "HTTPS")
+
+' Application to Data Tier
+Rel(api_pods_1a, rds_primary, "Database queries", "PostgreSQL")
+Rel(api_pods_1b, rds_replica_1, "Read queries", "PostgreSQL")
+Rel(api_pods_1c, rds_replica_2, "Read queries", "PostgreSQL")
+
+Rel(frontend_pods_1a, redis_primary, "Session data", "Redis")
+Rel(frontend_pods_1b, redis_replica_1, "Session data", "Redis")
+
+' Cross-VPC Connectivity
+Rel(vpc_prod, vpc_staging, "VPC Peering", "Private")
+Rel(vpc_prod, vpc_dev, "VPC Peering", "Private")
+Rel(vpc_prod, vpc_shared, "VPC Peering", "Private")
+
+' Cross-Region DR
+Rel(rds_primary, dr_rds, "Cross-region replication", "Encrypted")
+Rel(vpc_prod, vpc_dr, "VPN/Transit Gateway", "Encrypted")
+
+' Partner Network Connectivity
+Rel(vpn_gateway, kemendikbud, "Site-to-site VPN", "IPSec")
+Rel(vpn_gateway, kemensos, "Site-to-site VPN", "IPSec")
+Rel(vpn_gateway, local_gov, "Site-to-site VPN", "IPSec")
+
+Rel(api_pods_1a, bank_networks, "Payment APIs", "HTTPS")
+Rel(api_pods_1a, payment_networks, "Payment processing", "HTTPS")
+
+Rel(bastion, university_networks, "Research access", "SSH/HTTPS")
+Rel(api_pods_1a, research_networks, "Data sharing APIs", "HTTPS")
+
+' Security Monitoring
+Rel(security_hub, vpc_prod, "Security monitoring", "API")
+Rel(guardduty, vpc_prod, "Threat detection", "API")
+Rel(config, vpc_prod, "Compliance checking", "API")
+Rel(cloudtrail, vpc_prod, "Audit logging", "API")
+
+' Outbound Internet Access
+Rel(eks_nodes_1a, nat_1a, "Outbound traffic", "HTTP/HTTPS")
+Rel(eks_nodes_1b, nat_1b, "Outbound traffic", "HTTP/HTTPS")
+Rel(eks_nodes_1c, nat_1c, "Outbound traffic", "HTTP/HTTPS")
+
+SHOW_LEGEND()
+
+' Network security notes
+note as network_security_notes
+**Network Security Features:**
+
+**Multi-Layer Defense:**
+• CloudFlare WAF with global threat intelligence
+• AWS Security Groups (instance-level firewall)
+• Network ACLs (subnet-level firewall)
+• VPC isolation with private subnets
+
+**Indonesian Network Optimization:**
+• CDN edge locations in major Indonesian cities
+• Jakarta disaster recovery region
+• Local ISP connectivity optimization
+• Reduced latency for Southeast Asian users
+
+**Child Data Protection:**
+• Database subnets completely isolated from internet
+• Encrypted connections between all tiers
+• VPN-only access for administrative tasks
+• Comprehensive audit logging for compliance
+
+**Partner Integration Security:**
+• Dedicated VPN tunnels for government access
+• API-based integration with rate limiting
+• mTLS for high-security connections
+• Separate network segments for different partners
+
+**High Availability:**
+• Multi-AZ deployment across 3 availability zones
+• Auto-scaling groups with health checks
+• Cross-region disaster recovery
+• Automated failover capabilities
+
+**Monitoring and Compliance:**
+• Real-time network traffic analysis
+• Automated security policy enforcement
+• Continuous compliance monitoring
+• 24/7 security incident response
+end note
+
+note as traffic_flow_notes
+**Traffic Flow Patterns:**
+
+**User Traffic:**
+1. Global users → CloudFlare CDN → WAF
+2. WAF → ALB → EKS Ingress → Application Pods
+3. Application Pods → Database (private subnets)
+
+**Partner Traffic:**
+• Government: VPN → Shared Services → Application
+• Business: API Gateway → Rate Limiting → Services
+• Academic: VPN → Research APIs → Anonymized Data
+
+**Internal Traffic:**
+• Service-to-service: Istio service mesh
+• Database access: Private subnet isolation
+• Monitoring: Prometheus → Grafana dashboards
+
+**Outbound Traffic:**
+• Application Pods → NAT Gateway → Internet
+• Payment APIs → Dedicated payment gateways
+• Notifications → Email/SMS providers
+end note
+
+@enduml

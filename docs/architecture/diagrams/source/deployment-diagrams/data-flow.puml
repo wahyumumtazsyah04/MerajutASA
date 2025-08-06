@@ -1,0 +1,290 @@
+@startuml data-flow
+!include <C4/C4_Container>
+
+' Title and description
+!define TITLE "MerajutASA Platform - Data Flow Architecture"
+!define DESCRIPTION "Data pipeline visualization showing child-safe data processing, analytics workflows, and cross-stakeholder information flow for orphanage support"
+
+title TITLE
+caption DESCRIPTION
+
+' Define data flow layers and components
+System_Boundary(external_sources, "External Data Sources") {
+    
+    System_Boundary(stakeholder_inputs, "Stakeholder Data Inputs") {
+        Container(government_data, "Government Systems", "SOAP/REST APIs", "Child registration, policy data", $sprite="government")
+        Container(orphanage_data, "Orphanage Systems", "Manual/API", "Child profiles, daily reports", $sprite="building")
+        Container(business_data, "Business Partners", "APIs", "Donation, volunteer data", $sprite="business")
+        Container(community_data, "Community Platforms", "Web/Mobile", "Volunteer, event data", $sprite="community")
+        Container(academic_data, "Research Institutions", "APIs", "Research requests, findings", $sprite="university")
+        Container(media_data, "Media Partners", "APIs", "Story submissions, campaigns", $sprite="media")
+    }
+    
+    System_Boundary(external_services, "External Service Data") {
+        Container(payment_data, "Payment Gateways", "Webhooks/APIs", "Transaction, compliance data", $sprite="payment")
+        Container(social_data, "Social Media APIs", "REST APIs", "Engagement, reach metrics", $sprite="social")
+        Container(location_data, "Geographic Services", "APIs", "Location, demographic data", $sprite="maps")
+        Container(notification_data, "Communication APIs", "APIs", "Email/SMS delivery status", $sprite="notification")
+    }
+}
+
+System_Boundary(data_ingestion, "Data Ingestion Layer") {
+    
+    System_Boundary(api_layer, "API Gateway & Ingestion") {
+        Container(kong_gateway, "Kong API Gateway", "API Management", "Request routing, rate limiting", $sprite="gateway")
+        Container(data_validator, "Data Validation Service", "Node.js", "Schema validation, sanitization", $sprite="validation")
+        Container(privacy_scanner, "Privacy Protection Scanner", "Python/ML", "PII detection, child data protection", $sprite="privacy")
+    }
+    
+    System_Boundary(streaming_ingestion, "Real-time Data Ingestion") {
+        Container(kafka_cluster, "Apache Kafka", "Message Streaming", "High-throughput event streaming", $sprite="kafka")
+        Container(kafka_connect, "Kafka Connect", "Data Integration", "Source/sink connectors", $sprite="connector")
+        Container(schema_registry, "Schema Registry", "Data Governance", "Schema evolution, compatibility", $sprite="schema")
+    }
+    
+    System_Boundary(batch_ingestion, "Batch Data Ingestion") {
+        Container(airflow, "Apache Airflow", "Workflow Orchestration", "ETL job scheduling", $sprite="airflow")
+        Container(spark_jobs, "Apache Spark", "Data Processing", "Large-scale data transformation", $sprite="spark")
+        Container(data_quality, "Great Expectations", "Data Quality", "Data validation, monitoring", $sprite="quality")
+    }
+}
+
+System_Boundary(data_processing, "Data Processing & Transformation") {
+    
+    System_Boundary(real_time_processing, "Real-time Processing") {
+        Container(kafka_streams, "Kafka Streams", "Stream Processing", "Real-time data transformation", $sprite="stream")
+        Container(flink_jobs, "Apache Flink", "Complex Event Processing", "Pattern detection, windowing", $sprite="flink")
+        Container(redis_stream, "Redis Streams", "Fast Processing", "Low-latency data processing", $sprite="redis")
+    }
+    
+    System_Boundary(batch_processing, "Batch Processing") {
+        Container(spark_etl, "Spark ETL Jobs", "Data Transformation", "Nightly data processing", $sprite="spark")
+        Container(dbt_transforms, "dbt Transformations", "SQL Transforms", "Data modeling, business logic", $sprite="dbt")
+        Container(python_ml, "ML Processing Pipeline", "Python/TensorFlow", "Predictive analytics, insights", $sprite="ml")
+    }
+    
+    System_Boundary(data_anonymization, "Privacy Protection Processing") {
+        Container(anonymization_engine, "Data Anonymization", "Python", "Child data de-identification", $sprite="anonymize")
+        Container(differential_privacy, "Differential Privacy", "Statistical", "Privacy-preserving analytics", $sprite="privacy")
+        Container(consent_processor, "Consent Management", "Node.js", "Privacy consent tracking", $sprite="consent")
+    }
+}
+
+System_Boundary(data_storage, "Data Storage Layer") {
+    
+    System_Boundary(operational_storage, "Operational Data Storage") {
+        ContainerDb(postgres_primary, "PostgreSQL Primary", "OLTP Database", "Transactional data, child profiles", $sprite="postgres")
+        ContainerDb(postgres_replicas, "PostgreSQL Replicas", "Read Replicas", "Read-only query distribution", $sprite="postgres")
+        ContainerDb(redis_cache, "Redis Cache", "In-Memory Cache", "Session data, fast lookups", $sprite="redis")
+    }
+    
+    System_Boundary(analytical_storage, "Analytics Data Storage") {
+        ContainerDb(clickhouse_cluster, "ClickHouse Cluster", "OLAP Database", "Real-time analytics, reporting", $sprite="clickhouse")
+        ContainerDb(data_lake, "S3 Data Lake", "Object Storage", "Raw data, backups, archives", $sprite="s3")
+        ContainerDb(opensearch, "OpenSearch Cluster", "Search Engine", "Full-text search, log analytics", $sprite="opensearch")
+    }
+    
+    System_Boundary(specialized_storage, "Specialized Storage") {
+        ContainerDb(graph_db, "Neo4j", "Graph Database", "Relationship mapping, networks", $sprite="graph")
+        ContainerDb(time_series, "InfluxDB", "Time Series DB", "Metrics, IoT data, monitoring", $sprite="timeseries")
+        ContainerDb(document_store, "MongoDB", "Document Store", "Unstructured data, content", $sprite="mongo")
+    }
+}
+
+System_Boundary(data_services, "Data Services Layer") {
+    
+    System_Boundary(analytical_services, "Analytics Services") {
+        Container(analytics_api, "Analytics API", "Python/FastAPI", "Analytics query interface", $sprite="analytics")
+        Container(reporting_engine, "Reporting Engine", "Node.js", "Dashboard data preparation", $sprite="reporting")
+        Container(ml_inference, "ML Inference Service", "Python/TensorFlow", "Real-time predictions", $sprite="ml")
+    }
+    
+    System_Boundary(data_access_services, "Data Access Services") {
+        Container(graphql_api, "GraphQL API", "Node.js", "Flexible data queries", $sprite="graphql")
+        Container(rest_apis, "REST Data APIs", "Node.js", "Standard data access", $sprite="api")
+        Container(search_api, "Search API", "Node.js", "Full-text search interface", $sprite="search")
+    }
+    
+    System_Boundary(governance_services, "Data Governance Services") {
+        Container(data_catalog, "Data Catalog", "Apache Atlas", "Metadata management", $sprite="catalog")
+        Container(lineage_tracker, "Data Lineage", "DataHub", "Data lineage tracking", $sprite="lineage")
+        Container(access_control, "Data Access Control", "Apache Ranger", "Fine-grained permissions", $sprite="access")
+    }
+}
+
+System_Boundary(data_consumption, "Data Consumption Layer") {
+    
+    System_Boundary(stakeholder_dashboards, "Stakeholder Dashboards") {
+        Container(government_dashboard, "Government Dashboard", "React", "Policy compliance, reporting", $sprite="dashboard")
+        Container(business_dashboard, "Business Dashboard", "React", "CSR impact, ROI metrics", $sprite="dashboard")
+        Container(academic_dashboard, "Research Dashboard", "React", "Anonymized research data", $sprite="dashboard")
+        Container(community_dashboard, "Community Dashboard", "React", "Volunteer impact, events", $sprite="dashboard")
+        Container(media_dashboard, "Media Dashboard", "React", "Story metrics, campaigns", $sprite="dashboard")
+    }
+    
+    System_Boundary(operational_interfaces, "Operational Interfaces") {
+        Container(orphanage_portal, "Orphanage Portal", "React", "Daily operations, child care", $sprite="portal")
+        Container(admin_portal, "Admin Portal", "React", "Platform administration", $sprite="admin")
+        Container(mobile_apps, "Mobile Applications", "React Native", "Field workers, volunteers", $sprite="mobile")
+    }
+    
+    System_Boundary(external_outputs, "External Data Outputs") {
+        Container(api_consumers, "External API Consumers", "REST/GraphQL", "Partner integrations", $sprite="external")
+        Container(report_exports, "Report Exports", "PDF/Excel", "Compliance reports", $sprite="export")
+        Container(data_feeds, "Real-time Data Feeds", "WebSockets", "Live updates", $sprite="feed")
+    }
+}
+
+' Data Flow Relationships
+
+' External sources to ingestion
+Rel(government_data, kong_gateway, "Child registration updates", "HTTPS/SOAP")
+Rel(orphanage_data, kong_gateway, "Daily care reports", "HTTPS")
+Rel(business_data, kong_gateway, "Donation transactions", "HTTPS")
+Rel(community_data, kong_gateway, "Volunteer activities", "HTTPS")
+Rel(payment_data, kafka_cluster, "Payment events", "Webhook")
+Rel(social_data, kafka_cluster, "Engagement metrics", "API")
+
+' Ingestion layer processing
+Rel(kong_gateway, data_validator, "Raw data", "HTTP")
+Rel(data_validator, privacy_scanner, "Validated data", "Internal")
+Rel(privacy_scanner, kafka_cluster, "Clean data events", "Kafka Protocol")
+
+' Real-time data flow
+Rel(kafka_cluster, kafka_streams, "Event streams", "Kafka Protocol")
+Rel(kafka_streams, redis_stream, "Processed events", "Redis")
+Rel(kafka_streams, postgres_primary, "Transactional updates", "JDBC")
+Rel(redis_stream, clickhouse_cluster, "Real-time metrics", "ClickHouse Protocol")
+
+' Batch processing flow
+Rel(kafka_cluster, data_lake, "Raw event archive", "S3 API")
+Rel(data_lake, spark_etl, "Batch data", "S3 API")
+Rel(spark_etl, dbt_transforms, "Transformed data", "SQL")
+Rel(dbt_transforms, clickhouse_cluster, "Analytics data", "JDBC")
+
+' Privacy protection flow
+Rel(postgres_primary, anonymization_engine, "Child data", "JDBC")
+Rel(anonymization_engine, differential_privacy, "Anonymized data", "Internal")
+Rel(differential_privacy, clickhouse_cluster, "Privacy-safe analytics", "JDBC")
+
+' Analytics and ML flow
+Rel(clickhouse_cluster, python_ml, "Training data", "ClickHouse Protocol")
+Rel(python_ml, ml_inference, "Trained models", "Model Registry")
+Rel(postgres_primary, ml_inference, "Real-time features", "JDBC")
+
+' Data services access
+Rel(postgres_primary, graphql_api, "Operational queries", "JDBC")
+Rel(clickhouse_cluster, analytics_api, "Analytics queries", "ClickHouse Protocol")
+Rel(opensearch, search_api, "Search queries", "HTTP")
+
+' Dashboard consumption
+Rel(analytics_api, government_dashboard, "Government metrics", "HTTPS")
+Rel(analytics_api, business_dashboard, "Business metrics", "HTTPS")
+Rel(analytics_api, academic_dashboard, "Research data", "HTTPS")
+Rel(graphql_api, orphanage_portal, "Operational data", "HTTPS")
+Rel(rest_apis, mobile_apps, "Mobile data", "HTTPS")
+
+' External data outputs
+Rel(analytics_api, api_consumers, "Partner data feeds", "HTTPS")
+Rel(reporting_engine, report_exports, "Compliance reports", "HTTPS")
+Rel(kafka_cluster, data_feeds, "Real-time updates", "WebSocket")
+
+' Data governance flows
+Rel(data_catalog, postgres_primary, "Metadata discovery", "JDBC")
+Rel(lineage_tracker, spark_etl, "Lineage tracking", "API")
+Rel(access_control, graphql_api, "Permission enforcement", "API")
+
+SHOW_LEGEND()
+
+' Data flow notes
+note as data_protection_notes
+**Child Data Protection in Data Flow:**
+
+**Privacy by Design:**
+• Automatic PII detection and masking
+• Child data anonymization before analytics
+• Consent-based data processing
+• Right to erasure implementation
+
+**Data Minimization:**
+• Collect only necessary child information
+• Automatic data retention policy enforcement
+• Purpose limitation for data usage
+• Regular data cleanup and archival
+
+**Security Controls:**
+• End-to-end encryption in transit and at rest
+• Access logging for all child data access
+• Role-based access control (RBAC)
+• Multi-factor authentication for sensitive data
+
+**Compliance Integration:**
+• GDPR Article 17 (Right to Erasure) automation
+• Indonesian data protection law compliance
+• UNICEF child data protection standards
+• Audit trail for regulatory reporting
+end note
+
+note as stakeholder_data_flows
+**Stakeholder-Specific Data Flows:**
+
+**Government Stakeholders:**
+• Compliance dashboards with real-time monitoring
+• Automated regulatory reporting
+• Inter-agency data sharing (with consent)
+• Policy impact measurement
+
+**Business Stakeholders:**
+• CSR impact measurement and ROI tracking
+• Employee volunteer hour tracking
+• Donation impact visualization
+• Brand mention and sentiment analysis
+
+**Academic Stakeholders:**
+• Anonymized research data access
+• Statistical analysis tools
+• Longitudinal study support
+• Evidence-based intervention tracking
+
+**Community Stakeholders:**
+• Volunteer impact tracking
+• Local event coordination data
+• Community engagement metrics
+• Success story collection
+
+**Media Stakeholders:**
+• Campaign performance analytics
+• Story reach and engagement metrics
+• Brand asset usage tracking
+• Social media performance data
+end note
+
+note as technical_architecture_notes
+**Technical Data Architecture:**
+
+**Real-time Processing:**
+• Apache Kafka for high-throughput event streaming
+• Kafka Streams for low-latency transformations
+• Redis for sub-millisecond data access
+• WebSocket connections for live updates
+
+**Batch Processing:**
+• Apache Airflow for workflow orchestration
+• Apache Spark for large-scale data processing
+• dbt for SQL-based transformations
+• Great Expectations for data quality monitoring
+
+**Storage Strategy:**
+• PostgreSQL for OLTP workloads
+• ClickHouse for OLAP and analytics
+• S3 data lake for archival and backup
+• OpenSearch for full-text search
+
+**Machine Learning Pipeline:**
+• Feature engineering with Apache Spark
+• Model training with TensorFlow/PyTorch
+• Model serving with TensorFlow Serving
+• Experiment tracking with MLflow
+end note
+
+@enduml

@@ -1,0 +1,273 @@
+@startuml kubernetes-architecture
+!include <C4/C4_Container>
+
+' Title and description
+!define TITLE "MerajutASA Platform - Kubernetes Architecture"
+!define DESCRIPTION "Container orchestration topology for child welfare platform with high availability, security zones, and stakeholder service isolation"
+
+title TITLE
+caption DESCRIPTION
+
+' Define Kubernetes cluster structure
+System_Boundary(aws_cloud, "AWS Cloud Infrastructure") {
+    
+    ' EKS Clusters
+    System_Boundary(prod_cluster, "Production EKS Cluster (merajutasa-prod)") {
+        
+        ' Ingress and Load Balancing
+        System_Boundary(ingress_layer, "Ingress Layer") {
+            Container(aws_alb, "AWS Application Load Balancer", "ALB", "SSL termination, routing, health checks", $sprite="aws-elb")
+            Container(nginx_ingress, "NGINX Ingress Controller", "Kubernetes", "Request routing, rate limiting, SSL", $sprite="k8s")
+            Container(cert_manager, "Cert Manager", "Let's Encrypt", "Automatic SSL certificate management", $sprite="lock")
+        }
+        
+        ' Security and Monitoring Namespace
+        System_Boundary(security_namespace, "kube-system & security") {
+            Container(istio_gateway, "Istio Gateway", "Service Mesh", "Traffic management, security policies", $sprite="istio")
+            Container(falco, "Falco", "Security", "Runtime security monitoring", $sprite="security")
+            Container(opa_gatekeeper, "OPA Gatekeeper", "Policy Engine", "Admission control policies", $sprite="policy")
+            Container(vault_agent, "Vault Agent", "Secret Management", "Dynamic secret injection", $sprite="vault")
+        }
+        
+        ' Application Namespaces
+        System_Boundary(stakeholder_namespace, "stakeholder-services") {
+            
+            ' Government Services
+            System_Boundary(gov_services, "Government Services") {
+                Container(gov_api, "Government API", "Node.js", "Policy compliance, regulatory reporting", $sprite="api")
+                Container(compliance_service, "Compliance Service", "Node.js", "Audit trails, regulatory automation", $sprite="compliance")
+                Container(reporting_service, "Reporting Service", "Node.js", "Government dashboards, analytics", $sprite="analytics")
+            }
+            
+            ' Business Services
+            System_Boundary(business_services, "Business Services") {
+                Container(business_api, "Business API", "Node.js", "CSR integration, partnership management", $sprite="api")
+                Container(donation_service, "Donation Service", "Node.js", "Payment processing, impact tracking", $sprite="payment")
+                Container(volunteer_service, "Volunteer Service", "Node.js", "Corporate volunteer coordination", $sprite="community")
+            }
+            
+            ' Academic Services
+            System_Boundary(academic_services, "Academic Services") {
+                Container(research_api, "Research API", "Node.js", "Data access, anonymization", $sprite="api")
+                Container(analytics_service, "Analytics Service", "Python", "Research data processing", $sprite="analytics")
+                Container(ml_service, "ML Service", "Python/TensorFlow", "Predictive analytics, insights", $sprite="ml")
+            }
+            
+            ' Community Services
+            System_Boundary(community_services, "Community Services") {
+                Container(community_api, "Community API", "Node.js", "Volunteer matching, engagement", $sprite="api")
+                Container(events_service, "Events Service", "Node.js", "Community event coordination", $sprite="events")
+                Container(storytelling_service, "Storytelling Service", "Node.js", "Impact story collection", $sprite="content")
+            }
+            
+            ' Media Services
+            System_Boundary(media_services, "Media Services") {
+                Container(media_api, "Media API", "Node.js", "Content distribution, asset management", $sprite="api")
+                Container(cms_service, "CMS Service", "Node.js", "Content management, publishing", $sprite="cms")
+                Container(social_service, "Social Media Service", "Node.js", "Social platform integration", $sprite="social")
+            }
+        }
+        
+        ' Core Platform Namespace
+        System_Boundary(core_namespace, "core-platform") {
+            
+            ' Authentication and Authorization
+            System_Boundary(auth_services, "Authentication Services") {
+                Container(auth_service, "Authentication Service", "Node.js", "Multi-tenant JWT, OAuth2", $sprite="auth")
+                Container(user_service, "User Service", "Node.js", "User management, profiles", $sprite="user")
+                Container(rbac_service, "RBAC Service", "Node.js", "Role-based access control", $sprite="rbac")
+            }
+            
+            ' Core Business Logic
+            System_Boundary(business_core, "Core Business Services") {
+                Container(orphanage_service, "Orphanage Service", "Node.js", "Facility management, capacity", $sprite="building")
+                Container(child_service, "Child Service", "Node.js", "Child profiles, privacy protection", $sprite="child")
+                Container(case_service, "Case Management", "Node.js", "Welfare case tracking", $sprite="case")
+            }
+            
+            ' Integration Services
+            System_Boundary(integration_services, "Integration Services") {
+                Container(api_gateway, "Kong API Gateway", "Kong", "Request routing, security, monitoring", $sprite="gateway")
+                Container(message_broker, "RabbitMQ", "Message Queue", "Async communication, events", $sprite="queue")
+                Container(notification_service, "Notification Service", "Node.js", "Multi-channel notifications", $sprite="notification")
+            }
+        }
+        
+        ' Frontend Namespace
+        System_Boundary(frontend_namespace, "frontend-apps") {
+            Container(web_app, "Web Application", "React/NGINX", "Responsive web interface", $sprite="web")
+            Container(admin_portal, "Admin Portal", "React/NGINX", "Administrative interface", $sprite="admin")
+            Container(mobile_api, "Mobile API Gateway", "Node.js", "Mobile app backend", $sprite="mobile")
+        }
+        
+        ' Data Namespace
+        System_Boundary(data_namespace, "data-services") {
+            
+            ' Database Services
+            System_Boundary(database_services, "Database Services") {
+                ContainerDb(postgres_primary, "PostgreSQL Primary", "PostgreSQL 14", "Main application database", $sprite="postgres")
+                ContainerDb(postgres_replica, "PostgreSQL Replica", "PostgreSQL 14", "Read replicas for scaling", $sprite="postgres")
+                ContainerDb(redis_cluster, "Redis Cluster", "Redis", "Caching, session storage", $sprite="redis")
+            }
+            
+            ' Analytics and Search
+            System_Boundary(analytics_data, "Analytics Services") {
+                ContainerDb(clickhouse, "ClickHouse", "Analytics DB", "Real-time analytics, reporting", $sprite="analytics")
+                ContainerDb(opensearch, "OpenSearch", "Search Engine", "Full-text search, logging", $sprite="search")
+                ContainerDb(s3_storage, "S3 Storage", "Object Storage", "File storage, backups", $sprite="storage")
+            }
+        }
+        
+        ' Monitoring Namespace
+        System_Boundary(monitoring_namespace, "monitoring") {
+            Container(prometheus, "Prometheus", "Monitoring", "Metrics collection, alerting", $sprite="prometheus")
+            Container(grafana, "Grafana", "Visualization", "Dashboards, monitoring", $sprite="grafana")
+            Container(jaeger, "Jaeger", "Tracing", "Distributed tracing", $sprite="tracing")
+            Container(fluentd, "Fluentd", "Log Aggregation", "Log collection, forwarding", $sprite="logging")
+        }
+    }
+    
+    ' Staging Cluster (smaller scale)
+    System_Boundary(staging_cluster, "Staging EKS Cluster (merajutasa-staging)") {
+        Container(staging_services, "Staging Services", "Kubernetes", "Pre-production testing environment", $sprite="staging")
+        note right of staging_services : Mirrors production\nwith reduced resources\nfor testing and validation
+    }
+    
+    ' Development Cluster
+    System_Boundary(dev_cluster, "Development EKS Cluster (merajutasa-dev)") {
+        Container(dev_services, "Development Services", "Kubernetes", "Developer testing environment", $sprite="dev")
+        note right of dev_services : Feature development\nand integration testing\nwith mock data
+    }
+    
+    ' External AWS Services
+    System_Boundary(aws_services, "AWS Managed Services") {
+        Container(rds_postgres, "RDS PostgreSQL", "Database", "Managed database with backups", $sprite="aws-rds")
+        Container(elasticache, "ElastiCache Redis", "Caching", "Managed Redis clusters", $sprite="aws-elasticache")
+        Container(cloudwatch, "CloudWatch", "Monitoring", "AWS native monitoring", $sprite="aws-cloudwatch")
+        Container(secrets_manager, "Secrets Manager", "Secret Storage", "Encrypted secret storage", $sprite="aws-secrets")
+        Container(kms, "AWS KMS", "Encryption", "Key management service", $sprite="aws-kms")
+    }
+    
+    ' Network Security
+    System_Boundary(network_security, "Network Security") {
+        Container(vpc, "VPC", "Virtual Network", "Isolated network environment", $sprite="aws-vpc")
+        Container(security_groups, "Security Groups", "Firewall", "Instance-level firewall rules", $sprite="firewall")
+        Container(nacl, "Network ACLs", "Network Firewall", "Subnet-level security", $sprite="network")
+        Container(waf, "AWS WAF", "Web Firewall", "Application-level protection", $sprite="waf")
+    }
+}
+
+' External integrations
+System_Boundary(external_systems, "External Systems") {
+    System(payment_gateways, "Payment Gateways", "Midtrans, Bank Transfer", "Indonesian payment processing")
+    System(government_apis, "Government APIs", "Civil Registration", "Government data integration")
+    System(social_platforms, "Social Platforms", "Facebook, Instagram", "Social media integration")
+    System(email_sms, "Communication", "Email/SMS Providers", "Multi-channel notifications")
+}
+
+' Relationships - Traffic Flow
+Rel(aws_alb, nginx_ingress, "Routes traffic", "HTTPS")
+Rel(nginx_ingress, istio_gateway, "Service mesh routing", "HTTP/2")
+Rel(istio_gateway, api_gateway, "API requests", "HTTP")
+
+' API Gateway to Services
+Rel(api_gateway, auth_service, "Authentication", "gRPC")
+Rel(api_gateway, gov_api, "Government APIs", "HTTP")
+Rel(api_gateway, business_api, "Business APIs", "HTTP")
+Rel(api_gateway, research_api, "Research APIs", "HTTP")
+Rel(api_gateway, community_api, "Community APIs", "HTTP")
+Rel(api_gateway, media_api, "Media APIs", "HTTP")
+
+' Core Services Communication
+Rel(auth_service, user_service, "User data", "gRPC")
+Rel(user_service, rbac_service, "Permission checks", "gRPC")
+Rel(orphanage_service, child_service, "Child associations", "gRPC")
+Rel(child_service, case_service, "Case management", "gRPC")
+
+' Database Connections
+Rel(auth_service, postgres_primary, "User data", "SQL")
+Rel(orphanage_service, postgres_primary, "Orphanage data", "SQL")
+Rel(child_service, postgres_primary, "Child data", "SQL")
+Rel(analytics_service, clickhouse, "Analytics queries", "ClickHouse Protocol")
+Rel(ml_service, clickhouse, "ML data", "ClickHouse Protocol")
+
+' Caching and Session
+Rel(auth_service, redis_cluster, "Session storage", "Redis")
+Rel(api_gateway, redis_cluster, "Rate limiting", "Redis")
+Rel(web_app, redis_cluster, "Caching", "Redis")
+
+' Message Queue Communication
+Rel(donation_service, message_broker, "Payment events", "AMQP")
+Rel(notification_service, message_broker, "Notification events", "AMQP")
+Rel(analytics_service, message_broker, "Analytics events", "AMQP")
+
+' Monitoring and Observability
+Rel(prometheus, gov_api, "Metrics collection", "HTTP")
+Rel(prometheus, business_api, "Metrics collection", "HTTP")
+Rel(prometheus, grafana, "Metrics data", "HTTP")
+Rel(fluentd, opensearch, "Log aggregation", "HTTP")
+Rel(jaeger, istio_gateway, "Trace collection", "HTTP")
+
+' External Service Integrations
+Rel(donation_service, payment_gateways, "Payment processing", "HTTPS")
+Rel(compliance_service, government_apis, "Data synchronization", "HTTPS")
+Rel(social_service, social_platforms, "Content publishing", "HTTPS")
+Rel(notification_service, email_sms, "Message delivery", "HTTPS")
+
+' Security and Secret Management
+Rel(vault_agent, secrets_manager, "Secret retrieval", "HTTPS")
+Rel(cert_manager, aws_alb, "SSL certificates", "HTTPS")
+Rel(opa_gatekeeper, rbac_service, "Policy validation", "HTTP")
+Rel(falco, prometheus, "Security metrics", "HTTP")
+
+' AWS Managed Services
+Rel(postgres_primary, rds_postgres, "Managed database", "Internal")
+Rel(redis_cluster, elasticache, "Managed cache", "Internal")
+Rel(prometheus, cloudwatch, "AWS metrics", "API")
+Rel(auth_service, kms, "Encryption keys", "API")
+
+SHOW_LEGEND()
+
+' Architecture notes
+note as kubernetes_notes
+**Kubernetes Architecture Highlights:**
+
+**High Availability:**
+• Multi-AZ deployment across 3 availability zones
+• Auto-scaling groups for worker nodes
+• Pod disruption budgets for critical services
+• Rolling updates with zero downtime
+
+**Security Zones:**
+• Network policies for namespace isolation
+• Service mesh with mTLS encryption
+• Runtime security monitoring with Falco
+• Admission control with OPA Gatekeeper
+
+**Child Data Protection:**
+• Dedicated namespace for child services
+• Encrypted secrets with Vault integration
+• Network policies restricting data access
+• Audit logging for all child data access
+
+**Stakeholder Service Isolation:**
+• Separate namespaces for each stakeholder type
+• Resource quotas and limits per namespace
+• Independent scaling and deployment
+• Service-to-service authentication
+
+**Indonesian Infrastructure:**
+• Primary deployment in ap-southeast-1 (Singapore)
+• Secondary deployment in ap-southeast-3 (Jakarta)
+• CDN edge locations across Indonesian cities
+• Local payment gateway integrations
+
+**Monitoring and Observability:**
+• Prometheus for metrics collection
+• Grafana for visualization dashboards
+• Jaeger for distributed tracing
+• ELK stack for centralized logging
+• Real-time alerting and incident response
+end note
+
+@enduml

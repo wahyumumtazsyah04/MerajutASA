@@ -1,0 +1,238 @@
+@startuml governance-structure
+!include <C4/C4_Container>
+
+!define TITLE "MerajutASA Platform - Governance Structure"
+!define DESCRIPTION "Decision-making hierarchy and governance framework for penta-helix stakeholder coordination in child welfare platform management"
+
+title TITLE
+caption DESCRIPTION
+
+' Strategic Governance Level
+Container_Boundary(strategic_governance, "Strategic Governance Level") {
+    
+    Container_Boundary(board_of_trustees, "Board of Trustees & Strategic Oversight") {
+        Container(board_chair, "Board Chairperson", "Strategic Leadership", "Overall platform vision and strategic direction")
+        Container(government_representative, "Government Board Representative", "Policy Alignment", "National child welfare policy alignment")
+        Container(business_representative, "Business Sector Representative", "Sustainability", "Financial sustainability and business strategy")
+        Container(academic_representative, "Academic Sector Representative", "Evidence Base", "Research integrity and academic rigor")
+        Container(community_representative, "Community Sector Representative", "Grassroots Voice", "Community needs and cultural appropriateness")
+        Container(media_representative, "Media Sector Representative", "Communication", "Public communication and transparency")
+    }
+    
+    Container_Boundary(advisory_councils, "Strategic Advisory Councils") {
+        Container(child_protection_council, "Child Protection Advisory Council", "Safety Oversight", "Child safety and protection standards")
+        Container(technology_council, "Technology Advisory Council", "Innovation", "Technology strategy and digital transformation")
+        Container(impact_council, "Impact Measurement Council", "Effectiveness", "Impact assessment and outcome measurement")
+        Container(ethics_council, "Ethics Review Council", "Ethical Standards", "Ethical guidelines and compliance oversight")
+    }
+}
+
+' Operational Governance Level
+Container_Boundary(operational_governance, "Operational Governance Level") {
+    
+    Container_Boundary(executive_management, "Executive Management Team") {
+        Container(executive_director, "Executive Director", "Platform Leadership", "Overall platform operations and strategy execution")
+        Container(child_welfare_director, "Child Welfare Director", "Mission Focus", "Child welfare program oversight and quality")
+        Container(technology_director, "Technology Director", "Platform Development", "Technology development and infrastructure")
+        Container(stakeholder_director, "Stakeholder Relations Director", "Partnership Management", "Multi-stakeholder coordination and engagement")
+        Container(operations_director, "Operations Director", "Service Delivery", "Daily operations and service delivery")
+    }
+    
+    Container_Boundary(governance_committees, "Governance Committees") {
+        Container(steering_committee, "Platform Steering Committee", "Direction Setting", "Strategic direction and resource allocation")
+        Container(quality_committee, "Quality Assurance Committee", "Standards", "Service quality and performance standards")
+        Container(risk_committee, "Risk Management Committee", "Risk Oversight", "Risk identification and mitigation strategies")
+        Container(audit_committee, "Audit & Compliance Committee", "Accountability", "Financial and operational auditing")
+    }
+}
+
+' Tactical Governance Level
+Container_Boundary(tactical_governance, "Tactical Governance Level") {
+    
+    Container_Boundary(stakeholder_working_groups, "Stakeholder Working Groups") {
+        Container(government_working_group, "Government Working Group", "Policy Implementation", "Government policy coordination and compliance")
+        Container(business_working_group, "Business Working Group", "Partnership Development", "Business partnership development and CSR coordination")
+        Container(academic_working_group, "Academic Working Group", "Research Coordination", "Research collaboration and evidence development")
+        Container(community_working_group, "Community Working Group", "Community Engagement", "Community mobilization and volunteer coordination")
+        Container(media_working_group, "Media Working Group", "Communication Strategy", "Media relations and public communication")
+    }
+    
+    Container_Boundary(technical_committees, "Technical Committees") {
+        Container(data_governance_committee, "Data Governance Committee", "Data Management", "Data policy and privacy protection")
+        Container(security_committee, "Security Committee", "Information Security", "Cybersecurity and data protection")
+        Container(platform_committee, "Platform Development Committee", "Technology", "Platform development and technical standards")
+        Container(integration_committee, "Integration Committee", "System Integration", "External system integration and API governance")
+    }
+}
+
+' Execution Level
+Container_Boundary(execution_level, "Execution Level") {
+    
+    Container_Boundary(operational_teams, "Operational Teams") {
+        Container(orphanage_support_team, "Orphanage Support Team", "Direct Service", "Direct orphanage support and case management")
+        Container(volunteer_coordination_team, "Volunteer Coordination Team", "Volunteer Management", "Volunteer recruitment and coordination")
+        Container(donation_management_team, "Donation Management Team", "Resource Coordination", "Donation processing and resource allocation")
+        Container(communication_team, "Communication Team", "Outreach", "Public communication and stakeholder engagement")
+    }
+    
+    Container_Boundary(technical_teams, "Technical Teams") {
+        Container(development_team, "Development Team", "Platform Development", "Software development and maintenance")
+        Container(devops_team, "DevOps Team", "Infrastructure", "Platform infrastructure and deployment")
+        Container(data_team, "Data & Analytics Team", "Data Science", "Data analysis and impact measurement")
+        Container(security_team, "Security Team", "Cybersecurity", "Information security and threat protection")
+    }
+}
+
+' Oversight and Monitoring
+Container_Boundary(oversight_monitoring, "Oversight & Monitoring") {
+    
+    Container_Boundary(external_oversight, "External Oversight Bodies") {
+        Container(government_oversight, "Government Oversight Agency", "Regulatory Compliance", "Government compliance monitoring and audit")
+        Container(child_protection_agency, "Child Protection Agency", "Child Safety", "Child protection compliance and investigation")
+        Container(financial_oversight, "Financial Oversight Body", "Financial Accountability", "Financial audit and transparency")
+        Container(independent_evaluator, "Independent Evaluator", "Impact Assessment", "Independent impact evaluation and assessment")
+    }
+    
+    Container_Boundary(monitoring_systems, "Monitoring & Reporting Systems") {
+        Container(compliance_monitoring, "Compliance Monitoring System", "Automated Compliance", "Real-time compliance tracking and reporting")
+        Container(performance_dashboard, "Performance Dashboard", "Performance Tracking", "Key performance indicator monitoring")
+        Container(stakeholder_feedback, "Stakeholder Feedback System", "Continuous Improvement", "Multi-stakeholder feedback collection")
+        Container(transparency_portal, "Transparency Portal", "Public Accountability", "Public information disclosure and transparency")
+    }
+}
+
+' Governance Relationships and Decision Flows
+
+' Strategic Level Decision Flow
+Rel(board_chair, executive_director, "Strategic direction & accountability", "Board Governance")
+Rel(child_protection_council, board_of_trustees, "Child protection recommendations", "Advisory Input")
+Rel(technology_council, technology_director, "Technology strategy guidance", "Strategic Advice")
+Rel(impact_council, stakeholder_director, "Impact measurement standards", "Performance Framework")
+
+' Board Composition and Representation
+Rel(government_representative, government_working_group, "Government stakeholder coordination", "Representation")
+Rel(business_representative, business_working_group, "Business sector alignment", "Representation")
+Rel(academic_representative, academic_working_group, "Academic sector coordination", "Representation")
+Rel(community_representative, community_working_group, "Community voice representation", "Representation")
+Rel(media_representative, media_working_group, "Media sector coordination", "Representation")
+
+' Executive Management Coordination
+Rel(executive_director, steering_committee, "Platform coordination", "Executive Leadership")
+Rel(child_welfare_director, quality_committee, "Child welfare standards", "Quality Oversight")
+Rel(technology_director, platform_committee, "Technology development", "Technical Leadership")
+Rel(stakeholder_director, stakeholder_working_groups, "Stakeholder coordination", "Engagement Management")
+
+' Working Group to Operational Teams
+Rel(government_working_group, orphanage_support_team, "Policy implementation guidance", "Implementation")
+Rel(business_working_group, donation_management_team, "Business partnership coordination", "Resource Management")
+Rel(academic_working_group, data_team, "Research collaboration", "Evidence Development")
+Rel(community_working_group, volunteer_coordination_team, "Community engagement", "Volunteer Management")
+Rel(media_working_group, communication_team, "Media strategy implementation", "Communication")
+
+' Technical Committee Coordination
+Rel(data_governance_committee, data_team, "Data governance standards", "Policy Implementation")
+Rel(security_committee, security_team, "Security policies and procedures", "Security Implementation")
+Rel(platform_committee, development_team, "Platform development standards", "Development Guidance")
+Rel(integration_committee, devops_team, "Integration requirements", "Technical Implementation")
+
+' Oversight and Monitoring Relationships
+Rel(government_oversight, compliance_monitoring, "Compliance verification", "Regulatory Monitoring")
+Rel(child_protection_agency, child_protection_council, "Child protection feedback", "Safety Oversight")
+Rel(financial_oversight, audit_committee, "Financial audit results", "Financial Accountability")
+Rel(independent_evaluator, impact_council, "Impact evaluation findings", "Performance Assessment")
+
+' Transparency and Accountability
+Rel(performance_dashboard, transparency_portal, "Performance data", "Public Reporting")
+Rel(stakeholder_feedback, steering_committee, "Stakeholder input", "Continuous Improvement")
+Rel(compliance_monitoring, board_of_trustees, "Compliance status", "Board Reporting")
+
+SHOW_LEGEND()
+
+note as governance_principles
+**Governance Framework Principles:**
+
+**Multi-Stakeholder Representation:**
+• Each sector has voice in strategic decisions
+• Balanced representation across penta-helix model
+• Community and child welfare prioritized in decisions
+• Cultural sensitivity in governance processes
+
+**Accountability and Transparency:**
+• Clear decision-making authority and responsibility
+• Public transparency in operations and impact
+• Regular reporting to stakeholders and public
+• Independent oversight and evaluation
+
+**Child Protection Primacy:**
+• Child safety is paramount in all decisions
+• Child protection experts involved in governance
+• Trauma-informed governance practices
+• Children's voices included through advocates
+
+**Evidence-Based Decision Making:**
+• Data-driven policy and operational decisions
+• Academic research integration in planning
+• Continuous learning and improvement culture
+• Impact measurement drives strategic direction
+end note
+
+note as decision_making_process
+**Decision-Making Process Framework:**
+
+**Strategic Decisions (Board Level):**
+1. Proposal development by executive team
+2. Stakeholder working group consultation
+3. Advisory council expert review
+4. Board deliberation and voting
+5. Public communication of decisions
+
+**Operational Decisions (Management Level):**
+1. Issue identification by operational teams
+2. Working group analysis and recommendation
+3. Committee review and approval
+4. Implementation by execution teams
+5. Performance monitoring and evaluation
+
+**Emergency Decisions (Crisis Response):**
+1. Immediate child safety assessment
+2. Emergency response team activation
+3. Stakeholder notification protocol
+4. Rapid decision-making by executive
+5. Post-crisis governance review
+
+**Escalation Pathways:**
+• Operational → Management Committee → Board
+• Child Safety → Child Protection Council → Board
+• Stakeholder Conflict → Stakeholder Director → Board
+• Technical Issues → Technology Committee → Management
+end note
+
+note as governance_innovation
+**Governance Innovation Features:**
+
+**Digital Governance Tools:**
+• Real-time decision tracking and transparency
+• Digital stakeholder consultation platforms
+• Automated compliance monitoring and reporting
+• AI-assisted policy impact prediction
+
+**Participatory Governance:**
+• Community representatives in governance bodies
+• Regular stakeholder feedback collection
+• Youth advisory councils for future perspective
+• Cultural advisory groups for local adaptation
+
+**Adaptive Governance:**
+• Continuous governance process improvement
+• Flexible structures responding to changing needs
+• Learning from other social impact organizations
+• International best practice integration
+
+**Performance-Driven Governance:**
+• Key performance indicators for governance effectiveness
+• Regular governance process evaluation
+• Stakeholder satisfaction measurement
+• Impact-based governance adjustments
+end note
+
+@enduml

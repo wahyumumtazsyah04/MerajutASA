@@ -1,0 +1,246 @@
+@startuml user-registration
+!include <C4/C4_Sequence>
+
+!define TITLE "MerajutASA Platform - User Registration Sequence"
+!define DESCRIPTION "Penta-helix stakeholder onboarding flow with child protection verification and role-based access provisioning"
+
+' Enhanced color palette for better visual hierarchy
+!define PRIMARY_BLUE #2980B9
+!define SUCCESS_GREEN #27AE60
+!define WARNING_ORANGE #F39C12
+!define DANGER_RED #E74C3C
+!define INFO_PURPLE #8E44AD
+!define NEUTRAL_GRAY #7F8C8D
+!define LIGHT_GRAY #BDC3C7
+
+' Stakeholder type colors for visual distinction
+!define GOVERNMENT_COLOR #4ECDC4
+!define BUSINESS_COLOR #45B7D1
+!define ACADEMIC_COLOR #96CEB4
+!define COMMUNITY_COLOR #FECA57
+!define MEDIA_COLOR #9B59B6
+!define SECURITY_COLOR #FF6B6B
+
+title <size:18><b>TITLE</b></size>
+caption <size:12><i>DESCRIPTION</i></size>
+
+' Define participants with enhanced visual styling
+actor "<size:14><b>Stakeholder User</b></size>" as User #FFEAA7
+participant "<size:12><b>Web Application</b></size>\n<size:10><i>React Frontend</i></size>" as WebApp PRIMARY_BLUE
+participant "<size:12><b>API Gateway</b></size>\n<size:10><i>Kong Gateway</i></size>" as Gateway SUCCESS_GREEN
+participant "<size:12><b>Authentication Service</b></size>\n<size:10><i>Node.js/JWT</i></size>" as AuthService DANGER_RED
+participant "<size:12><b>Stakeholder Service</b></size>\n<size:10><i>Role Management</i></size>" as StakeholderService WARNING_ORANGE
+participant "<size:12><b>Verification Service</b></size>\n<size:10><i>Identity Validation</i></size>" as VerificationService INFO_PURPLE
+participant "<size:12><b>Email Service</b></size>\n<size:10><i>Notification System</i></size>" as EmailService NEUTRAL_GRAY
+participant "<size:12><b>Audit Service</b></size>\n<size:10><i>Compliance Logging</i></size>" as AuditService SECURITY_COLOR
+database "<size:12><b>User Database</b></size>\n<size:10><i>PostgreSQL</i></size>" as UserDB LIGHT_GRAY
+database "<size:12><b>Audit Database</b></size>\n<size:10><i>Compliance Store</i></size>" as AuditDB NEUTRAL_GRAY
+
+== <size:16><b>🚀 User Registration Initiation</b></size> ==
+
+User -> WebApp: <b>Access registration page</b>
+activate WebApp #E8F6F3
+
+WebApp -> Gateway: <b>GET</b> /api/v1/registration/form
+activate Gateway #E8F8F5
+
+Gateway -> StakeholderService: <b>Get registration requirements</b> by type
+activate StakeholderService #FEF9E7
+
+StakeholderService -> Gateway: <b>Return</b> stakeholder-specific requirements
+deactivate StakeholderService
+
+Gateway -> WebApp: <b>Registration form</b> with requirements
+deactivate Gateway
+
+WebApp -> User: <b>Display</b> stakeholder-specific registration form
+deactivate WebApp
+
+== <size:16><b>📝 Registration Form Submission</b></size> ==
+
+User -> WebApp: <b>Submit registration data</b>\n<size:10><i>(email, stakeholder type, credentials, verification docs)</i></size>
+activate WebApp #E8F6F3
+
+WebApp -> Gateway: <b>POST</b> /api/v1/users/register
+activate Gateway #E8F8F5
+note right of Gateway #FDF2E9: <b>🔒 Security Check</b>\nInput validation and\nsecurity scanning
+
+Gateway -> AuthService: <b>Validate</b> registration request
+activate AuthService #FDEDEC
+
+AuthService -> UserDB: <b>Check</b> email uniqueness
+activate UserDB #F8F9FA
+UserDB -> AuthService: <b>Email availability</b> status
+deactivate UserDB
+
+alt <size:12><b>❌ Email already exists</b></size>
+    AuthService -> Gateway: <b>Email conflict</b> error
+    Gateway -> WebApp: <b>Registration conflict</b> response
+    WebApp -> User: <b>Display</b> email already registered message
+    note over User #FADBD8: <b>🔄 User Action Required</b>\nUser redirected to login or password reset
+else <size:12><b>✅ Email available</b></size>
+    AuthService -> VerificationService: <b>Initiate</b> stakeholder verification
+    activate VerificationService #F4ECF7
+    
+    == <size:16><b>🔍 Stakeholder Type-Specific Verification</b></size> ==
+    
+    alt <size:12><b>🏛️ Government Stakeholder</b></size>
+        VerificationService -> VerificationService: <b>Validate</b> government ID\nand agency credentials
+        note right of VerificationService GOVERNMENT_COLOR: <b>🏛️ Government Verification</b>\nBackground check against\ngovernment employee database
+    else <size:12><b>🏢 Business Stakeholder</b></size>
+        VerificationService -> VerificationService: <b>Validate</b> business registration\nand CSR authorization
+        note right of VerificationService BUSINESS_COLOR: <b>🏢 Business Verification</b>\nCompany verification and\nauthorized representative check
+    else <size:12><b>🎓 Academic Stakeholder</b></size>
+        VerificationService -> VerificationService: <b>Validate</b> institutional affiliation\nand research credentials
+        note right of VerificationService ACADEMIC_COLOR: <b>🎓 Academic Verification</b>\nUniversity/research institution\nverification and IRB status
+    else <size:12><b>🤝 Community Stakeholder</b></size>
+        VerificationService -> VerificationService: <b>Validate</b> volunteer background\nand references
+        note right of VerificationService COMMUNITY_COLOR: <b>🤝 Community Verification</b>\nBackground check and\ncommunity organization verification
+    else <size:12><b>📺 Media Stakeholder</b></size>
+        VerificationService -> VerificationService: <b>Validate</b> media credentials\nand ethical compliance
+        note right of VerificationService MEDIA_COLOR: <b>📺 Media Verification</b>\nPress credentials and\nchild protection training verification
+    end
+    
+    VerificationService -> StakeholderService: <b>Store</b> verification status
+    deactivate VerificationService
+    
+    StakeholderService -> UserDB: <b>Create</b> user account with pending status
+    activate UserDB #F8F9FA
+    UserDB -> StakeholderService: <b>User account</b> created
+    deactivate UserDB
+    
+    == <size:16><b>📋 Audit Logging</b></size> ==
+    
+    AuthService -> AuditService: <b>Log</b> registration attempt
+    activate AuditService #FADBD8
+    AuditService -> AuditDB: <b>Store</b> registration audit trail
+    activate AuditDB #F8F9FA
+    AuditDB -> AuditService: <b>Audit</b> logged
+    deactivate AuditDB
+    deactivate AuditService
+    
+    == <size:16><b>📧 Email Verification</b></size> ==
+    
+    AuthService -> EmailService: <b>Send</b> verification email
+    activate EmailService #F8F9FA
+    EmailService -> User: <b>📧 Email verification</b> message
+    note over User #D5DBDB: <b>📧 User Action Required</b>\nUser receives email with\nverification link and next steps
+    deactivate EmailService
+    
+    AuthService -> Gateway: <b>Registration pending</b> verification
+    deactivate AuthService
+    Gateway -> WebApp: <b>Registration success</b> (pending verification)
+    deactivate Gateway
+    WebApp -> User: <b>✅ Registration submitted successfully</b>\n<size:10><i>(verification required)</i></size>
+    deactivate WebApp
+end
+
+== <size:16><b>✉️ Email Verification Process</b></size> ==
+
+User -> User: <b>Check email</b> and click verification link
+User -> WebApp: <b>Access</b> email verification endpoint
+activate WebApp #E8F6F3
+
+WebApp -> Gateway: <b>GET</b> /api/v1/users/verify?token=<verification_token>
+activate Gateway #E8F8F5
+
+Gateway -> AuthService: <b>Verify</b> email token
+activate AuthService #FDEDEC
+
+AuthService -> UserDB: <b>Update</b> email verification status
+activate UserDB #F8F9FA
+UserDB -> AuthService: <b>Email</b> verified
+deactivate UserDB
+
+== <size:16><b>⚡ Account Activation Decision</b></size> ==
+
+AuthService -> VerificationService: <b>Check</b> verification status
+activate VerificationService #F4ECF7
+
+alt <size:12><b>✅ Verification Complete and Approved</b></size>
+    VerificationService -> StakeholderService: <b>Activate</b> user account
+    activate StakeholderService #FEF9E7
+    
+    StakeholderService -> UserDB: <b>Update</b> account status to active
+    activate UserDB #F8F9FA
+    UserDB -> StakeholderService: <b>Account</b> activated
+    deactivate UserDB
+    
+    == <size:16><b>👤 Role Assignment</b></size> ==
+    
+    StakeholderService -> StakeholderService: <b>Assign</b> stakeholder-specific roles
+    note right of StakeholderService #FEF9E7: <b>🔐 Access Control</b>\nRole-based access control\nbased on stakeholder type
+    
+    StakeholderService -> VerificationService: <b>Account activation</b> complete
+    deactivate StakeholderService
+    
+    VerificationService -> EmailService: <b>Send</b> welcome email
+    activate EmailService #F8F9FA
+    EmailService -> User: <b>🎉 Welcome email</b> with platform access instructions
+    deactivate EmailService
+    
+    VerificationService -> AuthService: <b>Account</b> fully activated
+    deactivate VerificationService
+    
+    AuthService -> AuditService: <b>Log</b> successful account activation
+    activate AuditService #FADBD8
+    AuditService -> AuditDB: <b>Store</b> activation audit
+    activate AuditDB #F8F9FA
+    AuditDB -> AuditService: <b>Audit</b> stored
+    deactivate AuditDB
+    deactivate AuditService
+    
+    AuthService -> Gateway: <b>Account verification</b> successful
+    Gateway -> WebApp: <b>Verification complete</b> - account active
+    WebApp -> User: <b>🎉 Account activated successfully</b>\n<size:10><i>(redirect to login)</i></size>
+    
+else <size:12><b>⏳ Verification Pending</b></size>
+    VerificationService -> AuthService: <b>Verification</b> still pending
+    deactivate VerificationService
+    AuthService -> Gateway: <b>Verification</b> incomplete
+    Gateway -> WebApp: <b>Verification</b> pending
+    WebApp -> User: <b>⏳ Account verification in progress</b>\n<size:10><i>(will be notified when complete)</i></size>
+    
+else <size:12><b>❌ Verification Rejected</b></size>
+    VerificationService -> EmailService: <b>Send</b> rejection notification
+    activate EmailService #F8F9FA
+    EmailService -> User: <b>❌ Verification rejected</b> notification with appeal process
+    deactivate EmailService
+    
+    VerificationService -> AuthService: <b>Account verification</b> rejected
+    deactivate VerificationService
+    AuthService -> Gateway: <b>Verification</b> rejected
+    Gateway -> WebApp: <b>Account verification</b> unsuccessful
+    WebApp -> User: <b>❌ Account verification unsuccessful</b>\n<size:10><i>(appeal options provided)</i></size>
+end
+
+deactivate AuthService
+deactivate Gateway
+deactivate WebApp
+
+== <size:16><b>🛡️ Security and Child Protection Notes</b></size> ==
+
+note over User, AuditDB #FEF9E7
+    <size:14><b>🛡️ Child Protection Features:</b></size>
+    <b>•</b> All user registrations require identity verification
+    <b>•</b> Background checks for community volunteers
+    <b>•</b> Professional credential verification for staff
+    <b>•</b> Comprehensive audit trail for compliance
+    <b>•</b> Multi-factor authentication required for child data access
+    
+    <size:14><b>👥 Stakeholder-Specific Verification:</b></size>
+    <b>🏛️ Government:</b> Official ID and agency verification
+    <b>🏢 Business:</b> Corporate registration and CSR authorization
+    <b>🎓 Academic:</b> Institutional affiliation and ethics training
+    <b>🤝 Community:</b> Background check and reference verification
+    <b>📺 Media:</b> Press credentials and child protection certification
+    
+    <size:14><b>🔒 Security Controls:</b></size>
+    <b>•</b> Email verification prevents automated registrations
+    <b>•</b> Manual verification review for sensitive roles
+    <b>•</b> Role-based access provisioned after approval
+    <b>•</b> Failed registration attempts logged and monitored
+    <b>•</b> Appeals process for rejected applications
+end note
+
+@enduml

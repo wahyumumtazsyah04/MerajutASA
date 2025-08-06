@@ -1,0 +1,426 @@
+@startuml stakeholder-collaboration
+!include <C4/C4_Sequence>
+
+' Title and description
+!define TITLE "MerajutASA Platform - Stakeholder Collaboration Sequence"
+!define DESCRIPTION "Penta-helix multi-stakeholder coordination workflow for child welfare initiatives with cross-sector integration and impact alignment"
+
+' Custom styling for different stakeholder types
+!define GOVERNMENT_COLOR #4ECDC4
+!define BUSINESS_COLOR #45B7D1
+!define ACADEMIC_COLOR #96CEB4
+!define COMMUNITY_COLOR #FECA57
+!define MEDIA_COLOR #9B59B6
+!define COORDINATION_COLOR #FF6B6B
+
+title TITLE
+caption DESCRIPTION
+
+' Stakeholder Representatives
+actor "Government Official" as GovUser #4ECDC4
+actor "Business Partner" as BusinessUser #45B7D1
+actor "Academic Researcher" as AcademicUser #96CEB4
+actor "Community Volunteer" as CommunityUser #FECA57
+actor "Media Representative" as MediaUser #9B59B6
+
+' Core Platform Services
+participant "Collaboration Portal" as Portal #3498DB
+participant "API Gateway" as Gateway #2ECC71
+participant "Collaboration Service" as CollabService #FF6B6B
+participant "Stakeholder Service" as StakeholderService #E74C3C
+participant "Project Service" as ProjectService #27AE60
+participant "Communication Service" as CommService #F39C12
+participant "Document Service" as DocumentService #9B59B6
+participant "Analytics Service" as AnalyticsService #34495E
+participant "Notification Service" as NotificationService #E67E22
+
+' Specialized Services
+participant "Government Integration" as GovIntegration #4ECDC4
+participant "Business Integration" as BusinessIntegration #45B7D1
+participant "Research Platform" as ResearchPlatform #96CEB4
+participant "Community Platform" as CommunityPlatform #FECA57
+participant "Media Center" as MediaCenter #9B59B6
+
+' Databases
+database "Collaboration Database" as CollabDB #95A5A6
+database "Project Database" as ProjectDB #7F8C8D
+database "Analytics Database" as AnalyticsDB #2C3E50
+
+== Initiative Creation and Stakeholder Engagement ==
+
+GovUser -> Portal: Create new child welfare initiative
+activate Portal
+
+Portal -> Gateway: POST /api/v1/initiatives/create
+activate Gateway
+
+Gateway -> CollabService: Initialize multi-stakeholder initiative
+activate CollabService
+
+CollabService -> ProjectService: Create project framework
+activate ProjectService
+
+ProjectService -> ProjectDB: Create initiative record
+activate ProjectDB
+ProjectDB -> ProjectService: Initiative ID generated
+deactivate ProjectDB
+
+ProjectService -> CollabService: Project framework established
+deactivate ProjectService
+
+== Stakeholder Invitation and Onboarding ==
+
+CollabService -> StakeholderService: Identify relevant stakeholders
+activate StakeholderService
+
+StakeholderService -> StakeholderService: Stakeholder matching algorithm\n• Expertise alignment\n• Geographic proximity\n• Capacity assessment\n• Historical collaboration success
+
+par Government Stakeholder Engagement
+    StakeholderService -> GovIntegration: Invite government partners
+    activate GovIntegration
+    GovIntegration -> NotificationService: Send government invitations
+    activate NotificationService
+    NotificationService -> GovUser: Initiative invitation (via secure gov portal)
+    deactivate NotificationService
+    deactivate GovIntegration
+and Business Stakeholder Engagement
+    StakeholderService -> BusinessIntegration: Invite business partners
+    activate BusinessIntegration
+    BusinessIntegration -> NotificationService: Send business invitations
+    activate NotificationService
+    NotificationService -> BusinessUser: Initiative invitation (CSR integration)
+    deactivate NotificationService
+    deactivate BusinessIntegration
+and Academic Stakeholder Engagement
+    StakeholderService -> ResearchPlatform: Invite academic partners
+    activate ResearchPlatform
+    ResearchPlatform -> NotificationService: Send academic invitations
+    activate NotificationService
+    NotificationService -> AcademicUser: Initiative invitation (research opportunity)
+    deactivate NotificationService
+    deactivate ResearchPlatform
+and Community Stakeholder Engagement
+    StakeholderService -> CommunityPlatform: Invite community partners
+    activate CommunityPlatform
+    CommunityPlatform -> NotificationService: Send community invitations
+    activate NotificationService
+    NotificationService -> CommunityUser: Initiative invitation (volunteer opportunity)
+    deactivate NotificationService
+    deactivate CommunityPlatform
+and Media Stakeholder Engagement
+    StakeholderService -> MediaCenter: Invite media partners
+    activate MediaCenter
+    MediaCenter -> NotificationService: Send media invitations
+    activate NotificationService
+    NotificationService -> MediaUser: Initiative invitation (story opportunity)
+    deactivate NotificationService
+    deactivate MediaCenter
+end
+
+deactivate StakeholderService
+
+== Stakeholder Response and Commitment ==
+
+BusinessUser -> Portal: Accept invitation and commit resources
+activate Portal
+
+Portal -> Gateway: POST /api/v1/initiatives/{id}/join
+activate Gateway
+
+Gateway -> CollabService: Process stakeholder commitment
+activate CollabService
+
+CollabService -> StakeholderService: Register business participation
+activate StakeholderService
+
+StakeholderService -> StakeholderService: Validate stakeholder commitment\n• Resource verification\n• Capacity assessment\n• Conflict of interest check\n• Compliance requirements
+
+StakeholderService -> CollabService: Business stakeholder confirmed
+deactivate StakeholderService
+
+CollabService -> CollabDB: Record stakeholder participation
+activate CollabDB
+CollabDB -> CollabService: Participation logged
+deactivate CollabDB
+
+CollabService -> Gateway: Stakeholder joined successfully
+deactivate CollabService
+Gateway -> Portal: Participation confirmed
+deactivate Gateway
+Portal -> BusinessUser: Welcome to initiative collaboration
+deactivate Portal
+
+' Similar process for other stakeholders (abbreviated for clarity)
+AcademicUser -> Portal: Join with research proposal
+CommunityUser -> Portal: Join with volunteer commitment
+MediaUser -> Portal: Join with awareness campaign plan
+
+== Collaborative Planning Phase ==
+
+note over GovUser, MediaUser
+    **All stakeholders now active in initiative**
+end note
+
+GovUser -> Portal: Access collaborative planning workspace
+activate Portal
+
+Portal -> Gateway: GET /api/v1/initiatives/{id}/workspace
+activate Gateway
+
+Gateway -> CollabService: Get collaboration workspace
+activate CollabService
+
+CollabService -> DocumentService: Prepare shared documents
+activate DocumentService
+DocumentService -> CollabService: Workspace documents ready
+deactivate DocumentService
+
+CollabService -> Gateway: Workspace access granted
+deactivate CollabService
+Gateway -> Portal: Collaborative workspace loaded
+deactivate Gateway
+Portal -> GovUser: Access to shared planning tools
+deactivate Portal
+
+== Multi-Stakeholder Planning Session ==
+
+par Government Contribution
+    GovUser -> Portal: Contribute policy framework and regulatory support
+    Portal -> CollabService: Update government contributions
+and Business Contribution
+    BusinessUser -> Portal: Commit funding and volunteer hours
+    Portal -> CollabService: Update business contributions
+and Academic Contribution
+    AcademicUser -> Portal: Provide research methodology and evaluation
+    Portal -> CollabService: Update academic contributions
+and Community Contribution
+    CommunityUser -> Portal: Organize local volunteer networks
+    Portal -> CollabService: Update community contributions
+and Media Contribution
+    MediaUser -> Portal: Plan awareness campaign and story development
+    Portal -> CollabService: Update media contributions
+end
+
+CollabService -> ProjectService: Consolidate all stakeholder contributions
+activate ProjectService
+
+ProjectService -> ProjectService: Integration planning\n• Resource allocation optimization\n• Timeline coordination\n• Milestone definition\n• Success metrics alignment
+
+ProjectService -> CollabService: Integrated project plan created
+deactivate ProjectService
+
+== Resource Coordination and Allocation ==
+
+CollabService -> StakeholderService: Coordinate resource deployment
+activate StakeholderService
+
+par Government Resource Deployment
+    StakeholderService -> GovIntegration: Deploy regulatory support
+    activate GovIntegration
+    GovIntegration -> GovIntegration: Process government approvals\nand provide policy guidance
+    GovIntegration -> StakeholderService: Government resources deployed
+    deactivate GovIntegration
+and Business Resource Deployment
+    StakeholderService -> BusinessIntegration: Deploy financial and human resources
+    activate BusinessIntegration
+    BusinessIntegration -> BusinessIntegration: Allocate CSR funding\nand employee volunteers
+    BusinessIntegration -> StakeholderService: Business resources deployed
+    deactivate BusinessIntegration
+and Academic Resource Deployment
+    StakeholderService -> ResearchPlatform: Deploy research capabilities
+    activate ResearchPlatform
+    ResearchPlatform -> ResearchPlatform: Provide research design\nand evaluation methods
+    ResearchPlatform -> StakeholderService: Academic resources deployed
+    deactivate ResearchPlatform
+and Community Resource Deployment
+    StakeholderService -> CommunityPlatform: Deploy volunteer networks
+    activate CommunityPlatform
+    CommunityPlatform -> CommunityPlatform: Mobilize local volunteers\nand community organizations
+    CommunityPlatform -> StakeholderService: Community resources deployed
+    deactivate CommunityPlatform
+and Media Resource Deployment
+    StakeholderService -> MediaCenter: Deploy communication channels
+    activate MediaCenter
+    MediaCenter -> MediaCenter: Launch awareness campaigns\nand story collection
+    MediaCenter -> StakeholderService: Media resources deployed
+    deactivate MediaCenter
+end
+
+deactivate StakeholderService
+
+== Implementation and Progress Tracking ==
+
+CollabService -> AnalyticsService: Initialize impact tracking
+activate AnalyticsService
+
+AnalyticsService -> AnalyticsDB: Create initiative analytics dashboard
+activate AnalyticsDB
+AnalyticsDB -> AnalyticsService: Analytics tracking initialized
+deactivate AnalyticsDB
+
+AnalyticsService -> CollabService: Impact measurement framework ready
+deactivate AnalyticsService
+
+== Regular Progress Updates and Communication ==
+
+loop Weekly Progress Updates
+    par Government Updates
+        GovUser -> Portal: Submit policy implementation progress
+        Portal -> CollabService: Record government progress
+    and Business Updates
+        BusinessUser -> Portal: Submit resource deployment updates
+        Portal -> CollabService: Record business progress
+    and Academic Updates
+        AcademicUser -> Portal: Submit research findings and insights
+        Portal -> CollabService: Record academic progress
+    and Community Updates
+        CommunityUser -> Portal: Submit volunteer engagement metrics
+        Portal -> CollabService: Record community progress
+    and Media Updates
+        MediaUser -> Portal: Submit campaign reach and story metrics
+        Portal -> CollabService: Record media progress
+    end
+    
+    CollabService -> AnalyticsService: Aggregate progress data
+    activate AnalyticsService
+    AnalyticsService -> AnalyticsDB: Update impact metrics
+    activate AnalyticsDB
+    AnalyticsDB -> AnalyticsService: Progress analytics updated
+    deactivate AnalyticsDB
+    
+    AnalyticsService -> NotificationService: Generate progress reports
+    activate NotificationService
+    
+    par Stakeholder Notifications
+        NotificationService -> GovUser: Weekly progress summary
+        NotificationService -> BusinessUser: Impact and ROI report
+        NotificationService -> AcademicUser: Research data and insights
+        NotificationService -> CommunityUser: Community engagement metrics
+        NotificationService -> MediaUser: Story and campaign performance
+    end
+    
+    deactivate NotificationService
+    deactivate AnalyticsService
+end
+
+== Crisis Response and Adaptive Management ==
+
+alt Crisis or Challenge Identified
+    GovUser -> Portal: Report implementation challenge
+    activate Portal
+    
+    Portal -> CollabService: Escalate issue to all stakeholders
+    activate CollabService
+    
+    CollabService -> NotificationService: Send crisis notification
+    activate NotificationService
+    
+    par Crisis Response Mobilization
+        NotificationService -> GovUser: Crisis response coordination
+        NotificationService -> BusinessUser: Additional resource request
+        NotificationService -> AcademicUser: Research support request
+        NotificationService -> CommunityUser: Community response mobilization
+        NotificationService -> MediaUser: Crisis communication coordination
+    end
+    
+    deactivate NotificationService
+    
+    CollabService -> CommService: Facilitate crisis response planning
+    activate CommService
+    CommService -> CollabService: Crisis response plan developed
+    deactivate CommService
+    
+    CollabService -> Portal: Crisis response activated
+    deactivate CollabService
+    Portal -> GovUser: Crisis response plan access
+    deactivate Portal
+end
+
+== Impact Assessment and Learning ==
+
+CollabService -> AnalyticsService: Generate final impact assessment
+activate AnalyticsService
+
+AnalyticsService -> AnalyticsService: Comprehensive impact analysis\n• Child welfare outcome metrics\n• Stakeholder satisfaction assessment\n• Resource efficiency evaluation\n• Scalability potential analysis
+
+AnalyticsService -> DocumentService: Generate impact report
+activate DocumentService
+DocumentService -> AnalyticsService: Impact report created
+deactivate DocumentService
+
+AnalyticsService -> NotificationService: Distribute impact report
+activate NotificationService
+
+par Impact Report Distribution
+    NotificationService -> GovUser: Impact report (policy insights)
+    NotificationService -> BusinessUser: Impact report (ROI and CSR metrics)
+    NotificationService -> AcademicUser: Impact report (research findings)
+    NotificationService -> CommunityUser: Impact report (community outcomes)
+    NotificationService -> MediaUser: Impact report (story development)
+end
+
+deactivate NotificationService
+deactivate AnalyticsService
+
+== Knowledge Sharing and Scaling ==
+
+CollabService -> DocumentService: Create best practices documentation
+activate DocumentService
+
+DocumentService -> DocumentService: Knowledge capture\n• Successful collaboration patterns\n• Lessons learned\n• Scalable intervention models\n• Stakeholder engagement strategies
+
+DocumentService -> CollabService: Best practices documented
+deactivate DocumentService
+
+CollabService -> StakeholderService: Share learnings across network
+activate StakeholderService
+
+StakeholderService -> StakeholderService: Knowledge dissemination\n• Cross-initiative learning\n• Network strengthening\n• Capacity building\n• Future collaboration planning
+
+StakeholderService -> CollabService: Knowledge sharing complete
+deactivate StakeholderService
+
+== Penta-Helix Collaboration Features ==
+
+note over GovUser, MediaUser
+    **Penta-Helix Integration Benefits:**
+    
+    **Government Sector:**
+    • Policy implementation support
+    • Regulatory compliance monitoring
+    • Inter-agency coordination
+    • Public service enhancement
+    
+    **Business Sector:**
+    • CSR impact measurement
+    • Employee engagement opportunities
+    • Brand purpose alignment
+    • Sustainable business practices
+    
+    **Academic Sector:**
+    • Evidence-based intervention research
+    • Student learning opportunities
+    • Knowledge translation
+    • Policy recommendation development
+    
+    **Community Sector:**
+    • Local volunteer mobilization
+    • Grassroots innovation
+    • Cultural sensitivity integration
+    • Sustainable community development
+    
+    **Media Sector:**
+    • Authentic story amplification
+    • Public awareness campaigns
+    • Stakeholder communication facilitation
+    • Social impact narrative development
+    
+    **Cross-Sector Synergies:**
+    • Resource optimization through coordination
+    • Innovation through diverse perspectives
+    • Sustainability through multi-stakeholder commitment
+    • Scalability through network effects
+    • Accountability through transparent collaboration
+end note
+
+@enduml

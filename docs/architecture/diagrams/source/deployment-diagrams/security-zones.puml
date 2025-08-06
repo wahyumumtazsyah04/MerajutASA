@@ -1,0 +1,257 @@
+@startuml security-zones
+!include <C4/C4_Container>
+
+!define TITLE "MerajutASA Platform - Security Zones Architecture"
+!define DESCRIPTION "Defense-in-depth security architecture with child data protection zones, stakeholder access controls, and threat mitigation boundaries"
+
+title TITLE
+caption DESCRIPTION
+
+' External threat landscape
+Container_Boundary(threat_landscape, "External Threat Landscape") {
+    Container(ddos_attacks, "DDoS Attacks", "Threat", "Volumetric, protocol, application attacks")
+    Container(web_attacks, "Web Application Attacks", "Threat", "SQL injection, XSS, CSRF")
+    Container(apt_threats, "Advanced Persistent Threats", "Threat", "Nation-state, organized crime")
+    Container(insider_threats, "Insider Threats", "Threat", "Malicious or negligent insiders")
+    Container(social_engineering, "Social Engineering", "Threat", "Phishing, pretexting, baiting")
+}
+
+' Security Zone 1: Public Zone (Internet-facing)
+Container_Boundary(public_zone, "Public Zone - Internet Facing") {
+    Container(cloudflare_waf, "CloudFlare WAF", "Web Application Firewall", "Global threat intelligence, bot protection")
+    Container(cloudflare_ddos, "CloudFlare DDoS Protection", "DDoS Mitigation", "Automatic DDoS detection and mitigation")
+    Container(dns_security, "CloudFlare DNS Security", "DNS Protection", "DNS filtering, threat blocking")
+    
+    note right of cloudflare_waf : **Security Controls:**\n• IP reputation filtering\n• Rate limiting\n• Geo-blocking\n• Bot detection\n• SSL/TLS encryption
+}
+
+' Security Zone 2: DMZ (Demilitarized Zone)
+Container_Boundary(dmz_zone, "DMZ Zone - Perimeter Defense") {
+    Container(aws_waf, "AWS WAF", "Application Firewall", "Application-layer protection")
+    Container(alb_security, "Application Load Balancer", "Load Balancer", "SSL termination, health checks")
+    Container(api_gateway_security, "Kong API Gateway", "API Security", "Authentication, authorization, rate limiting")
+    Container(bastion_host, "Bastion Host", "Secure Access", "Hardened administrative access point")
+    
+    note right of aws_waf : **Security Controls:**\n• OWASP Top 10 protection\n• Custom security rules\n• IP whitelisting\n• Request size limiting\n• SQL injection prevention
+}
+
+' Security Zone 3: Application Zone
+Container_Boundary(application_zone, "Application Zone - Service Layer") {
+    
+    Container_Boundary(stakeholder_services, "Stakeholder Services Isolation") {
+        Container(government_services, "Government Services", "Kubernetes Namespace", "Policy, compliance, reporting")
+        Container(business_services, "Business Services", "Kubernetes Namespace", "CSR, donations, partnerships")
+        Container(academic_services, "Academic Services", "Kubernetes Namespace", "Research, analytics, anonymization")
+        Container(community_services, "Community Services", "Kubernetes Namespace", "Volunteers, events, engagement")
+        Container(media_services, "Media Services", "Kubernetes Namespace", "Content, campaigns, assets")
+    }
+    
+    Container_Boundary(core_services, "Core Platform Services") {
+        Container(auth_service, "Authentication Service", "Identity Management", "Multi-factor authentication, SSO")
+        Container(authorization_service, "Authorization Service", "Access Control", "RBAC, ABAC, policy enforcement")
+        Container(audit_service, "Audit Service", "Logging", "Security event logging, compliance")
+        Container(encryption_service, "Encryption Service", "Cryptography", "Key management, data encryption")
+    }
+    
+    note right of stakeholder_services : **Security Controls:**\n• Namespace isolation\n• Network policies\n• Service mesh mTLS\n• Container scanning\n• Runtime protection
+}
+
+' Security Zone 4: Child Protection Zone (Highest Security)
+Container_Boundary(child_protection_zone, "Child Protection Zone - Maximum Security") {
+    Container(child_data_service, "Child Data Service", "Microservice", "Child profiles, case management")
+    Container(privacy_engine, "Privacy Protection Engine", "Data Protection", "PII detection, anonymization")
+    Container(consent_management, "Consent Management", "Privacy Control", "Consent tracking, data rights")
+    Container(child_data_vault, "Child Data Vault", "Secure Storage", "Encrypted child information")
+    Container(emergency_access, "Emergency Access System", "Crisis Response", "Break-glass access for emergencies")
+    
+    note right of child_data_service : **Child Protection Controls:**\n• Zero-trust architecture\n• Mandatory access control\n• Field-level encryption\n• Audit every access\n• Automated compliance
+}
+
+' Security Zone 5: Data Zone (Database Layer)
+Container_Boundary(data_zone, "Data Zone - Storage Layer") {
+    
+    Container_Boundary(encrypted_databases, "Encrypted Database Cluster") {
+        ContainerDb(postgres_encrypted, "PostgreSQL (Encrypted)", "Primary Database", "Transparent data encryption")
+        ContainerDb(postgres_replicas, "PostgreSQL Replicas", "Read Replicas", "Encrypted read-only copies")
+        ContainerDb(backup_encrypted, "Encrypted Backups", "Backup Storage", "Point-in-time recovery")
+    }
+    
+    Container_Boundary(analytics_databases, "Analytics Data Storage") {
+        ContainerDb(clickhouse_secure, "ClickHouse (Secure)", "Analytics DB", "Column-level encryption")
+        ContainerDb(anonymized_storage, "Anonymized Data Lake", "Research Data", "De-identified research data")
+        ContainerDb(compliance_archive, "Compliance Archive", "Long-term Storage", "Regulatory data retention")
+    }
+    
+    note right of postgres_encrypted : **Data Security Controls:**\n• Transparent data encryption\n• Column-level encryption\n• Database firewall\n• Access logging\n• Backup encryption
+}
+
+' Security Zone 6: Management Zone
+Container_Boundary(management_zone, "Management Zone - Administrative") {
+    Container(security_center, "AWS Security Hub", "Security Monitoring", "Centralized security dashboard")
+    Container(secrets_manager, "AWS Secrets Manager", "Secret Storage", "Encrypted credential storage")
+    Container(key_management, "AWS KMS", "Key Management", "Encryption key lifecycle")
+    Container(compliance_monitor, "Compliance Monitor", "Governance", "Continuous compliance checking")
+    Container(incident_response, "Incident Response", "Security Operations", "24/7 security monitoring")
+    
+    note right of security_center : **Management Controls:**\n• Centralized monitoring\n• Automated remediation\n• Security orchestration\n• Threat intelligence\n• Incident management
+}
+
+' Security monitoring and threat detection
+Container_Boundary(security_monitoring, "Security Monitoring & Threat Detection") {
+    Container(guardduty, "AWS GuardDuty", "Threat Detection", "ML-powered threat detection")
+    Container(security_monitoring_siem, "SIEM System", "Security Analytics", "Log analysis, correlation")
+    Container(endpoint_detection, "Endpoint Detection", "Host Protection", "Container and host monitoring")
+    Container(network_monitoring, "Network Monitoring", "Traffic Analysis", "Network behavior analysis")
+    Container(user_behavior, "User Behavior Analytics", "Anomaly Detection", "Insider threat detection")
+}
+
+' Security relationships and data flows
+
+' Threat landscape to public zone
+Rel(ddos_attacks, cloudflare_ddos, "Blocked", "Mitigation")
+Rel(web_attacks, cloudflare_waf, "Filtered", "Protection")
+Rel(apt_threats, dns_security, "Detected", "Blocking")
+
+' Public zone to DMZ
+Rel(cloudflare_waf, aws_waf, "Clean traffic", "HTTPS")
+Rel(cloudflare_ddos, alb_security, "Protected traffic", "HTTPS")
+
+' DMZ to application zone
+Rel(api_gateway_security, auth_service, "Authentication requests", "mTLS")
+Rel(alb_security, government_services, "Government traffic", "HTTPS")
+Rel(alb_security, business_services, "Business traffic", "HTTPS")
+Rel(alb_security, academic_services, "Academic traffic", "HTTPS")
+Rel(alb_security, community_services, "Community traffic", "HTTPS")
+Rel(alb_security, media_services, "Media traffic", "HTTPS")
+
+' Application zone to child protection zone
+Rel(auth_service, child_data_service, "Authenticated requests", "Encrypted")
+Rel(authorization_service, privacy_engine, "Access decisions", "Encrypted")
+Rel(audit_service, consent_management, "Audit logs", "Encrypted")
+
+' Child protection zone to data zone
+Rel(child_data_service, postgres_encrypted, "Encrypted queries", "TLS + Field Encryption")
+Rel(privacy_engine, anonymized_storage, "Anonymized data", "Encrypted")
+Rel(consent_management, compliance_archive, "Consent records", "Encrypted")
+
+' Security monitoring relationships
+Rel(security_monitoring_siem, guardduty, "Threat intelligence", "API")
+Rel(endpoint_detection, security_center, "Security events", "API")
+Rel(network_monitoring, incident_response, "Network alerts", "API")
+Rel(user_behavior, compliance_monitor, "Anomaly reports", "API")
+
+' Management zone oversight
+Rel(security_center, child_protection_zone, "Security monitoring", "API")
+Rel(secrets_manager, encryption_service, "Secret retrieval", "API")
+Rel(key_management, postgres_encrypted, "Encryption keys", "API")
+Rel(compliance_monitor, audit_service, "Compliance checking", "API")
+
+' Emergency access controls
+Rel(emergency_access, child_data_vault, "Emergency access", "Audited")
+Rel(incident_response, emergency_access, "Crisis activation", "Secure Channel")
+
+SHOW_LEGEND()
+
+note as security_controls_matrix
+**Security Controls Matrix:**
+
+**Zone 1 - Public (Internet):**
+• CloudFlare WAF with 200+ security rules
+• Global DDoS protection (100+ Gbps capacity)
+• Bot management and threat intelligence
+• SSL/TLS 1.3 with HSTS enforcement
+
+**Zone 2 - DMZ (Perimeter):**
+• AWS WAF with OWASP Top 10 protection
+• IP whitelisting and geo-blocking
+• Rate limiting (1000 req/min per IP)
+• SSL termination with perfect forward secrecy
+
+**Zone 3 - Application (Services):**
+• Kubernetes network policies
+• Service mesh with mutual TLS
+• Container image scanning (Trivy/Clair)
+• Runtime security monitoring (Falco)
+
+**Zone 4 - Child Protection (Critical):**
+• Zero-trust architecture (verify everything)
+• Field-level encryption for child data
+• Mandatory multi-factor authentication
+• All access logged and monitored
+
+**Zone 5 - Data (Storage):**
+• Transparent data encryption (AES-256)
+• Database connection encryption
+• Automated backup encryption
+• Column-level sensitive data protection
+
+**Zone 6 - Management (Operations):**
+• Privileged access management
+• Secret rotation automation
+• Compliance monitoring (24/7)
+• Incident response automation
+end note
+
+note as child_data_protection
+**Child Data Protection Zones:**
+
+**Maximum Protection for Child Data:**
+• Dedicated security zone with highest controls
+• All child data encrypted at rest and in transit
+• Zero-trust access with continuous verification
+• Automated privacy compliance checking
+
+**Access Control Layers:**
+1. Network-level: VPC security groups
+2. Application-level: Service authentication
+3. Data-level: Row and column-level security
+4. Field-level: Individual data element encryption
+
+**Privacy by Design Implementation:**
+• Data minimization at collection
+• Purpose limitation enforcement
+• Automated consent management
+• Right to erasure automation
+
+**Compliance Integration:**
+• GDPR Article 25 (Data Protection by Design)
+• UNICEF Child Data Protection standards
+• Indonesian personal data protection law
+• Automated compliance reporting
+
+**Emergency Access Protocols:**
+• Break-glass access for child safety emergencies
+• All emergency access fully audited
+• Automatic notification to protection officers
+• Time-limited access with automatic expiration
+end note
+
+note as threat_mitigation
+**Threat Mitigation Strategy:**
+
+**External Threats:**
+• DDoS: Multi-layer protection (CloudFlare + AWS)
+• Web Attacks: WAF rules + OWASP protection
+• APT: Threat intelligence + behavior analysis
+• Social Engineering: User training + email security
+
+**Internal Threats:**
+• Insider Threats: User behavior analytics
+• Privilege Escalation: Least privilege principle
+• Data Exfiltration: DLP + network monitoring
+• Unauthorized Access: Zero-trust verification
+
+**Child-Specific Threats:**
+• Data Harvesting: Privacy protection engine
+• Identity Exposure: Automatic anonymization
+• Unauthorized Profiling: Purpose limitation
+• Consent Violations: Automated compliance
+
+**Incident Response:**
+• 24/7 Security Operations Center
+• Automated threat detection and response
+• Child protection officer notification
+• Emergency access protocols for safety
+end note
+
+@enduml

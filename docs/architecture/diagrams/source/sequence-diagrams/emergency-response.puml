@@ -1,0 +1,376 @@
+@startuml emergency-response
+!include <C4/C4_Sequence>
+
+' Title and description
+!define TITLE "MerajutASA Platform - Emergency Response Sequence"
+!define DESCRIPTION "Critical incident response workflow for child safety emergencies with multi-stakeholder coordination, rapid response protocols, and child protection prioritization"
+
+' Custom styling for emergency response components
+!define EMERGENCY_COLOR #E74C3C
+!define CRITICAL_COLOR #C0392B
+!define RESPONSE_COLOR #E67E22
+!define COORDINATION_COLOR #F39C12
+!define RECOVERY_COLOR #27AE60
+
+title TITLE
+caption DESCRIPTION
+
+' Emergency Response Actors
+actor "Emergency Reporter" as Reporter
+actor "Orphanage Director" as OrphanageDir #E67E22
+actor "Child Protection Officer" as ChildProtectionOfficer #E74C3C
+actor "Government Social Worker" as GovSocialWorker #4ECDC4
+actor "Emergency Coordinator" as EmergencyCoord #C0392B
+actor "Legal Authority" as LegalAuthority #8E44AD
+actor "Medical Professional" as MedicalProfessional #2ECC71
+actor "Crisis Counselor" as CrisisCounselor #9B59B6
+
+' Core Emergency Services
+participant "Emergency Portal" as EmergencyApp #E74C3C
+participant "API Gateway" as Gateway #2ECC71
+participant "Emergency Service" as EmergencyService #C0392B
+participant "Alert System" as AlertSystem #E67E22
+participant "Incident Management" as IncidentService #F39C12
+participant "Communication Service" as CommService #3498DB
+participant "Notification Service" as NotificationService #9B59B6
+participant "Document Service" as DocumentService #34495E
+participant "Analytics Service" as AnalyticsService #7F8C8D
+
+' Specialized Emergency Services
+participant "Child Safety Service" as ChildSafetyService #FF6B6B
+participant "Medical Emergency" as MedicalService #2ECC71
+participant "Crisis Intervention" as CrisisService #8E44AD
+participant "Legal Emergency" as LegalService #6C3483
+participant "Resource Mobilization" as ResourceService #E67E22
+
+' External Emergency Systems
+participant "Police Emergency" as PoliceSystem #34495E
+participant "Medical Emergency" as HospitalSystem #2ECC71
+participant "Child Protection Services" as CPSSystem #E74C3C
+participant "Crisis Hotline" as CrisisHotline #9B59B6
+
+' Databases
+database "Emergency Database" as EmergencyDB #95A5A6
+database "Incident Database" as IncidentDB #7F8C8D
+database "Contact Database" as ContactDB #BDC3C7
+database "Audit Database" as AuditDB #34495E
+
+== Emergency Incident Detection ==
+
+Reporter -> EmergencyApp: Report emergency incident
+activate EmergencyApp
+note right of Reporter: Emergency can be reported by:\n• Orphanage staff\n• Children (age-appropriate interface)\n• Community members\n• Volunteers\n• Stakeholders
+
+EmergencyApp -> Gateway: POST /api/v1/emergency/report
+activate Gateway
+
+Gateway -> EmergencyService: Process emergency report
+activate EmergencyService
+
+== Emergency Classification and Triage ==
+
+EmergencyService -> EmergencyService: Emergency classification\n• Severity assessment (Critical/High/Medium/Low)\n• Type categorization (Safety/Medical/Legal/Facility)\n• Urgency determination (Immediate/Within 1hr/Within 24hr)\n• Child impact evaluation
+
+alt Critical Emergency (Life-threatening)
+    EmergencyService -> EmergencyService: CRITICAL ALERT - Immediate response required
+    note right of EmergencyService: Critical incidents:\n• Child abuse or neglect\n• Medical emergencies\n• Natural disasters\n• Security threats\n• Missing children
+    
+    EmergencyService -> AlertSystem: Trigger critical alert protocol
+    activate AlertSystem
+    
+    == Immediate Critical Response ==
+    
+    par Critical Alert Distribution
+        AlertSystem -> PoliceSystem: Immediate police notification (if required)
+        activate PoliceSystem
+        PoliceSystem -> AlertSystem: Police response initiated
+        deactivate PoliceSystem
+    and
+        AlertSystem -> HospitalSystem: Medical emergency notification (if required)
+        activate HospitalSystem
+        HospitalSystem -> AlertSystem: Medical response initiated
+        deactivate HospitalSystem
+    and
+        AlertSystem -> CPSSystem: Child protection services alert
+        activate CPSSystem
+        CPSSystem -> AlertSystem: CPS response initiated
+        deactivate CPSSystem
+    and
+        AlertSystem -> EmergencyCoord: Critical incident notification
+        activate EmergencyCoord
+        note right of EmergencyCoord: 24/7 emergency coordinator\non-call rotation
+    and
+        AlertSystem -> ChildProtectionOfficer: Child protection alert
+        activate ChildProtectionOfficer
+    and
+        AlertSystem -> OrphanageDir: Incident notification and support
+        activate OrphanageDir
+    end
+    
+    deactivate AlertSystem
+    
+    == Critical Incident Response Coordination ==
+    
+    EmergencyCoord -> IncidentService: Initialize critical incident management
+    activate IncidentService
+    
+    IncidentService -> EmergencyDB: Create critical incident record
+    activate EmergencyDB
+    EmergencyDB -> IncidentService: Incident ID generated
+    deactivate EmergencyDB
+    
+    IncidentService -> ChildSafetyService: Activate child protection protocols
+    activate ChildSafetyService
+    
+    ChildSafetyService -> ChildSafetyService: Child safety assessment\n• Immediate danger evaluation\n• Other children impact assessment\n• Facility security review\n• Emergency relocation planning
+    
+    ChildSafetyService -> IncidentService: Child safety measures implemented
+    deactivate ChildSafetyService
+    
+    == Multi-Agency Coordination ==
+    
+    IncidentService -> CommService: Establish emergency communication channel
+    activate CommService
+    
+    CommService -> CommService: Create secure emergency communication\n• Encrypted messaging for stakeholders\n• Real-time status updates\n• Coordination chat room\n• Document sharing portal
+    
+    par Emergency Response Team Assembly
+        CommService -> EmergencyCoord: Emergency communication access
+        CommService -> ChildProtectionOfficer: Emergency communication access
+        CommService -> GovSocialWorker: Emergency communication access
+        CommService -> LegalAuthority: Emergency communication access (if legal incident)
+        CommService -> MedicalProfessional: Emergency communication access (if medical)
+        CommService -> CrisisCounselor: Emergency communication access
+        CommService -> OrphanageDir: Emergency communication access
+    end
+    
+    deactivate CommService
+    
+else High Priority Emergency
+    EmergencyService -> AlertSystem: Trigger high priority alert
+    activate AlertSystem
+    
+    AlertSystem -> EmergencyCoord: High priority incident notification
+    AlertSystem -> ChildProtectionOfficer: Standard priority alert
+    AlertSystem -> OrphanageDir: Incident notification
+    
+    deactivate AlertSystem
+    
+else Medium/Low Priority Emergency
+    EmergencyService -> IncidentService: Create standard incident
+    activate IncidentService
+    
+    IncidentService -> NotificationService: Send standard notifications
+    activate NotificationService
+    NotificationService -> OrphanageDir: Incident reported notification
+    NotificationService -> ChildProtectionOfficer: Incident review required
+    deactivate NotificationService
+end
+
+== Emergency Response Execution ==
+
+EmergencyCoord -> ResourceService: Mobilize emergency resources
+activate ResourceService
+
+ResourceService -> ResourceService: Resource assessment and deployment\n• Emergency funding authorization\n• Volunteer expert mobilization\n• Equipment and supply coordination\n• Transportation arrangement\n• Temporary accommodation setup
+
+par Resource Mobilization
+    ResourceService -> ContactDB: Access emergency contact database
+    activate ContactDB
+    ContactDB -> ResourceService: Emergency contacts retrieved
+    deactivate ContactDB
+and
+    ResourceService -> NotificationService: Activate emergency volunteer network
+    activate NotificationService
+    NotificationService -> ResourceService: Emergency volunteers notified
+    deactivate NotificationService
+and
+    ResourceService -> DocumentService: Prepare emergency documentation
+    activate DocumentService
+    DocumentService -> ResourceService: Emergency forms and reports ready
+    deactivate DocumentService
+end
+
+ResourceService -> IncidentService: Emergency resources deployed
+deactivate ResourceService
+
+== Child-Centered Response Actions ==
+
+ChildProtectionOfficer -> ChildSafetyService: Conduct child safety assessment
+activate ChildSafetyService
+
+ChildSafetyService -> ChildSafetyService: Comprehensive child assessment\n• Physical safety evaluation\n• Emotional well-being check\n• Immediate needs assessment\n• Trauma-informed care planning\n• Family contact coordination
+
+ChildSafetyService -> CrisisService: Activate crisis intervention if needed
+activate CrisisService
+
+CrisisService -> CrisisCounselor: Deploy crisis counseling services
+CrisisCounselor -> CrisisService: Crisis intervention initiated
+
+CrisisService -> ChildSafetyService: Crisis intervention support activated
+deactivate CrisisService
+
+ChildSafetyService -> IncidentService: Child safety assessment complete
+deactivate ChildSafetyService
+
+== Legal and Compliance Response ==
+
+alt Legal Incident
+    LegalAuthority -> LegalService: Initiate legal response procedures
+    activate LegalService
+    
+    LegalService -> LegalService: Legal compliance actions\n• Mandatory reporting fulfillment\n• Evidence preservation\n• Legal documentation\n• Regulatory notification\n• Investigation cooperation
+    
+    LegalService -> DocumentService: Create legal documentation
+    activate DocumentService
+    DocumentService -> LegalService: Legal documents prepared
+    deactivate DocumentService
+    
+    LegalService -> IncidentService: Legal response documented
+    deactivate LegalService
+end
+
+== Medical Emergency Response ==
+
+alt Medical Emergency
+    MedicalProfessional -> MedicalService: Coordinate medical response
+    activate MedicalService
+    
+    MedicalService -> HospitalSystem: Coordinate with medical facilities
+    activate HospitalSystem
+    HospitalSystem -> MedicalService: Medical response coordinated
+    deactivate HospitalSystem
+    
+    MedicalService -> MedicalService: Medical care coordination\n• Emergency medical treatment\n• Specialist consultations\n• Medication management\n• Follow-up care planning\n• Medical documentation
+    
+    MedicalService -> IncidentService: Medical response documented
+    deactivate MedicalService
+end
+
+== Incident Documentation and Reporting ==
+
+IncidentService -> DocumentService: Compile incident documentation
+activate DocumentService
+
+DocumentService -> DocumentService: Comprehensive incident report\n• Timeline reconstruction\n• Response action documentation\n• Stakeholder involvement record\n• Outcome assessment\n• Lessons learned capture
+
+DocumentService -> IncidentDB: Store incident documentation
+activate IncidentDB
+IncidentDB -> DocumentService: Documentation stored
+deactivate IncidentDB
+
+DocumentService -> IncidentService: Incident fully documented
+deactivate DocumentService
+
+== Multi-Stakeholder Debriefing ==
+
+IncidentService -> CommService: Schedule post-incident debriefing
+activate CommService
+
+CommService -> CommService: Coordinate debriefing session\n• All response team participation\n• Incident analysis review\n• Response effectiveness assessment\n• Process improvement identification\n• Trauma recovery planning
+
+par Debriefing Participants
+    CommService -> EmergencyCoord: Debriefing session scheduled
+    CommService -> ChildProtectionOfficer: Debriefing participation
+    CommService -> GovSocialWorker: Debriefing participation
+    CommService -> OrphanageDir: Debriefing participation
+    CommService -> CrisisCounselor: Debriefing participation
+end
+
+deactivate CommService
+
+== Recovery and Follow-up ==
+
+IncidentService -> AnalyticsService: Analyze incident patterns and outcomes
+activate AnalyticsService
+
+AnalyticsService -> AnalyticsService: Incident analytics\n• Response time analysis\n• Effectiveness measurement\n• Pattern identification\n• Prevention opportunity assessment\n• System improvement recommendations
+
+AnalyticsService -> EmergencyDB: Update emergency response metrics
+activate EmergencyDB
+EmergencyDB -> AnalyticsService: Metrics updated
+deactivate EmergencyDB
+
+AnalyticsService -> IncidentService: Incident analysis complete
+deactivate AnalyticsService
+
+== Continuous Monitoring and Support ==
+
+IncidentService -> ChildSafetyService: Activate follow-up monitoring
+activate ChildSafetyService
+
+loop Follow-up Monitoring (Daily/Weekly/Monthly based on severity)
+    ChildSafetyService -> OrphanageDir: Wellness check and support assessment
+    OrphanageDir -> ChildSafetyService: Status update and needs assessment
+    
+    ChildSafetyService -> CrisisCounselor: Ongoing counseling evaluation
+    CrisisCounselor -> ChildSafetyService: Counseling progress report
+    
+    ChildSafetyService -> IncidentService: Follow-up status update
+end
+
+deactivate ChildSafetyService
+
+== Audit and Compliance Logging ==
+
+IncidentService -> AuditDB: Complete emergency response audit trail
+activate AuditDB
+AuditDB -> IncidentService: Audit trail completed
+deactivate AuditDB
+
+IncidentService -> EmergencyService: Emergency response complete
+deactivate IncidentService
+
+EmergencyService -> Gateway: Emergency response concluded
+deactivate EmergencyService
+Gateway -> EmergencyApp: Emergency response status
+deactivate Gateway
+EmergencyApp -> Reporter: Emergency response completed
+deactivate EmergencyApp
+
+deactivate EmergencyCoord
+deactivate ChildProtectionOfficer
+deactivate OrphanageDir
+
+== Emergency Response Features ==
+
+note over Reporter, AuditDB
+    **Critical Emergency Response Features:**
+    
+    **Child Protection Priority:**
+    • Children's safety is the highest priority in all responses
+    • Trauma-informed care principles guide all interactions
+    • Age-appropriate communication and support
+    • Family reunification when safe and appropriate
+    • Long-term welfare monitoring and support
+    
+    **Multi-Agency Coordination:**
+    • Seamless integration with government services
+    • Real-time communication across all stakeholders
+    • Standardized protocols for different emergency types
+    • Clear escalation paths and authority structures
+    • Comprehensive documentation and reporting
+    
+    **24/7 Emergency Response:**
+    • Round-the-clock emergency coordinator availability
+    • Automated alert systems for critical incidents
+    • Mobile-first emergency reporting interface
+    • Offline capability for areas with poor connectivity
+    • Multiple language support for diverse communities
+    
+    **Legal and Compliance:**
+    • Mandatory reporting compliance automation
+    • Evidence preservation and chain of custody
+    • Privacy protection during crisis response
+    • Regulatory notification and coordination
+    • Legal authority integration and cooperation
+    
+    **Continuous Improvement:**
+    • Post-incident analysis and learning
+    • Response time optimization
+    • Process refinement based on outcomes
+    • Training program enhancement
+    • Technology upgrade planning
+end note
+
+@enduml
