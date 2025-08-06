@@ -1,7 +1,7 @@
 # ADR-004: Container Orchestration Platform Selection
 ## Kubernetes with EKS for Scalable Child Welfare Platform Operations
 
-> **Decision Date**: 2025-02-02 | **Status**: Accepted
+> **Decision Date**: 2025-08-02 | **Status**: Accepted
 > **Child Safety Impact**: High | **Stakeholder Impact**: High
 > **Decision Owner**: Head of Infrastructure | **Implementation Lead**: Senior DevOps Engineer
 
@@ -624,7 +624,7 @@ Operational Dashboards:
 
 ---
 
-*Document Created: 2025-02-02 | Last Updated: 2025-02-05 | Next Review: 2025-05-02*
+*Document Created: 2025-08-02 | Last Updated: 2025-08-05 | Next Review: 2025-09-02*
 *Status: Accepted | Implementation Progress: 10% Complete*
 *Decision Owner: Head of Infrastructure | Implementation Lead: Senior DevOps Engineer*
-*Child Safety Review: 2025-02-03 | Stakeholder Sign-off: 2025-02-05*
+*Child Safety Review: 2025-08-03 | Stakeholder Sign-off: 2025-08-05*

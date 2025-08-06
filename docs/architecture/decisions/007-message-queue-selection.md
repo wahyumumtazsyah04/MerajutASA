@@ -1,7 +1,7 @@
 # ADR-007: Message Queue Selection
 ## Asynchronous Messaging System for Reliable Child Welfare Operations
 
-> **Decision Date**: 2025-01-20 | **Status**: Accepted
+> **Decision Date**: 2025-08-20 | **Status**: Accepted
 > **Child Safety Impact**: High | **Stakeholder Impact**: High
 > **Decision Owner**: Infrastructure Architecture Team | **Implementation Lead**: Backend Platform Team
 
@@ -514,4 +514,4 @@ Resource Impact:
 
 *This ADR supports the MerajutASA mission of creating reliable, secure, and effective technology infrastructure for child welfare through evidence-based messaging system decisions that prioritize child safety, stakeholder collaboration, and sustainable platform operations.*
 
-*Last Updated: 2025-01-20 | Next Review: 2025-04-20 | Document Version: 1.0*
+*Last Updated: 2025-08-20 | Next Review: 2025-09-20 | Document Version: 1.0*

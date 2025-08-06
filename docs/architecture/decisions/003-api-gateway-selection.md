@@ -1,7 +1,7 @@
 # ADR-003: API Gateway Selection and Management Strategy
 ## Kong API Gateway for Unified Stakeholder Access and Child Data Protection
 
-> **Decision Date**: 2025-01-28 | **Status**: Accepted
+> **Decision Date**: 2025-08-28 | **Status**: Accepted
 > **Child Safety Impact**: High | **Stakeholder Impact**: High
 > **Decision Owner**: Chief Technology Officer | **Implementation Lead**: Senior Platform Architect
 
