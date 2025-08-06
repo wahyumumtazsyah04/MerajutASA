@@ -564,8 +564,4 @@ Long-term (18+ months):
 
 ---
 
-*This security architecture documentation provides the comprehensive foundation for protecting the MerajutASA platform and the vulnerable children it serves. Each security domain builds upon this foundation to create a robust, stakeholder-aligned security ecosystem.*
-
-**Next Steps**: Continue with threat-model.md for comprehensive threat analysis and risk assessment.
-
 **Contact**: security@merajutasa.id | Updated: August 2025
