@@ -1,0 +1,234 @@
+name: 🐛 Bug Report
+description: Report a bug to help us improve the platform
+title: "[BUG] "
+labels: ["bug", "needs-triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking the time to report a bug! Please fill out this form to help us understand and fix the issue.
+        
+        **⚠️ Child Safety Alert**: If this bug could affect child safety in any way, please mark it as such and consider reaching out to our security team directly at safety@merajutasa.org
+
+  - type: checkboxes
+    id: child-safety
+    attributes:
+      label: Child Safety Impact
+      description: Could this bug affect child safety or privacy?
+      options:
+        - label: This bug could potentially affect child safety or privacy
+          required: false
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity Level
+      description: How severe is this bug?
+      options:
+        - Critical (Platform unusable, data loss, security vulnerability)
+        - High (Major feature broken, significant user impact)
+        - Medium (Feature partially broken, workaround available)
+        - Low (Minor issue, cosmetic problem)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: stakeholder-group
+    attributes:
+      label: Stakeholder Group
+      description: Which stakeholder group does this affect?
+      options:
+        - Government
+        - Business
+        - Academia
+        - Community
+        - Media
+        - All stakeholders
+        - Platform administrators
+    validations:
+      required: true
+
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is
+      placeholder: Describe what happened and what you expected to happen
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: Steps to Reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Scroll down to '...'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: A clear description of what you expected to happen
+      placeholder: What should have happened instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual Behavior
+      description: What actually happened
+      placeholder: What actually happened?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      description: Which platform are you using?
+      options:
+        - Web (Chrome)
+        - Web (Firefox)
+        - Web (Safari)
+        - Web (Edge)
+        - Mobile (iOS)
+        - Mobile (Android)
+        - API
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: platform-version
+    attributes:
+      label: Platform Version
+      description: Version of browser, mobile app, or API client
+      placeholder: e.g., Chrome 120.0, iOS 17.1, API v2.1
+    validations:
+      required: false
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment Details
+      description: Additional environment information
+      placeholder: |
+        - Operating System: 
+        - Screen resolution:
+        - Network connection:
+        - Any accessibility tools:
+    validations:
+      required: false
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots/Videos
+      description: If applicable, add screenshots or videos to help explain the problem
+      placeholder: Drag and drop images or videos here, or use ![alt text](image_url)
+    validations:
+      required: false
+
+  - type: textarea
+    id: console-logs
+    attributes:
+      label: Console Logs/Error Messages
+      description: Any error messages or console output related to the bug
+      render: shell
+      placeholder: Paste any error messages, stack traces, or console output here
+    validations:
+      required: false
+
+  - type: textarea
+    id: user-impact
+    attributes:
+      label: User Impact
+      description: How does this bug affect users?
+      placeholder: |
+        - How many users are affected?
+        - What workflows are disrupted?
+        - Is there a workaround available?
+    validations:
+      required: false
+
+  - type: dropdown
+    id: feature-area
+    attributes:
+      label: Feature Area
+      description: Which area of the platform is affected?
+      options:
+        - Authentication/Login
+        - User Profile Management
+        - Donation Processing
+        - Content Management
+        - Volunteer Management
+        - Analytics/Reporting
+        - Administration
+        - API
+        - Mobile App
+        - Accessibility
+        - Performance
+        - Security
+        - Other
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: additional-info
+    attributes:
+      label: Additional Information
+      description: Please check all that apply
+      options:
+        - label: I have searched existing issues to ensure this is not a duplicate
+          required: true
+        - label: I can consistently reproduce this bug
+          required: false
+        - label: This bug affects multiple users (not just me)
+          required: false
+        - label: I have tried refreshing the page/restarting the app
+          required: false
+        - label: I am willing to help test a fix for this bug
+          required: false
+
+  - type: textarea
+    id: stakeholder-context
+    attributes:
+      label: Stakeholder Context
+      description: Additional context based on your stakeholder role
+      placeholder: |
+        If you're reporting as a:
+        - Government: Include any compliance or regulatory concerns
+        - Business: Include any impact on CSR programs or partnerships
+        - Academia: Include any research workflow disruptions
+        - Community: Include any impact on child welfare or family services
+        - Media: Include any impact on story creation or public engagement
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        
+        ### What happens next?
+        
+        1. **Triage**: Our team will review and label your issue within 24 hours
+        2. **Investigation**: We'll investigate and provide updates
+        3. **Fix**: Once fixed, we'll tag you for testing if you indicated willingness to help
+        4. **Resolution**: We'll close the issue once confirmed fixed
+        
+        ### Emergency Contact
+        
+        For urgent issues affecting child safety, contact: safety@merajutasa.org
+        For security vulnerabilities, contact: security@merajutasa.org
+        
+        Thank you for helping us improve MerajutASA Platform! 🙏

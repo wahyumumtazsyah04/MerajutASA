@@ -1,0 +1,249 @@
+name: 🚨 Child Safety Concern
+description: Report concerns related to child safety or protection (Confidential)
+title: "[CHILD SAFETY] "
+labels: ["child-safety", "urgent", "confidential"]
+assignees: ["child-safety-team"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # ⚠️ CONFIDENTIAL CHILD SAFETY REPORT
+        
+        **This form is for reporting concerns related to child safety, protection, or welfare on the MerajutASA Platform.**
+        
+        ## Immediate Action Required?
+        
+        🚨 **If a child is in immediate danger, please contact local emergency services (police, child protective services) FIRST, then complete this form.**
+        
+        📞 **Emergency Contacts:**
+        - Local Emergency: [Your local emergency number]
+        - Child Safety Hotline: safety@merajutasa.org (24/7 monitoring)
+        - Platform Security: security@merajutasa.org
+        
+        ## Confidentiality Notice
+        
+        This report will be handled with the utmost confidentiality and only shared with authorized child safety personnel and legal authorities as required by law. Your identity will be protected to the extent possible while ensuring child safety.
+
+  - type: checkboxes
+    id: urgency-level
+    attributes:
+      label: Urgency Level
+      description: Please select the appropriate urgency level
+      options:
+        - label: 🚨 EMERGENCY - Child is in immediate danger
+          required: false
+        - label: 🔴 URGENT - Child may be at risk within 24 hours
+          required: false
+        - label: 🟡 HIGH - Concerning behavior or content that needs prompt attention
+          required: false
+        - label: 🟢 ROUTINE - Policy violation or preventive concern
+          required: false
+
+  - type: dropdown
+    id: concern-type
+    attributes:
+      label: Type of Concern
+      description: What type of child safety concern are you reporting?
+      options:
+        - Inappropriate content involving children
+        - Suspicious adult behavior toward children
+        - Child sharing personal information
+        - Cyberbullying or harassment of a child
+        - Suspected grooming behavior
+        - Privacy violation (child's personal data exposed)
+        - Platform feature enabling unsafe interactions
+        - Content moderation failure
+        - Inadequate age verification
+        - Other safety concern
+    validations:
+      required: true
+
+  - type: textarea
+    id: incident-description
+    attributes:
+      label: Incident Description
+      description: Describe the safety concern in detail (be specific but factual)
+      placeholder: |
+        Please provide:
+        - What happened?
+        - When did it occur?
+        - Where on the platform did it happen?
+        - Who was involved (without revealing identifying information of children)?
+        - What specific safety risk does this present?
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence-location
+    attributes:
+      label: Evidence Location
+      description: Where can we find evidence of this concern? (Do NOT include actual content that might be harmful)
+      placeholder: |
+        - URL or page location
+        - User profile or username
+        - Message thread or content ID
+        - Screenshot file names (if you have them)
+        - Any other location identifiers
+        
+        NOTE: Do not paste actual concerning content here. Our team will investigate the locations you provide.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: child-age-group
+    attributes:
+      label: Child Age Group (if known)
+      description: What age group is the child/children involved?
+      options:
+        - Under 5 years
+        - 5-8 years
+        - 9-12 years
+        - 13-15 years
+        - 16-17 years
+        - Unknown/Not specified
+        - Multiple age groups
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: immediate-actions
+    attributes:
+      label: Immediate Actions Taken
+      description: What immediate actions have you or others taken?
+      options:
+        - label: Contacted local emergency services
+          required: false
+        - label: Notified child's guardian/orphanage administrator
+          required: false
+        - label: Reported content through platform reporting tools
+          required: false
+        - label: Blocked or restricted user access
+          required: false
+        - label: Documented evidence with timestamps
+          required: false
+        - label: No action taken yet
+          required: false
+
+  - type: textarea
+    id: platform-feature-involved
+    attributes:
+      label: Platform Features Involved
+      description: Which platform features or areas are involved in this concern?
+      placeholder: |
+        - Messaging system
+        - Profile pages
+        - Photo/video sharing
+        - Comments section
+        - Live chat
+        - Video calls
+        - File sharing
+        - Other (specify)
+    validations:
+      required: false
+
+  - type: dropdown
+    id: reporter-relationship
+    attributes:
+      label: Your Relationship to the Situation
+      description: What is your relationship to this safety concern?
+      options:
+        - Orphanage administrator
+        - Child protection worker
+        - Platform moderator
+        - Community member
+        - Parent/guardian
+        - Volunteer
+        - Platform user
+        - Anonymous reporter
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any additional information that might help our investigation
+      placeholder: |
+        - Pattern of concerning behavior
+        - Previous incidents with same user(s)
+        - Cultural or local context relevant to the situation
+        - Specific vulnerabilities of the child(ren) involved
+        - Any other relevant information
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: follow-up-consent
+    attributes:
+      label: Follow-up Consent
+      description: May we contact you for additional information if needed?
+      options:
+        - label: Yes, you may contact me for follow-up questions
+          required: false
+        - label: I prefer to remain anonymous and not be contacted
+          required: false
+        - label: Only contact me in case of emergency
+          required: false
+
+  - type: input
+    id: preferred-contact
+    attributes:
+      label: Preferred Contact Method (if you consented to follow-up)
+      description: How should we contact you if needed?
+      placeholder: Email, phone, secure messaging (provide details if comfortable)
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: acknowledgment
+    attributes:
+      label: Acknowledgment
+      description: Please confirm you understand the following
+      options:
+        - label: I understand this report will be treated confidentially and shared only with authorized personnel
+          required: true
+        - label: I understand that false reports can harm children and divert resources from real safety issues
+          required: true
+        - label: I understand that MerajutASA may need to cooperate with law enforcement if required by law
+          required: true
+        - label: I am reporting this concern in good faith to protect child welfare
+          required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        
+        ## What Happens Next?
+        
+        ### Immediate Response (Within 1 Hour)
+        - Child Safety Team receives and reviews your report
+        - Immediate risk assessment is conducted
+        - Emergency actions taken if necessary
+        
+        ### Investigation (Within 24 Hours)
+        - Full investigation begins
+        - Evidence is preserved and analyzed
+        - Appropriate authorities contacted if required
+        - Interim safety measures implemented
+        
+        ### Follow-up
+        - You will receive confirmation that your report was received (if you provided contact information)
+        - Investigation updates provided as appropriate
+        - Long-term safety measures implemented
+        
+        ### Support Resources
+        
+        **For Children:**
+        - Childline: [Local children's helpline]
+        - Crisis Text Line: [Local crisis text service]
+        
+        **For Adults:**
+        - Adult Support: [Local adult support services]
+        - Mental Health: [Local mental health resources]
+        
+        ---
+        
+        **Remember: Your report could save a child's life. Thank you for caring about child safety.**
