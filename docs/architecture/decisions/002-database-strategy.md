@@ -126,14 +126,14 @@ This database strategy directly impacts our ability to protect vulnerable childr
 - ❌ **Backup Complexity**: Coordinated backup and recovery across different database systems
 - ❌ **Monitoring Complexity**: Multiple monitoring systems and alerting for different database technologies
 
-**Child Safety Assessment**: **Excellent** - Enables database-level security controls optimized for child data protection. Row-level security in PostgreSQL provides granular access control for child records. Specialized audit databases ensure tamper-proof compliance reporting.
+**Child Safety Assessment**: Provides database-level security controls for child data protection. PostgreSQL row-level security enables granular access control. Audit databases support compliance reporting per [security/audit-requirements.md](../../security/audit-requirements.md).
 
-**Stakeholder Value**:
-- **Government**: PostgreSQL with audit extensions provides comprehensive compliance reporting and inter-agency data sharing
-- **Business**: Redis caching enables real-time transaction processing while MongoDB supports flexible partnership data models
-- **Academic**: ClickHouse enables complex analytical queries on large anonymized datasets with statistical computing integration
-- **Community**: MongoDB's geographic indexing supports location-based volunteer matching with mobile optimization
-- **Media**: Document databases support flexible content models with version control and collaborative editing workflows
+**Technical Implementation**:
+- **Government**: PostgreSQL with audit extensions for compliance reporting
+- **Business**: Redis caching for transaction processing, MongoDB for partnership data
+- **Academic**: ClickHouse for analytical queries on anonymized datasets  
+- **Community**: MongoDB geographic indexing for volunteer coordination
+- **Media**: Document databases with version control capabilities
 
 **Implementation Assessment**:
 - **Complexity**: High - Requires expertise in multiple database technologies and sophisticated data pipeline management
@@ -221,26 +221,26 @@ This database strategy best serves child protection through:
 - **Data Minimization**: Service-specific databases enable precise data collection and retention policies aligned with child protection principles
 - **Privacy by Design**: Database-level privacy controls embedded from system architecture rather than added as afterthoughts
 
-### Stakeholder Value Creation
+### Database Implementation by Service
 
-#### 🏛️ Government Value
-PostgreSQL with audit extensions provides comprehensive compliance reporting, inter-agency data sharing capabilities, and real-time monitoring of child welfare metrics aligned with government oversight requirements.
+#### 🏛️ Government Services
+PostgreSQL implementation with audit extensions supports compliance reporting and inter-agency data sharing. Configuration follows [security/database-security.md](../../security/database-security.md) requirements.
 
-#### 🏢 Business Value
-Redis caching enables real-time transaction processing for donations and partnerships, while MongoDB supports flexible partnership data models that can evolve with corporate ESG reporting requirements.
+#### 🏢 Business Services  
+Redis caching supports transaction processing. MongoDB stores partnership data models following schemas in [docs/stakeholders/business/](../stakeholders/business/).
 
-#### 🎓 Academic Value
-ClickHouse enables complex analytical queries on large anonymized datasets with direct integration to statistical computing platforms, facilitating evidence-based program improvement and research publication.
+#### 🎓 Academic Services
+ClickHouse provides analytical query capabilities on anonymized datasets. Data anonymization follows procedures in [security/data-anonymization.md](../../security/data-anonymization.md).
 
-#### 👥 Community Value
-MongoDB's geographic indexing and mobile-optimized access patterns support location-based volunteer matching and community engagement features with offline capability support.
+#### 👥 Community Services
+MongoDB geographic indexing supports volunteer coordination. Mobile access patterns documented in [docs/stakeholders/community/mobile-requirements.md](../stakeholders/community/mobile-requirements.md).
 
-#### 📰 Media Value
-Document databases support flexible content models with version control, collaborative editing workflows, and global content distribution optimized for impact storytelling and awareness campaigns.
+#### 📰 Media Services
+Document databases support content workflows with version control. Implementation follows [docs/stakeholders/media/content-guidelines.md](../stakeholders/media/content-guidelines.md).
 
-### Alternative Options Rejected
-- **PostgreSQL-Centric**: Rejected due to performance limitations for specialized workloads and reduced optimization potential for stakeholder-specific requirements
-- **Cloud-Native Services**: Rejected due to data sovereignty concerns and limited control over child data residency required by Indonesian regulations
+### Alternative Options Analysis
+- **PostgreSQL-Centric**: Performance limitations for specialized workloads and reduced optimization for stakeholder-specific requirements
+- **Cloud-Native Services**: Data sovereignty concerns and limited control over child data residency per Indonesian regulations
 
 ---
 

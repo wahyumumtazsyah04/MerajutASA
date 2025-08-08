@@ -1,7 +1,7 @@
 # Stakeholder Landscape Documentation
 ## MerajutASA Platform - Penta-Helix Interaction Model
 
-> **Stakeholder Mission**: "Creating technology-enabled collaboration pathways that unite government, business, academia, community, and media stakeholders in a coordinated effort to improve child welfare outcomes while respecting each stakeholder's unique capabilities, constraints, and cultural contexts."
+> **Purpose**: Document platform integration requirements and interfaces for government, business, academia, community, and media stakeholders.
 
 ---
 
