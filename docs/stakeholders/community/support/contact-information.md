@@ -12,7 +12,7 @@ All contact services prioritize child welfare and community empowerment:
 
 ```yaml
 Core Contact Principles:
-  Child Safety Priority: Emergency child protection contacts available 24/7
+  Child Safety Priority: Emergency child protection contacts prioritized for rapid response
   Community Accessibility: Multiple contact methods for diverse needs
   
 Support Standards:
@@ -50,18 +50,18 @@ graph TD
 
 ## 🚨 Emergency Contacts
 
-### Immediate Emergency Response (24/7)
+### Immediate Emergency Response (Priority Response)
 
 #### Child Safety Emergencies
 ```yaml
 MerajutASA Emergency Hotline:
-  Phone: +62-811-XXXX-XXXX (24/7)
+  Phone: +62-811-XXXX-XXXX (priority emergency response)
   WhatsApp: +62-811-XXXX-XXXX (Emergency text/voice)
   Email: emergency@merajutasa.id
   Platform: Emergency report button in mobile app
   
   Response Time: Maximum 15 minutes for life-threatening situations
-  Staffing: Trained child protection specialists available 24/7
+  Staffing: Trained child protection specialists available for rapid response
   Language Support: Indonesian, English, and major regional languages
   
 Emergency Hotline Services:
