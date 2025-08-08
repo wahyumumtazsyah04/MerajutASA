@@ -6,7 +6,7 @@ stakeholder: ["government", "business", "academia", "community", "media"]
 owner: "@wahyumumtazsyah04"
 status: "approved"
 version: "1.0.0"
-last_reviewed: "2024-01-08"
+last_reviewed: "2025-08-08"
 tags: ["maintenance", "quality-assurance", "documentation", "child-safety", "accessibility"]
 ---
 
