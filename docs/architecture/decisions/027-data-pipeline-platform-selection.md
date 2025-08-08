@@ -1,7 +1,7 @@
 # ADR-027: Data Pipeline Platform Selection
 ## Apache Airflow with Child Data Protection for Comprehensive Analytics and Impact Measurement Pipeline
 
-> **Decision Date**: 2025-08-15 | **Status**: Accepted
+> **Decision Date**: 2025-08-08 | **Status**: Accepted
 > **Child Safety Impact**: High | **Stakeholder Impact**: High
 > **Decision Owner**: Data Engineering Team | **Implementation Lead**: Analytics Platform Team
 
@@ -433,5 +433,5 @@ Impact Measurement:
 
 ---
 
-*Last Updated: 2025-08-15 | Next Review: 2025-09-15*
+*Last Updated: 2025-08-08 | Next Review: 2025-09-15*
 *This ADR supports our mission of protecting vulnerable children through secure, comprehensive, and insightful data processing and analytics.*
