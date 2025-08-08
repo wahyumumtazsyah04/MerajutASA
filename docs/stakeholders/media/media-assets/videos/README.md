@@ -10,12 +10,12 @@ last_reviewed: "2025-08-08"
 tags: ["child-safety", "accessibility", "media", "privacy", "compliance"]
 ---
 
-# Media Videos (Placeholder)
+# Media Videos
 
-- No real child footage stored here. Follow privacy-by-design: docs/architecture/compliance/privacy-by-design.md
-- Use captions and transcripts per accessibility: docs/architecture/compliance/accessibility-compliance.md
-- Approved video assets will be added post-review.
+- Do not store real child-identifying footage here. Follow privacy-by-design: docs/architecture/compliance/privacy-by-design.md
+- Provide captions and transcripts: docs/architecture/compliance/accessibility-compliance.md
+- Only approved video assets appear in this folder. See usage rules: docs/stakeholders/media/brand-guidelines.md
 
 ## Requirements
 
-Place approved videos here. Obtain consent; avoid showing children's faces per privacy-by-design: docs/architecture/compliance/privacy-by-design.md.
+Place approved videos here after review. Obtain documented consent; avoid showing children's faces per privacy-by-design: docs/architecture/compliance/privacy-by-design.md. Reference terms and content rules: docs/stakeholders/community/policies/terms-of-service.md; docs/stakeholders/community/policies/content-policy.md.
