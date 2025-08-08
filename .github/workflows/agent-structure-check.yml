@@ -1,0 +1,69 @@
+name: Agent Structure Check
+
+on:
+  pull_request:
+    paths:
+      - 'docs/**'
+      - 'security/**'
+      - '.github/**'
+  push:
+    branches: [ master ]
+    paths:
+      - 'docs/**'
+      - 'security/**'
+      - '.github/**'
+
+jobs:
+  structure:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify required files exist
+        shell: bash
+        run: |
+          set -euo pipefail
+          missing=0
+          echo "Checking required documentation structure files..."
+          req=(
+            "docs/_templates/page.md"
+            "docs/instructions.md"
+            "docs/instructions.json"
+            ".github/copilot-instructions.md"
+            "docs/STYLE_GUIDE.md"
+            "docs/REVIEW_PROCESS.md"
+            "docs/stakeholders/README.md"
+            "docs/architecture/index.md"
+          )
+          for f in "${req[@]}"; do
+            if [[ ! -f "$f" ]]; then
+              echo "::error file=$f::Missing required file"
+              missing=1
+            else
+              echo "OK: $f"
+            fi
+          done
+
+          echo "Checking optional (non-blocking) files referenced by instructions..."
+          opt=(
+            "security/policies/security-policy.md"
+            "security/policies/access-control.md"
+            "docs/architecture/security/threat-model.md"
+          )
+          for f in "${opt[@]}"; do
+            if [[ ! -f "$f" ]]; then
+              echo "::warning file=$f::Suggested file missing (non-blocking)"
+            else
+              echo "OK (optional): $f"
+            fi
+          done
+
+          if [[ "$missing" -ne 0 ]]; then
+            echo "Required files missing"
+            exit 1
+          fi
+
+      - name: Summary
+        if: always()
+        run: echo "Agent structure check completed."
