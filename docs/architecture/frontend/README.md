@@ -1,7 +1,7 @@
 # Frontend Architecture Documentation
 ## MerajutASA Platform - Frontend Architecture Overview
 
-> **Frontend Architecture Mission**: "Creating intuitive, accessible, and secure frontend experiences that empower all stakeholders in our child welfare ecosystem while maintaining the highest standards of child protection, stakeholder collaboration, and inclusive design across web and mobile platforms."
+> **Purpose**: Document frontend architecture decisions, component design standards, and accessibility requirements for web and mobile platforms.
 
 ---
 
@@ -606,7 +606,7 @@ Offline Capabilities:
 
 ## 🚀 Performance Optimization Strategy
 
-### Core Web Vitals Excellence
+### Core Web Vitals Implementation
 
 #### Performance Optimization Techniques
 ```yaml
