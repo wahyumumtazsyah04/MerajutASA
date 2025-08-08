@@ -1121,3 +1121,9 @@ Technical and Administrative:
 ---
 
 **Academic excellence drives our impact: rigorous research, evidence-based practice, and knowledge creation for transformative child welfare outcomes.**
+
+---
+
+## Quick links
+- Publication Guidelines → `./publication-guidelines.md`
+- Data Anonymization → `./data-anonymization.md`
