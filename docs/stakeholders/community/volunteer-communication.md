@@ -29,15 +29,15 @@ This framework applies to all community stakeholders and volunteer coordinators 
 
 ### Community Communication Architecture
 - **Multi-Channel Platform**: Community communications use [Twilio platform](../../architecture/decisions/028-notification-service-platform-selection.md) with community-focused notification templates
-- **Accessible Communication**: All community communications follow [accessibility standards](../../architecture/security/communication-security.md#accessibility) with multi-language support
-- **Privacy Protection**: Community volunteer communications implement [strict privacy controls](../../architecture/security/communication-security.md#community-privacy) protecting volunteer personal information
-- **Emergency Coordination**: Community emergency response utilizes [priority communication channels](../../architecture/security/communication-security.md#community-emergency) for child safety incidents
+- **Accessible Communication**: All community communications follow [communication accessibility guidance](../../architecture/security/communication-security.md) with multi-language support
+- **Privacy Protection**: Community volunteer communications implement strict privacy controls per [communication security](../../architecture/security/communication-security.md) protecting volunteer personal information
+- **Emergency Coordination**: Community emergency response utilizes priority communication channels per [communication security](../../architecture/security/communication-security.md) for child safety incidents
 
 ### Community Integration Points
 - **Volunteer Management**: Community volunteers coordinate through [secure volunteer management systems](../../architecture/security/data-protection.md#volunteer-data) with privacy protection
-- **Program Coordination**: Community program activities utilize [secure coordination workflows](../../architecture/security/communication-security.md#program-coordination) with child data protection
-- **Emergency Response**: Community emergency volunteers access [real-time emergency coordination](../../architecture/security/communication-security.md#emergency-community) during child safety incidents
-- **Training and Support**: Community volunteer training utilizes [secure learning platforms](../../architecture/security/communication-security.md#community-training) with accessibility compliance
+- **Program Coordination**: Community program activities utilize secure coordination workflows per [communication security](../../architecture/security/communication-security.md) with child data protection
+- **Emergency Response**: Community emergency volunteers access real-time emergency coordination per [communication security](../../architecture/security/communication-security.md) during child safety incidents
+- **Training and Support**: Community volunteer training utilizes secure learning platforms per [communication security](../../architecture/security/communication-security.md) with accessibility compliance
 
 ## Implementation Steps for Community Coordinators
 
@@ -235,12 +235,12 @@ Training Development Configuration:
 - **Communication Security Framework**: [docs/architecture/security/communication-security.md](../../architecture/security/communication-security.md)
 - **Emergency Communication Procedures**: [docs/operations/emergency-communication.md](../../operations/emergency-communication.md)
 - **Data Protection Policies**: [docs/architecture/security/data-protection.md](../../architecture/security/data-protection.md)
-- **Accessibility Standards**: [docs/architecture/security/communication-security.md#accessibility](../../architecture/security/communication-security.md#accessibility)
+- **Accessibility Standards**: [docs/architecture/security/communication-security.md](../../architecture/security/communication-security.md)
 
 ### Community-Specific Resources
 - **Community Safety Guidelines**: [safety/community-safety-guidelines.md](safety/community-safety-guidelines.md)
 - **Community Volunteer Features**: [features/volunteer-features.md](features/volunteer-features.md)
-- **Community Getting Started Guide**: [getting-started/community-onboarding.md](getting-started/community-onboarding.md)
+- **Community Getting Started Guide**: [getting-started/README.md](getting-started/README.md)
 - **Community Onboarding Guide**: [../onboarding/community-onboarding.md](../onboarding/community-onboarding.md)
 - **Community Collaboration Framework**: [../collaboration-framework.md](../collaboration-framework.md)
 
