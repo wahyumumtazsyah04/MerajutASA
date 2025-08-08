@@ -1125,5 +1125,5 @@ Technical and Administrative:
 ---
 
 ## Quick links
-- Publication Guidelines → `./publication-guidelines.md`
-- Data Anonymization → `./data-anonymization.md`
+- Publication Guidelines → [./publication-guidelines.md](./publication-guidelines.md)
+- Data Anonymization → [./data-anonymization.md](./data-anonymization.md)
