@@ -26,7 +26,6 @@ Provide narrative frameworks that comply with our style guide, glossary definiti
 - Use agreed terminology from: docs/GLOSSARY.md
 
 ## Pre-publication checklist
-- Terms, privacy, and content rules upheld: docs/community/policies (to be added);
 - Terms, privacy, and content rules upheld: docs/stakeholders/community/policies/terms-of-service.md; docs/stakeholders/community/policies/privacy-policy.md; docs/stakeholders/community/policies/content-policy.md
 - Check accessibility (alt text, captions): docs/architecture/compliance/accessibility-compliance.md
 - Verify metrics with impact-metrics: docs/stakeholders/media/impact-metrics.md
