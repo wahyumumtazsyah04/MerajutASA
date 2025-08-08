@@ -3,9 +3,11 @@ title: "Volunteer Features"
 summary: "Overview of volunteer-specific features and safety gates."
 audience: ["community", "volunteers"]
 stakeholder: ["community"]
+owner: "@community-leads"
 status: "approved"
 version: "1.0.0"
 last_reviewed: "2025-08-08"
+tags: ["volunteers", "features", "child-safety", "platform"]
 ---
 
 # Volunteer Features
