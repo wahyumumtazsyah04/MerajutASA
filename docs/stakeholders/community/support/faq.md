@@ -55,7 +55,10 @@ graph TD
 ```yaml
 Child Protection Measures:
   Data Protection:
-    - All child data encrypted with AES-256 encryption standard
+    - Child-identifiable data encrypted using AES-256 with HSM key protection
+    - Data transmission secured with TLS 1.3 and Perfect Forward Secrecy
+    - Field-level encryption with separate keys per data classification level
+    - Hardware Security Module (HSM) key management with regular rotation
     - No child names or photos shared publicly without explicit consent
     - Data stored only in secure Indonesian data centers
     - Automatic data minimization and retention limits
@@ -72,6 +75,12 @@ Child Protection Measures:
     - Professional oversight of all child-related activities
     - Anonymous reporting system for safety concerns
 ```
+
+**References:**
+- [SECURITY.md](../../../../SECURITY.md) — Security policy and incident reporting procedures
+- [Communication Security Policy](../../../../security/policies/communication-security.md) — TLS requirements and secure channels
+- [Security Framework ADR](../../../architecture/decisions/013-security-framework.md) — Zero-trust architecture implementation
+- [Data Protection Architecture](../../../architecture/security/data-protection.md) — Comprehensive encryption and key management specifications
 
 ### Q: What should I do if I suspect child abuse or have safety concerns?
 
