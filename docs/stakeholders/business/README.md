@@ -1,3 +1,15 @@
+---
+title: "Business Stakeholder Portal"
+summary: "Corporate social responsibility excellence platform enabling strategic partnerships, innovation collaboration, and sustainable social impact in child welfare."
+audience: ["business", "corporate", "CSR", "executives"]
+stakeholder: ["business"]
+owner: "@wahyumumtazsyah04"
+status: "approved"
+version: "1.0.0"
+last_reviewed: "2025-08-08"
+tags: ["business", "CSR", "partnerships", "child-safety", "innovation"]
+---
+
 # Business Stakeholder Portal
 ## Corporate Social Responsibility Excellence in Child Welfare
 

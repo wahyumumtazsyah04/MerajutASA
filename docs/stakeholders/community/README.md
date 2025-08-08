@@ -1,3 +1,15 @@
+---
+title: "Community Portal"
+summary: "Gateway for community members to contribute to child welfare through volunteering, donations, advocacy, and local chapter participation."
+audience: ["community", "volunteers", "donors", "advocates"]
+stakeholder: ["community"]
+owner: "@wahyumumtazsyah04"
+status: "approved"
+version: "1.0.0"
+last_reviewed: "2025-08-08"
+tags: ["community", "volunteers", "child-safety", "donations", "advocacy"]
+---
+
 # Community Portal
 ## Welcome to the MerajutASA Community
 

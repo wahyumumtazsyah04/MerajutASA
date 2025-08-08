@@ -1,3 +1,15 @@
+---
+title: "Stakeholder Engagement Documentation"
+summary: "Comprehensive guide to penta-helix collaboration framework connecting government, business, academia, community, and media sectors for child welfare excellence."
+audience: ["government", "business", "academia", "community", "media", "administrators", "volunteers"]
+stakeholder: ["government", "business", "academia", "community", "media"]
+owner: "@wahyumumtazsyah04"
+status: "approved"
+version: "1.0.0"
+last_reviewed: "2025-08-08"
+tags: ["stakeholders", "penta-helix", "collaboration", "child-safety", "governance"]
+---
+
 # Stakeholder Engagement Documentation
 ## Penta-Helix Collaboration for Child Welfare Excellence
 
