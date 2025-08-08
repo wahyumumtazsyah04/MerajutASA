@@ -2,16 +2,27 @@ name: Agent Structure Check
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
     paths:
       - 'docs/**'
       - 'security/**'
       - '.github/**'
   push:
-    branches: [ master ]
+    branches: [ master, main ]
     paths:
       - 'docs/**'
       - 'security/**'
       - '.github/**'
+  schedule:
+    - cron: '0 3 * * 1' # Weekly drift check (Mon 03:00 UTC)
+  workflow_call: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: agent-structure-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   structure:
@@ -24,13 +35,29 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          LC_ALL=C
           missing=0
           echo "Checking required documentation structure files..."
+          require_one_of() {
+            local ok=1
+            for f in "$@"; do
+              if [[ -f "$f" ]]; then
+                echo "OK (one-of): $f"
+                ok=0
+                break
+              fi
+            done
+            if [[ $ok -ne 0 ]]; then
+              printf "::error file=%s::Missing required file (one of set)\n" "$1"
+              for f in "$@"; do echo "  - $f"; done
+              missing=1
+            fi
+          }
+
           req=(
             "docs/_templates/page.md"
             "docs/instructions.md"
             "docs/instructions.json"
-            ".github/copilot-instructions.md"
             "docs/STYLE_GUIDE.md"
             "docs/REVIEW_PROCESS.md"
             "docs/stakeholders/README.md"
@@ -38,12 +65,15 @@ jobs:
           )
           for f in "${req[@]}"; do
             if [[ ! -f "$f" ]]; then
-              echo "::error file=$f::Missing required file"
+              printf "::error file=%s::Missing required file\n" "$f"
               missing=1
             else
               echo "OK: $f"
             fi
           done
+
+          # One-of check for GitHub instructions filename variants
+          require_one_of ".github/instructions-github.md" ".github/copilot-instructions.md"
 
           echo "Checking additional recommended structure files (non-blocking for now)..."
           rec=(
@@ -53,7 +83,7 @@ jobs:
           )
           for f in "${rec[@]}"; do
             if [[ ! -f "$f" ]]; then
-              echo "::warning file=$f::Recommended file missing (tracked via issues)"
+              printf "::warning file=%s::Recommended file missing (tracked via issues)\n" "$f"
             else
               echo "OK (recommended): $f"
             fi
@@ -67,7 +97,7 @@ jobs:
           )
           for f in "${opt[@]}"; do
             if [[ ! -f "$f" ]]; then
-              echo "::warning file=$f::Suggested file missing (non-blocking)"
+              printf "::warning file=%s::Suggested file missing (non-blocking)\n" "$f"
             else
               echo "OK (optional): $f"
             fi
@@ -82,6 +112,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          LC_ALL=C
           echo "Scanning for empty critical directories..."
           dirs=(
             "docs/operations/maintenance"
@@ -90,13 +121,13 @@ jobs:
           )
           for d in "${dirs[@]}"; do
             if [[ -d "$d" ]]; then
-              if [[ -z "$(find "$d" -type f -maxdepth 1)" ]]; then
-                echo "::warning file=$d::Directory exists but has no files (add README.md or content)"
+              if [[ -z "$(find "$d" -maxdepth 1 -type f -print -quit)" ]]; then
+                printf "::warning file=%s::Directory exists but has no files (add README.md or content)\n" "$d"
               else
                 echo "OK (has files): $d"
               fi
             else
-              echo "::warning file=$d::Directory missing (non-blocking)"
+              printf "::warning file=%s::Directory missing (non-blocking)\n" "$d"
             fi
           done
 
@@ -104,15 +135,36 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          LC_ALL=C
           echo "Checking for placeholder/template language..."
-          if grep -RInE "PLACEHOLDER|\\bTBD\\b|TO BE FILLED|Lorem ipsum|\\bWIP\\b|<insert|coming soon" docs/ security/ || true; then
-            hits=$(grep -RInE "PLACEHOLDER|\\bTBD\\b|TO BE FILLED|Lorem ipsum|\\bWIP\\b|<insert|coming soon" docs/ security/ | wc -l || true)
-            if [[ ${hits:-0} -gt 0 ]]; then
-              echo "::error ::Placeholder or template language detected in docs/security; please replace with grounded content."
-              exit 1
-            fi
+          pattern='PLACEHOLDER|\bTBD\b|TO BE FILLED|Lorem ipsum|\bWIP\b|<insert|coming soon'
+          matches=$(grep -RInE "$pattern" docs/ security/ || true)
+          if [[ -n "${matches:-}" ]]; then
+            echo "$matches" | sed 's/^/match: /'
+            count=$(echo "$matches" | wc -l | tr -d ' ')
+            printf "::error ::Placeholder or template language detected in docs/security (%s hits); please replace with grounded content.\n" "$count"
+            exit 1
           fi
 
-      - name: Summary
+      - name: Write summary
         if: always()
-        run: echo "Agent structure check completed."
+        shell: bash
+        run: |
+          {
+            echo "## Agent Structure Check"
+            echo
+            if [[ "${{ job.status }}" == "success" ]]; then
+              echo "Status: ✅ Passed"
+            else
+              echo "Status: ❌ Failed"
+            fi
+            echo
+            echo "- Trigger: ${{ github.event_name }}"
+            echo "- Ref: ${{ github.ref }}"
+            echo "- Commit: ${{ github.sha }}"
+            echo
+            echo "Tips:"
+            echo "- Keep docs grounded (no placeholders)."
+            echo "- Ensure one of .github/instructions-github.md or .github/copilot-instructions.md exists."
+            echo "- Add missing recommended files as follow-up issues."
+          } >> "$GITHUB_STEP_SUMMARY"
