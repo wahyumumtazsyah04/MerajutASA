@@ -3,3 +3,12 @@
 /docs/stakeholders/media/* @docs-core @security-leads
 /docs/stakeholders/media/media-assets/** @docs-core @security-leads
 /monitoring/dashboards/stakeholder/media/** @docs-core @security-leads
+=======
+# CODEOWNERS for docs governance files
+# TODO: Replace @wahyumumtazsyah04 with org teams (e.g., @docs-core, @security-leads) when available
+# Tracking: https://github.com/wahyumumtazsyah04/MerajutASA/issues/12
+
+/.github/instructions-github.md  @wahyumumtazsyah04
+/docs/instructions.md            @wahyumumtazsyah04
+/docs/instructions.json          @wahyumumtazsyah04
+/docs/_agents/**                 @wahyumumtazsyah04
