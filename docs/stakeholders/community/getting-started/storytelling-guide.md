@@ -23,7 +23,7 @@ tags: ["storytelling", "privacy", "media-ethics", "child-safety"]
 
 ## Review Workflow
 - Draft → Safety review → Legal review (if needed) → Publish.
-- Use the editorial checklist aligned with docs/architecture/security/communication-security.md#content-security.
+- Use the editorial checklist aligned with docs/architecture/security/communication-security.md#content-security-monitoring.
 
 ---
 
