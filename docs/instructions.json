@@ -1,0 +1,293 @@
+{
+  "version": "1.0.0",
+  "objective": "Produce safe, accurate, grounded, and final-grade documentation for MerajutASA. Prevent outdated info, gaps, misinfo, overclaiming, and stakeholder-misleading content.",
+  "principles": {
+    "grounded_only": true,
+    "child_safety_first": true,
+    "anti_template": true,
+    "small_topic_prs": true,
+    "human_in_the_loop": true,
+    "style_guide_path": "docs/STYLE_GUIDE.md",
+    "translation_guide_path": "docs/TRANSLATION_GUIDE.md"
+  },
+  "language_policy": {
+    "instructions_language": "en",
+    "default_output_language": "task_specified",
+    "fallback_output_language": "en"
+  },
+  "scope": {
+    "write_targets": [
+      "docs/**",
+      "gateway/documentation/guides/**",
+      "gateway/documentation/openapi/*.yaml",
+      "security/**"
+    ],
+    "read_only_refs": [
+      "infrastructure/**",
+      "monitoring/**",
+      "COMPLIANCE_MATRIX.md",
+      "API_CATALOG.md",
+      "ARCHITECTURE.md",
+      "ROADMAP.md",
+      "GOVERNANCE.md"
+    ]
+  },
+  "allowlist_paths": [
+    "docs/**",
+    "docs/architecture/decisions/*.md",
+    "gateway/documentation/openapi/*.yaml",
+    "gateway/documentation/guides/**",
+    "security/**",
+    "infrastructure/**",
+    "monitoring/**",
+    "COMPLIANCE_MATRIX.md",
+    "API_CATALOG.md",
+    "ARCHITECTURE.md",
+    "ROADMAP.md",
+    "GOVERNANCE.md"
+  ],
+  "denylist_rules": {
+    "no_external_sources": true,
+    "no_children_pii": true,
+    "no_secrets": true,
+    "no_unverifiable_claims": true
+  },
+  "evidence_packet": {
+    "required": true,
+    "min_items": 1,
+    "item_schema": {
+      "path": "string (relative link)",
+      "anchor": "string (optional)",
+      "summary": "string (<=140 chars)"
+    }
+  },
+  "doc_template": {
+    "front_matter": [
+      "title",
+      "summary",
+      "audience[]",
+      "stakeholder[]",
+      "owner",
+      "status",
+      "version",
+      "last_reviewed",
+      "tags[]"
+    ],
+    "sections": [
+      "Purpose",
+      "Scope & Audience",
+      "Key Facts (Grounded)",
+      "How-To / Steps",
+      "Diagrams (optional)",
+      "Accessibility & Child Safety",
+      "Validation & Monitoring (optional)",
+      "FAQ (optional)",
+      "Changelog"
+    ]
+  },
+  "safe_completion": {
+    "enabled": true,
+    "policy": "Provide high-level safe guidance; refuse harmful operational detail; cite policy and offer safe alternatives.",
+    "on_refusal": {
+      "include_reason": true,
+      "link_policy_paths": [
+        "security/policies/security-policy.md",
+        "security/policies/access-control.md",
+        "docs/architecture/security/threat-model.md"
+      ]
+    }
+  },
+  "process": {
+    "issue": {
+      "use_templates": true,
+      "required_fields": [
+        "goal",
+        "narrow_scope",
+        "acceptance_criteria",
+        "evidence_packet"
+      ],
+      "labels_min": [
+        "type:*",
+        "area:*",
+        "priority:P0|P1|P2",
+        "stakeholder:*"
+      ]
+    },
+    "branch_naming": [
+      "docs/feature/<topic>",
+      "docs/fix/<topic>",
+      "docs/update/<topic>",
+      "feat/<area>-<topic>",
+      "fix/<area>-<topic>"
+    ],
+    "commit_convention": "conventional-commits",
+    "pr": {
+      "max_loc": 300,
+      "single_topic": true,
+      "templates": [
+        ".github/PULL_REQUEST_TEMPLATE/documentation.md",
+        ".github/PULL_REQUEST_TEMPLATE/feature.md",
+        ".github/PULL_REQUEST_TEMPLATE/compliance.md"
+      ],
+      "required_reviewers": [
+        "CODEOWNERS:domain",
+        "CODEOWNERS:child-safety-a11y"
+      ],
+      "checklist": [
+        "Evidence packet attached",
+        "Scope narrow; <300 LOC",
+        "Tests added/updated if needed",
+        "Lint/style/link-check pass",
+        "Security/A11y/Perf gates pass",
+        "Docs ↔ OpenAPI/ADR/policy consistent",
+        "Backward compatibility or version note",
+        "Owners approved"
+      ]
+    }
+  },
+  "quality_gates": {
+    "docs": [
+      "markdownlint",
+      "link-check",
+      "front-matter-present",
+      "vale-style"
+    ],
+    "api": [
+      "openapi-validate",
+      "api-contract-tests"
+    ],
+    "security": [
+      "sast",
+      "dast",
+      "dependency-scan",
+      "secret-scan"
+    ],
+    "a11y": [
+      "headings",
+      "contrast",
+      "alt-text",
+      "keyboard-nav"
+    ],
+    "performance": [
+      "web-vitals-thresholds"
+    ],
+    "drift": [
+      "source-alignment-check"
+    ]
+  },
+  "enforcement": {
+    "reject_if": {
+      "front_matter_missing": true,
+      "broken_links": true,
+      "evidence_missing_or_insufficient": true,
+      "pattern_templatey_detected_ratio_gt": 0.05,
+      "secrets_or_pii_detected": true
+    },
+    "post_merge_incident": {
+      "label": "docs-quality-incident",
+      "sla_hours": 48,
+      "actions": [
+        "revert_pr",
+        "open_fix_issue",
+        "post_incident_review"
+      ]
+    }
+  },
+  "on_missing_facts": {
+    "actions": [
+      "add_open_questions_section",
+      "draft_gap_issue"
+    ],
+    "gap_issue": {
+      "labels": [
+        "docs-gap",
+        "priority:P0|P1|P2",
+        "area:*",
+        "stakeholder:*"
+      ],
+      "acceptance_criteria_required": true
+    }
+  },
+  "roles": {
+    "agent": [
+      "researcher",
+      "synthesizer",
+      "drafter",
+      "critic",
+      "executor"
+    ],
+    "reviewers": [
+      "domain_owner",
+      "child_safety_a11y_owner"
+    ]
+  },
+  "sla": {
+    "review": {
+      "P0": "48h",
+      "P1": "5d",
+      "P2": "10d"
+    }
+  },
+  "metrics": {
+    "broken_link_rate_max": 0.005,
+    "ci_first_pass_min": 0.9,
+    "p0_coverage": 1.0,
+    "pii_incidents": 0,
+    "median_pr_cycle_days_max": 3
+  },
+  "labels_recommended": [
+    "type:docs",
+    "type:security",
+    "type:compliance",
+    "type:api",
+    "area:architecture",
+    "area:gateway",
+    "area:operations",
+    "priority:P0",
+    "stakeholder:government",
+    "stakeholder:business",
+    "stakeholder:academia",
+    "stakeholder:community",
+    "stakeholder:media",
+    "safety:child-safety",
+    "safety:privacy",
+    "docs-gap"
+  ],
+  "pre_ambles": {
+    "require_plan": true,
+    "plan_fields": [
+      "goal",
+      "subtasks",
+      "target_files",
+      "source_evidence",
+      "risk_checks"
+    ]
+  },
+  "output_preferences": {
+    "markdown": {
+      "use_front_matter": true,
+      "relative_links_only": true,
+      "no_placeholder_text": true
+    },
+    "openapi": {
+      "validate_on_change": true,
+      "regenerate_examples": true
+    }
+  },
+  "industry_references_non_authoritative": [
+    "Architecture Decision Records (ADR), C4 model",
+    "API-first & contract testing (OpenAPI)",
+    "WCAG 2.1 AA",
+    "OWASP/ASVS",
+    "SRE (runbooks, MTTR)",
+    "DevOps small-batch & code review",
+    "ISO/NIST evidence discipline"
+  ],
+  "change_control": {
+    "approvers": [
+      "@docs-core",
+      "@security-leads"
+    ],
+    "note": "Changes to these instructions require approvals above and must preserve Child Safety First and Grounded-only principles."
+  }
+}
