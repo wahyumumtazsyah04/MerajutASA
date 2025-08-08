@@ -1,0 +1,58 @@
+name: Roadmap – Seed Labels
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Upsert labels
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const labels = [
+              { name: "roadmap",                  color: "0366d6", description: "Track in strategic roadmap" },
+              { name: "epic",                     color: "5319e7", description: "Cross-cutting high-level outcome" },
+              { name: "milestone",                color: "1d76db", description: "Time-bound deliverable" },
+              { name: "priority:P0",              color: "d73a4a", description: "Critical" },
+              { name: "priority:P1",              color: "fbca04", description: "High" },
+              { name: "priority:P2",              color: "c2e0c6", description: "Normal" },
+              { name: "area:frontend",            color: "0e8a16", description: "Frontend" },
+              { name: "area:backend",             color: "0e8a16", description: "Backend" },
+              { name: "area:gateway",             color: "0e8a16", description: "API Gateway" },
+              { name: "area:docs",                color: "0e8a16", description: "Docs" },
+              { name: "area:infra",               color: "0e8a16", description: "Infrastructure" },
+              { name: "area:monitoring",          color: "0e8a16", description: "Monitoring/Analytics" },
+              { name: "area:security",            color: "0e8a16", description: "Security" },
+              { name: "stakeholder:government",   color: "5319e7", description: "Government stakeholder" },
+              { name: "stakeholder:business",     color: "5319e7", description: "Business stakeholder" },
+              { name: "stakeholder:academia",     color: "5319e7", description: "Academia stakeholder" },
+              { name: "stakeholder:community",    color: "5319e7", description: "Community stakeholder" },
+              { name: "stakeholder:media",        color: "5319e7", description: "Media stakeholder" },
+              { name: "quarter:2025Q3",           color: "ededed", description: "Quarter" },
+              { name: "quarter:2025Q4",           color: "ededed", description: "Quarter" },
+              { name: "quarter:2026Q1",           color: "ededed", description: "Quarter" },
+              { name: "quarter:2026Q2",           color: "ededed", description: "Quarter" },
+              { name: "docs",                      color: "0e8a16", description: "Documentation changes" },
+              { name: "security",                  color: "b60205", description: "Security related" },
+              { name: "ci",                        color: "1d76db", description: "Continuous Integration" }
+            ];
+
+            for (const l of labels) {
+              try {
+                await github.rest.issues.getLabel({ owner: context.repo.owner, repo: context.repo.repo, name: l.name });
+                await github.rest.issues.updateLabel({ owner: context.repo.owner, repo: context.repo.repo, name: l.name, color: l.color, description: l.description });
+                core.info(`Updated label: ${l.name}`);
+              } catch (e) {
+                if (e.status === 404) {
+                  await github.rest.issues.createLabel({ owner: context.repo.owner, repo: context.repo.repo, name: l.name, color: l.color, description: l.description });
+                  core.info(`Created label: ${l.name}`);
+                } else {
+                  core.warning(`Skipping ${l.name}: ${e.message}`);
+                }
+              }
+            }

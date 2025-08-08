@@ -1,0 +1,19 @@
+name: Roadmap – Auto add to project
+on:
+  issues:
+    types: [opened, labeled, reopened, edited]
+  pull_request:
+    types: [opened, labeled, reopened, ready_for_review, edited]
+
+permissions:
+  contents: read
+
+jobs:
+  add_to_project:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add item to MERAJUTASA Strategic Roadmap
+        uses: actions/add-to-project@v1.0.1
+        with:
+          project-url: ${{ vars.MERAJUTASA_ROADMAP_URL }}
+          github-token: ${{ secrets.PROJECTS_TOKEN }}

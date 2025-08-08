@@ -1,0 +1,75 @@
+name: "Roadmap Epic"
+description: "High-level outcome spanning multiple milestones"
+title: "epic: <concise title>"
+labels: ["roadmap", "epic"]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What outcome will be achieved and why it matters.
+      placeholder: One short paragraph.
+    validations:
+      required: true
+  - type: textarea
+    id: goals
+    attributes:
+      label: Goals & Non-goals
+      description: Bullet the goals; clarify what's out of scope.
+      placeholder: "- Goal 1\n- Goal 2\n\nNon-goals:\n- Not included 1"
+    validations:
+      required: true
+  - type: textarea
+    id: success
+    attributes:
+      label: Success Criteria / Acceptance
+      description: Observable outcomes or metrics of success.
+      placeholder: "- KPI / metric\n- Definition of done"
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options: ["priority:P0", "priority:P1", "priority:P2"]
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - "area:frontend"
+        - "area:backend"
+        - "area:gateway"
+        - "area:docs"
+        - "area:infra"
+        - "area:monitoring"
+        - "area:security"
+    validations:
+      required: true
+  - type: dropdown
+    id: stakeholder
+    attributes:
+      label: Primary Stakeholder
+      options:
+        - "stakeholder:government"
+        - "stakeholder:business"
+        - "stakeholder:academia"
+        - "stakeholder:community"
+        - "stakeholder:media"
+    validations:
+      required: true
+  - type: dropdown
+    id: quarter
+    attributes:
+      label: Target Quarter
+      options: ["quarter:2025Q3", "quarter:2025Q4", "quarter:2026Q1", "quarter:2026Q2"]
+    validations:
+      required: false
+  - type: textarea
+    id: links
+    attributes:
+      label: Linked Work / References
+      description: Link related issues, PRs, or docs (relative links preferred).
+      placeholder: "- #123\n- docs/ROADMAP.md#...\n- GOVERNANCE.md#..."
