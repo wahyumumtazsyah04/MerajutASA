@@ -1,3 +1,15 @@
+---
+title: "Academic Stakeholder Portal"
+summary: "Research excellence platform facilitating collaboration between universities, research institutions, and child welfare practitioners for evidence-based practice advancement."
+audience: ["academia", "researchers", "faculty", "students"]
+stakeholder: ["academia"]
+owner: "@wahyumumtazsyah04"
+status: "approved"
+version: "1.0.0"
+last_reviewed: "2025-08-08"
+tags: ["academia", "research", "evidence-based", "child-safety", "collaboration"]
+---
+
 # Academic Stakeholder Portal
 ## Research Excellence & Knowledge Partnership in Child Welfare
 
