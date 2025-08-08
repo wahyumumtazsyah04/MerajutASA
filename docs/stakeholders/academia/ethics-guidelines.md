@@ -18,7 +18,7 @@ Memastikan penelitian menghormati keselamatan anak, privasi, dan aksesibilitas.
 ## Principles
 - Minimasi data; tanpa PII anak.
 - Transparansi metode dan transformasi.
-- Review etika, keamanan, aksesibilitas sebelum publikasi.
+- Mandatory review process per docs/REVIEW_PROCESS.md: parallel ethics/privacy, security, and accessibility reviews before any publication.
 
 ## Grounded Links
 - Privasi-dalam-desain: docs/architecture/compliance/privacy-by-design.md

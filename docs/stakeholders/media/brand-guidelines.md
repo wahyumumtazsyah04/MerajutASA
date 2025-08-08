@@ -21,8 +21,8 @@ Ensure consistent, accessible, and safe use of brand assets. Follow docs/STYLE_G
 - Ensure WCAG 2.1 AA contrast for text on brand colors: docs/architecture/compliance/accessibility-compliance.md
 
 ## Typography & imagery
-- Typography must be readable and follow docs/STYLE_GUIDE.md.
-- Imagery must not depict identifiable children; follow privacy-by-design: docs/architecture/compliance/privacy-by-design.md
+- Typography: Use approved fonts per docs/STYLE_GUIDE.md. Ensure minimum 16px body text for accessibility.
+- Imagery: Source only from approved assets in docs/stakeholders/media/media-assets/screenshots/, docs/stakeholders/media/media-assets/infographics/, or docs/stakeholders/media/media-assets/videos/. Never depict identifiable children per privacy-by-design: docs/architecture/compliance/privacy-by-design.md
 
 ## Naming & attribution
 - Use "MerajutASA" consistently. Attribute assets per Media Guidelines: docs/stakeholders/media/media-guidelines.md

@@ -26,10 +26,10 @@ Provide narrative frameworks that comply with our style guide, glossary definiti
 - Use agreed terminology from: docs/GLOSSARY.md
 
 ## Pre-publication checklist
-- Terms, privacy, and content rules upheld: docs/stakeholders/community/policies/terms-of-service.md; docs/stakeholders/community/policies/privacy-policy.md; docs/stakeholders/community/policies/content-policy.md
-- Check accessibility (alt text, captions): docs/architecture/compliance/accessibility-compliance.md
-- Verify metrics with impact-metrics: docs/stakeholders/media/impact-metrics.md
-- Follow digital safety guidance: security/training/child-safety/digital-safety.md
+- Validate compliance with docs/stakeholders/community/policies/terms-of-service.md, docs/stakeholders/community/policies/privacy-policy.md, and docs/stakeholders/community/policies/content-policy.md
+- Complete accessibility review per docs/architecture/compliance/accessibility-compliance.md (verify alt text, captions, contrast ratios)
+- Cross-reference all numerical claims against docs/stakeholders/media/impact-metrics.md data sources
+- Apply digital safety protocols from security/training/child-safety/digital-safety.md before publication
  
 ## Key Facts (Grounded)
 - Privacy-by-design: docs/architecture/compliance/privacy-by-design.md
