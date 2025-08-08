@@ -25,6 +25,7 @@ Ensure consistent, accessible, and safe use of brand assets. Follow docs/STYLE_G
 - Imagery must not depict identifiable children; follow privacy-by-design: docs/architecture/compliance/privacy-by-design.md
 - Prefer using approved, redacted visuals from: docs/stakeholders/media/media-assets/ (logos/, screenshots/, infographics/, videos/)
 
+
 ## Naming & attribution
 - Use "MerajutASA" consistently. Attribute assets per Media Guidelines: docs/stakeholders/media/media-guidelines.md
 

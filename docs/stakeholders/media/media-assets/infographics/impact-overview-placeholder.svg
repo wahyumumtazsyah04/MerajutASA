@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480" role="img" aria-labelledby="title desc">
+  <title id="title">Impact Overview — Placeholder</title>
+  <desc id="desc">Non-sensitive infographic stub. Replace with approved graphic. See docs/architecture/compliance/accessibility-compliance.md.</desc>
+  <rect width="800" height="480" fill="#ffffff" stroke="#e5e7eb"/>
+  <rect x="60" y="80" width="160" height="280" fill="#60a5fa"/>
+  <rect x="280" y="140" width="160" height="220" fill="#34d399"/>
+  <rect x="500" y="200" width="160" height="160" fill="#fbbf24"/>
+  <text x="60" y="60" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#111827">Impact Metrics (sample)</text>
+</svg>

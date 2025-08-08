@@ -22,9 +22,9 @@ Provide a grounded, repeatable workflow for evaluating and submitting grant prop
 ## Key Facts (Grounded)
 - Ethics & child protection apply across funding lifecycle – docs/stakeholders/academia/ethics-guidelines.md
 - Only de‑identified or synthetic datasets for academic use – docs/stakeholders/academia/research-data-access.md
-- Security-by-design and lawful processing baselines – docs/api/decisions/013-security-framework.md
-- Accessibility requirements for deliverables and portals – docs/api/decisions/014-accessibility-standards.md and docs/STYLE_GUIDE.md
-- Documentation-first and testing expectations for funded outputs – docs/api/decisions/011-documentation-platform.md and docs/api/decisions/012-testing-strategy.md
+- Security-by-design and lawful processing baselines – docs/architecture/decisions/013-security-framework.md
+- Accessibility requirements for deliverables and portals – docs/architecture/decisions/014-accessibility-standards.md and docs/STYLE_GUIDE.md
+- Documentation-first and testing expectations for funded outputs – docs/architecture/decisions/011-documentation-platform.md and docs/architecture/decisions/012-testing-strategy.md
 - Privacy by Design principles – docs/architecture/compliance/privacy-by-design.md
 
 ## How‑To / Steps
