@@ -640,7 +640,7 @@ Program Coordinators:
 - **[Safety Guidelines](safety/README.md)** - Complete safety protocols and reporting
 - **[Getting Started Guide](getting-started/README.md)** - Step-by-step onboarding
 - **[Volunteer Handbook](volunteer-handbook.md)** - Comprehensive volunteer guide
-- **[Community Guidelines](community-guidelines.md)** - Standards and expectations
+- **[Community Guidelines](policies/community-guidelines.md)** - Standards and expectations
 - **[Resource Library](resources/README.md)** - Educational materials and tools
 
 ### Connect With Us
