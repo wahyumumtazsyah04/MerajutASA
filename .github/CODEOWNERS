@@ -1,0 +1,5 @@
+# CODEOWNERS
+# Media stakeholder documentation and assets
+/docs/stakeholders/media/* @docs-core @security-leads
+/docs/stakeholders/media/media-assets/** @docs-core @security-leads
+/monitoring/dashboards/stakeholder/media/** @docs-core @security-leads
