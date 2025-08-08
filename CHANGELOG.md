@@ -6,7 +6,7 @@ stakeholder: ["government", "business", "academia", "community", "media"]
 owner: "@docs-core"
 status: "approved"
 version: "1.0.0"
-last_reviewed: "2025-01-28"
+last_reviewed: "2025-08-28"
 tags: ["governance", "releases", "stakeholder-impact", "child-safety"]
 ---
 

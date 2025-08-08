@@ -25,7 +25,7 @@ Supporting Regulations:
 ```yaml
 National Data Protection:
   UU No. 27/2022: Personal Data Protection (PDP) Law
-    Status: Mandatory (Effective October 2024)
+    Status: Mandatory (Effective October 2025)
     Scope: All personal data processing
     Special Requirements: Enhanced protection for children
     

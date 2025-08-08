@@ -1,7 +1,7 @@
 # ADR-029: File Storage Platform Selection
 ## Amazon S3 with Child Data Protection Vault for Secure File and Document Management
 
-> **Decision Date**: 2024-08-15 | **Status**: Accepted
+> **Decision Date**: 2025-08-15 | **Status**: Accepted
 > **Child Safety Impact**: High | **Stakeholder Impact**: High
 > **Decision Owner**: Chief Technology Officer | **Implementation Lead**: Infrastructure Team
 

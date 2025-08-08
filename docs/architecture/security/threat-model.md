@@ -388,7 +388,7 @@ Database Security Threats:
 
 #### Web Application Attacks
 ```yaml
-OWASP Top 10 Threats (2023):
+OWASP Top 10 Threats (2025):
   A01 - Broken Access Control:
     Horizontal privilege escalation (accessing other users' data)
     Vertical privilege escalation (gaining admin privileges)
@@ -424,22 +424,22 @@ OWASP Top 10 Threats (2023):
 #### API Security Threats
 ```yaml
 API-Specific Attack Vectors:
-  API1:2023 - Broken Object Level Authorization:
+  API1:2025 - Broken Object Level Authorization:
     Accessing child records without proper authorization
     Horizontal privilege escalation through object manipulation
     Mass assignment vulnerabilities in data updates
   
-  API2:2023 - Broken Authentication:
+  API2:2025 - Broken Authentication:
     JWT token manipulation and forgery
     Session management vulnerabilities
     Weak password policies and account lockout bypass
   
-  API3:2023 - Broken Object Property Level Authorization:
+  API3:2025 - Broken Object Property Level Authorization:
     Excessive data exposure in API responses
     Mass assignment allowing unauthorized property modification
     Insufficient input validation on sensitive properties
   
-  API4:2023 - Unrestricted Resource Consumption:
+  API4:2025 - Unrestricted Resource Consumption:
     Rate limiting bypass causing service degradation
     Resource exhaustion attacks (CPU, memory, storage)
     Economic denial of service through cost amplification

@@ -6,7 +6,7 @@ stakeholder: ["community", "media", "business", "academia", "government"]
 owner: "@legal-team"
 status: "approved"
 version: "1.0.0"
-last_reviewed: "2025-01-23"
+last_reviewed: "2025-08-23"
 tags: ["legal", "terms", "community", "child-safety", "compliance", "accessibility"]
 ---
 

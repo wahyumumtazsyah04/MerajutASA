@@ -1,7 +1,7 @@
 # ADR-020: Backup Strategy Selection
 ## Comprehensive Data Protection and Business Continuity Framework for Child Welfare Platform Resilience
 
-> **Decision Date**: 2025-01-21 | **Status**: Accepted
+> **Decision Date**: 2025-08-21 | **Status**: Accepted
 > **Child Safety Impact**: High | **Stakeholder Impact**: High
 > **Decision Owner**: Data Protection Lead | **Implementation Lead**: Infrastructure Security Manager
 

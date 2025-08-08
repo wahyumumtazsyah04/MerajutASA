@@ -6,7 +6,7 @@ stakeholder: ["government", "business", "academia", "community", "media"]
 owner: "@wahyumumtazsyah04"
 status: "approved"
 version: "1.0.0"
-last_reviewed: "2025-01-08"
+last_reviewed: "2025-08-08"
 tags: ["child-safety", "architecture", "compliance", "roadmap"]
 ---
 
@@ -99,5 +99,5 @@ All roadmap initiatives prioritize:
 - **Course Correction**: Adaptive planning based on child welfare outcome data
 
 ## Changelog
-- 1.0.0 (2025-01-08): Finalized roadmap with concrete milestones aligned to ADR-009 (GitOps deployment) and ADR-022 (DataDog APM) implementation timelines, added review cadence section, updated links to specific ADRs and monitoring dashboards
-- 0.1.0 (2025-01-08): Initial roadmap structure with Q1-Q2 2025 milestones linked to architectural decisions and impact measurement capabilities
+- 1.0.0 (2025-08-08): Finalized roadmap with concrete milestones aligned to ADR-009 (GitOps deployment) and ADR-022 (DataDog APM) implementation timelines, added review cadence section, updated links to specific ADRs and monitoring dashboards
+- 0.1.0 (2025-08-08): Initial roadmap structure with Q1-Q2 2025 milestones linked to architectural decisions and impact measurement capabilities

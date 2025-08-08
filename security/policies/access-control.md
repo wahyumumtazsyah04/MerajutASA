@@ -6,7 +6,7 @@ stakeholder: ["government", "business", "academia", "community", "media"]
 owner: "@security-leads"
 status: "approved"
 version: "1.0.0"
-last_reviewed: "2025-01-27"
+last_reviewed: "2025-08-27"
 tags: ["security", "access-control", "authentication", "authorization", "child-safety"]
 ---
 
@@ -143,4 +143,4 @@ Define authentication, authorization, and privilege management controls to prote
 - Regular updates based on evolving threat landscape and compliance requirements
 
 ## Changelog
-- 2025-01-27: Initial access control policy created with comprehensive authentication, authorization, and privilege management controls aligned with security policy framework
+- 2025-08-27: Initial access control policy created with comprehensive authentication, authorization, and privilege management controls aligned with security policy framework

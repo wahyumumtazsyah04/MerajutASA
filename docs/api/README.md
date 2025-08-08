@@ -516,7 +516,7 @@ Partnership Lifecycle API:
         "organization": "PT Teknologi Sosial Indonesia",
         "tier": "Gold",
         "current_period": {
-          "start_date": "2025-01-01",
+          "start_date": "2025-08-01",
           "end_date": "2025-12-31",
           "commitment_amount": 3500000000,
           "utilized_amount": 2100000000,

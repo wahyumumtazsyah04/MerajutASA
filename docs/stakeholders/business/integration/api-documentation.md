@@ -136,7 +136,7 @@ Request Body:
     "investment_type": "financial|volunteer_hours|in_kind|expertise",
     "investment_category": "education|health|infrastructure|capacity_building",
     "duration": {
-      "start_date": "2025-01-01",
+      "start_date": "2025-08-01",
       "end_date": "2025-12-31"
     },
     "targeting": {

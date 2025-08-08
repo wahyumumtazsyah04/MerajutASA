@@ -419,7 +419,7 @@ Example Response:
   "organization": "PT Teknologi Sosial Indonesia",
   "partnership_tier": "Gold",
   "current_period": {
-    "start_date": "2025-01-01T00:00:00.000Z",
+    "start_date": "2025-08-01T00:00:00.000Z",
     "end_date": "2025-12-31T23:59:59.999Z",
     "commitment_amount": 3500000000,
     "utilized_amount": 2100000000,
@@ -535,7 +535,7 @@ Example Response:
     "investment": 291666667,
     "social_value_created": 1371133333,
     "roi_ratio": 4.7,
-    "calculation_methodology": "SROI_standard_2023"
+    "calculation_methodology": "SROI_standard_2025"
   },
   "beneficiary_impact": {
     "direct_beneficiaries": 1247,

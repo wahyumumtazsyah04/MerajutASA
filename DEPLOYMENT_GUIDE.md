@@ -6,7 +6,7 @@ stakeholder: ["government", "business", "academia"]
 owner: "@infrastructure-team"
 status: "approved"
 version: "1.0.0"
-last_reviewed: "2024-08-08"
+last_reviewed: "2025-08-08"
 tags: ["deployment", "operations", "infrastructure", "child-safety"]
 ---
 

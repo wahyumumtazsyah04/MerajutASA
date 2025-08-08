@@ -564,10 +564,10 @@ Impact Targets:
 ### 🏆 Awards & Recognition
 ```yaml
 Recent Recognition:
-  - UN Innovation Award 2024
-  - Indonesia Digital Society Excellence 2024
-  - ASEAN Child Protection Innovation 2024
-  - World Bank Social Innovation Recognition 2024
+  - UN Innovation Award 2025
+  - Indonesia Digital Society Excellence 2025
+  - ASEAN Child Protection Innovation 2025
+  - World Bank Social Innovation Recognition 2025
   
 Certifications:
   - ISO 27001 Information Security

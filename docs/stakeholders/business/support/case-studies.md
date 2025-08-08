@@ -61,7 +61,7 @@ class PTMandiriSejahteraPartnershipCaseStudy {
     this.partner = {
       name: "PT. Mandiri Sejahtera",
       sector: "Financial Services",
-      partnership_duration: "3 years (2021-2024)",
+      partnership_duration: "3 years (2021-2025)",
       investment_total: 2500000000, // IDR 2.5 billion
       beneficiaries_direct: 15000,
       orphanages_supported: 45
@@ -165,7 +165,7 @@ PT. Mandiri Sejahtera Partnership Implementation:
 
 #### Impact Outcomes and Measurement Results
 ```yaml
-Partnership Impact Outcomes (2021-2024):
+Partnership Impact Outcomes (2021-2025):
   Financial Sustainability Improvements:
     Orphanage Financial Health:
       Average Monthly Budget Increase: 45% increase in average monthly operational budgets across supported orphanages
@@ -226,7 +226,7 @@ class PTTeknologiNusantaraInnovationCaseStudy {
     this.partner = {
       name: "PT. Teknologi Nusantara",
       sector: "Technology and Software Development",
-      partnership_duration: "2 years (2022-2024)",
+      partnership_duration: "2 years (2022-2025)",
       investment_total: 1800000000, // IDR 1.8 billion
       beneficiaries_direct: 8500,
       orphanages_supported: 28,
@@ -331,7 +331,7 @@ PT. Teknologi Nusantara Innovation Solutions:
 
 #### Innovation Impact and Technology Adoption Results
 ```yaml
-Innovation Partnership Impact Outcomes (2022-2024):
+Innovation Partnership Impact Outcomes (2022-2025):
   Educational Technology Adoption:
     Learning Outcomes Improvement:
       Academic Performance Enhancement: 34% improvement in academic performance across standardized assessments
@@ -392,7 +392,7 @@ class PTRetailNusantaraCommunityEngagementCaseStudy {
     this.partner = {
       name: "PT. Retail Nusantara",
       sector: "Retail and Consumer Goods",
-      partnership_duration: "18 months (2023-2024)",
+      partnership_duration: "18 months (2025-2025)",
       investment_total: 950000000, // IDR 950 million
       store_locations: 347,
       community_reach: 2800000,
@@ -559,7 +559,7 @@ Penta-Helix Innovation Hub Partnership:
 
 #### System Change and Innovation Impact Outcomes
 ```yaml
-Penta-Helix Innovation Hub Impact Results (2022-2024):
+Penta-Helix Innovation Hub Impact Results (2022-2025):
   System-Level Change Achievements:
     Policy and Regulatory Innovation:
       Policy Framework Development: Development of 3 new policy frameworks adopted at national level for child welfare innovation
@@ -700,7 +700,7 @@ class PartnershipImpactMeasurementFramework {
 
 ### Aggregate Partnership Impact Analysis Results
 ```yaml
-Comprehensive Partnership Impact Summary (2021-2024):
+Comprehensive Partnership Impact Summary (2021-2025):
   Child Welfare Impact Achievements:
     Direct Beneficiary Outcomes:
       Total Children Served: 31,500 children across 73 orphanages
