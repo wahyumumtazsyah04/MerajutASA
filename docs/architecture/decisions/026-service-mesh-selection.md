@@ -403,9 +403,9 @@ Service Reliability:
 ## 📚 Related Documentation
 
 ### Architecture Documentation
-- [ADR-004: Container Orchestration Platform](004-container-orchestration-platform.md) - Kubernetes infrastructure integration
-- [ADR-012: Security Framework Selection](012-security-framework-selection.md) - Zero-trust architecture alignment
-- [ADR-021: Performance Monitoring Selection](021-performance-monitoring-selection.md) - Observability stack integration
+- [ADR-004: Container Orchestration Platform](004-container-orchestration.md) - Kubernetes infrastructure integration
+- [ADR-012: Security Framework Selection](013-security-framework.md) - Zero-trust architecture alignment
+- [ADR-021: Performance Monitoring Selection](022-performance-monitoring-selection.md) - Observability stack integration
 
 ### Implementation Resources
 - [Istio Official Documentation](https://istio.io/latest/docs/)
