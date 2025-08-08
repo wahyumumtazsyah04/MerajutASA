@@ -1,0 +1,28 @@
+# CODEOWNERS for MerajutASA Platform
+# This file defines code ownership for the platform, ensuring appropriate review
+# of critical governance and documentation changes.
+
+# Global defaults - require review from platform maintainers
+* @wahyumumtazsyah04
+
+# Governance documentation - requires governance team review
+docs/stakeholders/governance-model.md @wahyumumtazsyah04
+docs/CONTRIBUTING.md @wahyumumtazsyah04
+docs/REVIEW_PROCESS.md @wahyumumtazsyah04
+docs/STYLE_GUIDE.md @wahyumumtazsyah04
+
+# Data governance and compliance - requires compliance team review
+docs/stakeholders/business/compliance/data-governance.md @wahyumumtazsyah04
+docs/architecture/compliance/data-governance.md @wahyumumtazsyah04
+
+# GitHub workflows and templates - requires admin review
+.github/ @wahyumumtazsyah04
+
+# Security and child safety files - requires security team review
+SECURITY.md @wahyumumtazsyah04
+.github/ISSUE_TEMPLATE/child_safety_concern.yml @wahyumumtazsyah04
+
+# Root documentation files - requires documentation team review
+README.md @wahyumumtazsyah04
+CODE_OF_CONDUCT.md @wahyumumtazsyah04
+VISION.md @wahyumumtazsyah04
