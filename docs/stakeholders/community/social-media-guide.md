@@ -3,9 +3,11 @@ title: "Social Media Guide"
 summary: "Share responsibly: protect children's privacy and follow platform rules."
 audience: ["community", "advocates", "volunteers"]
 stakeholder: ["community"]
+owner: "@communications-team"
 status: "approved"
 version: "1.0.0"
 last_reviewed: "2025-08-08"
+tags: ["social-media", "privacy", "child-safety", "communications"]
 ---
 
 # Social Media Guide

@@ -3,9 +3,11 @@ title: "Volunteer Handbook"
 summary: "Policies, expectations, and safety requirements for volunteers."
 audience: ["volunteers", "community"]
 stakeholder: ["community"]
+owner: "@community-leads"
 status: "approved"
 version: "1.0.0"
 last_reviewed: "2025-08-08"
+tags: ["volunteers", "handbook", "child-safety", "policies"]
 ---
 
 # Volunteer Handbook

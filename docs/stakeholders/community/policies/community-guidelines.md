@@ -3,9 +3,11 @@ title: "Community Guidelines"
 summary: "Standards and expectations for respectful, safe participation."
 audience: ["community", "volunteers", "donors", "advocates"]
 stakeholder: ["community"]
+owner: "@community-leads"
 status: "approved"
 version: "1.0.0"
 last_reviewed: "2025-08-08"
+tags: ["community", "guidelines", "child-safety", "conduct"]
 ---
 
 # Community Guidelines
