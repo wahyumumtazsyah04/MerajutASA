@@ -1063,20 +1063,20 @@ Policy Support:
 ### Government Contact Directory
 ```yaml
 Executive Level:
-  Ministry Liaison: ministry-liaison@merajutasa.org
-  Executive Support: executive-gov@merajutasa.org
-  Strategic Partnership: strategic-gov@merajutasa.org
+  Ministry Liaison: ministry-liaison@merajutasa.id
+  Executive Support: executive-gov@merajutasa.id
+  Strategic Partnership: strategic-gov@merajutasa.id
   
 Operational Level:
-  Program Management: program-gov@merajutasa.org
-  Technical Integration: integration-gov@merajutasa.org
-  Data and Analytics: analytics-gov@merajutasa.org
+  Program Management: program-gov@merajutasa.id
+  Technical Integration: integration-gov@merajutasa.id
+  Data and Analytics: analytics-gov@merajutasa.id
   
 Specialized Support:
-  Compliance Office: compliance-gov@merajutasa.org
-  Emergency Coordination: emergency-gov@merajutasa.org
-  Research Collaboration: research-gov@merajutasa.org
-  Training and Development: training-gov@merajutasa.org
+  Compliance Office: compliance-gov@merajutasa.id
+  Emergency Coordination: emergency-gov@merajutasa.id
+  Research Collaboration: research-gov@merajutasa.id
+  Training and Development: training-gov@merajutasa.id
 ```
 
 ---

@@ -772,10 +772,10 @@ Primary Channels:
   
   Email Notifications:
     Distribution Lists:
-      - safety-team@merajutasa.org
-      - engineering-oncall@merajutasa.org
-      - leadership@merajutasa.org
-      - compliance-team@merajutasa.org
+      - safety-team@merajutasa.id
+      - engineering-oncall@merajutasa.id
+      - leadership@merajutasa.id
+      - compliance-team@merajutasa.id
     
     Templates:
       - Critical incident notification
@@ -1441,19 +1441,19 @@ ORDER BY minute DESC;
 ### Monitoring Support Contacts
 ```yaml
 Technical Support:
-  Primary: monitoring-support@merajutasa.org
+  Primary: monitoring-support@merajutasa.id
   On-Call: +62-XXX-XXXX-XXXX (24/7)
-  Escalation: engineering-manager@merajutasa.org
+  Escalation: engineering-manager@merajutasa.id
   
 Child Safety Monitoring:
-  Primary: safety-monitoring@merajutasa.org
+  Primary: safety-monitoring@merajutasa.id
   Emergency: +62-XXX-XXXX-XXXX (24/7)
-  Escalation: child-protection-officer@merajutasa.org
+  Escalation: child-protection-officer@merajutasa.id
   
 Compliance Monitoring:
-  Primary: compliance-monitoring@merajutasa.org
+  Primary: compliance-monitoring@merajutasa.id
   Business Hours: +62-XXX-XXXX-XXXX
-  Escalation: compliance-officer@merajutasa.org
+  Escalation: compliance-officer@merajutasa.id
 ```
 
 ### Common Troubleshooting Scenarios

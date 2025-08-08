@@ -201,14 +201,14 @@ Security Checklist:
 ### Deployment Support
 
 🔧 **Infrastructure Team**
-- Contact: `infrastructure@merajutasa.org`
+- Contact: `infrastructure@merajutasa.id`
 - Slack: `#infrastructure-team`
 - On-call: Available during deployment windows
 
 🚨 **Emergency Escalation**
-- Critical Issues: `oncall@merajutasa.org`
-- Child Safety: `child-safety-emergency@merajutasa.org`
-- Security Incidents: `security-incident@merajutasa.org`
+- Critical Issues: `oncall@merajutasa.id`
+- Child Safety: `child-safety-emergency@merajutasa.id`
+- Security Incidents: `security-incident@merajutasa.id`
 
 ### Documentation Support
 
@@ -233,7 +233,7 @@ For immediate deployment needs:
 ### Emergency Deployment
 
 For critical child safety or security issues:
-- Contact: `child-safety-emergency@merajutasa.org`
+- Contact: `child-safety-emergency@merajutasa.id`
 - Escalate: Immediate infrastructure team notification
 - Follow: Emergency deployment procedures in operations documentation
 

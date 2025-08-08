@@ -10,7 +10,7 @@ body:
       value: |
         Thank you for taking the time to report a bug! Please fill out this form to help us understand and fix the issue.
         
-        **⚠️ Child Safety Alert**: If this bug could affect child safety in any way, please mark it as such and consider reaching out to our security team directly at safety@merajutasa.org
+        **⚠️ Child Safety Alert**: If this bug could affect child safety in any way, please mark it as such and consider reaching out to our security team directly at safety@merajutasa.id
 
   - type: checkboxes
     id: child-safety
@@ -228,7 +228,7 @@ body:
         
         ### Emergency Contact
         
-        For urgent issues affecting child safety, contact: safety@merajutasa.org
-        For security vulnerabilities, contact: security@merajutasa.org
+        For urgent issues affecting child safety, contact: safety@merajutasa.id
+        For security vulnerabilities, contact: security@merajutasa.id
         
         Thank you for helping us improve MerajutASA Platform! 🙏

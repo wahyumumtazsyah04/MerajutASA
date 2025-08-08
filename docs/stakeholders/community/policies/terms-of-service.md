@@ -243,14 +243,14 @@ These Terms of Service may be updated to reflect:
 ## Contact and Legal Information
 
 ### Legal Questions
-- **Legal Team**: legal@merajutasa.org
-- **Terms Clarification**: terms-help@merajutasa.org
-- **Compliance Issues**: compliance@merajutasa.org
+- **Legal Team**: legal@merajutasa.id
+- **Terms Clarification**: terms-help@merajutasa.id
+- **Compliance Issues**: compliance@merajutasa.id
 
 ### Emergency Contacts
 - **Child Safety Emergency**: [Per SECURITY.md](../../../SECURITY.md)
-- **Platform Emergency**: emergency@merajutasa.org
-- **Legal Emergency**: legal-emergency@merajutasa.org
+- **Platform Emergency**: emergency@merajutasa.id
+- **Legal Emergency**: legal-emergency@merajutasa.id
 
 ### Governing Law
 These Terms of Service are governed by Indonesian law and subject to the jurisdiction of Indonesian courts, with international child protection standards applicable where relevant.

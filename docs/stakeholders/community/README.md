@@ -599,22 +599,22 @@ Success Measurement:
 ### Getting Help
 ```
 General Support:
-- Community Help Desk: community@merajutasa.org
-- Volunteer Coordination: volunteers@merajutasa.org
-- Technical Support: support@merajutasa.org
-- Training Questions: training@merajutasa.org
+- Community Help Desk: community@merajutasa.id
+- Volunteer Coordination: volunteers@merajutasa.id
+- Technical Support: support@merajutasa.id
+- Training Questions: training@merajutasa.id
 
 Emergency Contacts:
 - See comprehensive emergency contacts and response times: [SECURITY.md - Emergency Contacts](../../../SECURITY.md#emergency-contacts)
-- Platform Security: security@merajutasa.org
-- Leadership Team: leadership@merajutasa.org
+- Platform Security: security@merajutasa.id
+- Leadership Team: leadership@merajutasa.id
 
 Regional Coordinators:
 - North Region: [Contact Info]
 - South Region: [Contact Info]
 - East Region: [Contact Info]
 - West Region: [Contact Info]
-- International: global@merajutasa.org
+- International: global@merajutasa.id
 ```
 
 ### Community Leadership
@@ -644,7 +644,7 @@ Program Coordinators:
 - **[Resource Library](resources/README.md)** - Educational materials and tools
 
 ### Connect With Us
-- **[Community Forum](https://community.merajutasa.org)** - Online discussions and support
+- **[Community Forum](https://community.merajutasa.id)** - Online discussions and support
 - **[Social Media](social-media-guide.md)** - Follow us and join the conversation
 - **[Newsletter](newsletter-signup.md)** - Stay updated with community news
 - **[Local Chapters](chapters/README.md)** - Find or start a chapter near you

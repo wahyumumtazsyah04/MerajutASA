@@ -1534,22 +1534,22 @@ Support Contacts:
   Primary On-Call Engineer:
     - Phone: +1-XXX-XXX-XXXX
     - Slack: @oncall-engineer
-    - Email: oncall@merajutasa.org
+    - Email: oncall@merajutasa.id
     
   Infrastructure Team:
     - Slack: #infrastructure-team
-    - Email: infrastructure@merajutasa.org
+    - Email: infrastructure@merajutasa.id
     - Escalation: +1-XXX-XXX-XXXX
     
   Security Team:
     - Phone: +1-XXX-XXX-XXXX (24/7)
-    - Email: security@merajutasa.org
-    - Incident: security-incident@merajutasa.org
+    - Email: security@merajutasa.id
+    - Incident: security-incident@merajutasa.id
     
   Child Safety Officer:
     - Phone: +1-XXX-XXX-XXXX (24/7)
-    - Email: safety@merajutasa.org
-    - Emergency: child-emergency@merajutasa.org
+    - Email: safety@merajutasa.id
+    - Emergency: child-emergency@merajutasa.id
 ```
 
 ### 2. Escalation Procedures

@@ -138,4 +138,4 @@ Every stakeholder portal is designed to advance our core mission of creating sus
 
 ---
 
-*For questions about stakeholder engagement or this guide, contact: stakeholders@merajutasa.org*
+*For questions about stakeholder engagement or this guide, contact: stakeholders@merajutasa.id*

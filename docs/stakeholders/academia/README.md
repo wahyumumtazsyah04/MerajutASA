@@ -1093,19 +1093,19 @@ Administrative and Operational:
 ### Academic Contact Directory
 ```yaml
 Research Collaboration:
-  Research Partnerships: research@merajutasa.org
-  Faculty Relations: faculty@merajutasa.org
-  Graduate Student Programs: students@merajutasa.org
+  Research Partnerships: research@merajutasa.id
+  Faculty Relations: faculty@merajutasa.id
+  Graduate Student Programs: students@merajutasa.id
 
 Specialized Support:
-  Data and Analytics: data-academic@merajutasa.org
-  Student Placements: placements@merajutasa.org
-  International Collaboration: international-academic@merajutasa.org
+  Data and Analytics: data-academic@merajutasa.id
+  Student Placements: placements@merajutasa.id
+  International Collaboration: international-academic@merajutasa.id
   
 Technical and Administrative:
-  Research Infrastructure: infrastructure-academic@merajutasa.org
-  Ethics and Compliance: ethics-academic@merajutasa.org
-  Grant and Funding Support: grants-academic@merajutasa.org
+  Research Infrastructure: infrastructure-academic@merajutasa.id
+  Ethics and Compliance: ethics-academic@merajutasa.id
+  Grant and Funding Support: grants-academic@merajutasa.id
 ```
 
 ---

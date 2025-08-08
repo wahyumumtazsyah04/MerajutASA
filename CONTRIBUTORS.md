@@ -186,7 +186,7 @@ All cross-stakeholder work follows our [Collaboration Framework](docs/stakeholde
 ### General Support
 - **Contribution Questions**: GitHub Discussions for platform collaboration
 - **Technical Issues**: Issue tracker for bugs and feature requests
-- **Child Safety Concerns**: Immediate reporting through safety@merajutasa.org
+- **Child Safety Concerns**: Immediate reporting through safety@merajutasa.id
 - **Community Guidelines**: Reference our [Code of Conduct](CODE_OF_CONDUCT.md)
 
 ---

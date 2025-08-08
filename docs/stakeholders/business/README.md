@@ -952,20 +952,20 @@ Innovation and Development:
 ### Corporate Contact Directory
 ```yaml
 Executive Engagement:
-  Partnership Development: partnerships@merajutasa.org
-  Executive Relations: executive-business@merajutasa.org
-  Strategic Innovation: innovation-business@merajutasa.org
+  Partnership Development: partnerships@merajutasa.id
+  Executive Relations: executive-business@merajutasa.id
+  Strategic Innovation: innovation-business@merajutasa.id
 
 Operational Support:
-  Program Management: programs-business@merajutasa.org
-  Employee Engagement: employees-business@merajutasa.org
-  Impact Measurement: impact-business@merajutasa.org
+  Program Management: programs-business@merajutasa.id
+  Employee Engagement: employees-business@merajutasa.id
+  Impact Measurement: impact-business@merajutasa.id
 
 Specialized Services:
-  Technology Partnership: tech-partnerships@merajutasa.org
-  ESG Integration: esg-business@merajutasa.org
-  Financial Services: finance-business@merajutasa.org
-  Manufacturing Partners: manufacturing-business@merajutasa.org
+  Technology Partnership: tech-partnerships@merajutasa.id
+  ESG Integration: esg-business@merajutasa.id
+  Financial Services: finance-business@merajutasa.id
+  Manufacturing Partners: manufacturing-business@merajutasa.id
 ```
 
 ---

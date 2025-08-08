@@ -98,9 +98,9 @@ This Code of Conduct applies within all community spaces, and also applies when 
 #### How to Report
 Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement at:
 
-- **General Issues**: conduct@merajutasa.org
-- **Child Safety Concerns**: safety@merajutasa.org (monitored 24/7)
-- **Security Issues**: security@merajutasa.org
+- **General Issues**: conduct@merajutasa.id
+- **Child Safety Concerns**: safety@merajutasa.id (monitored 24/7)
+- **Security Issues**: security@merajutasa.id
 - **Anonymous Reporting**: [Anonymous Report Form](link-to-form)
 
 #### What to Include
@@ -150,7 +150,7 @@ Community leaders will follow these Community Impact Guidelines in determining t
 
 #### Right to Appeal
 Community members have the right to appeal enforcement decisions through:
-- Written appeal to appeals@merajutasa.org
+- Written appeal to appeals@merajutasa.id
 - Review by independent appeals committee
 - Stakeholder representative involvement for stakeholder-related issues
 
@@ -196,9 +196,9 @@ This Code of Conduct is a living document that will be updated based on:
 - **Stakeholder Representatives**: Listed in respective stakeholder guides
 
 #### Emergency Contacts
-- **Child Safety Emergency**: safety@merajutasa.org / +[phone-number]
-- **Security Emergency**: security@merajutasa.org / +[phone-number]
-- **Legal Emergency**: legal@merajutasa.org / +[phone-number]
+- **Child Safety Emergency**: safety@merajutasa.id / +[phone-number]
+- **Security Emergency**: security@merajutasa.id / +[phone-number]
+- **Legal Emergency**: legal@merajutasa.id / +[phone-number]
 
 ---
 

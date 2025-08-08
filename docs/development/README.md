@@ -1453,10 +1453,10 @@ jobs:
 ## 📞 Developer Support
 
 ### Getting Help
-- **Technical Questions**: dev-support@merajutasa.org
-- **Security Issues**: security@merajutasa.org  
-- **Code Review Help**: code-review@merajutasa.org
-- **Architecture Decisions**: architecture@merajutasa.org
+- **Technical Questions**: dev-support@merajutasa.id
+- **Security Issues**: security@merajutasa.id  
+- **Code Review Help**: code-review@merajutasa.id
+- **Architecture Decisions**: architecture@merajutasa.id
 
 ### Development Resources
 - **[API Documentation](../API_CATALOG.md)** - Complete API reference
