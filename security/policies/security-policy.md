@@ -6,7 +6,7 @@ stakeholder: ["government", "business", "academia", "community", "media"]
 owner: "@security-leads"
 status: "approved"
 version: "1.0.0"
-last_reviewed: "2025-01-27"
+last_reviewed: "2025-08-08"
 tags: ["security", "policy", "child-safety", "compliance", "framework"]
 ---
 
@@ -105,4 +105,4 @@ Establish a comprehensive security policy framework that protects child welfare 
 - Integration of security lessons learned into policy updates
 
 ## Changelog
-- 2025-01-27: Initial comprehensive security policy framework created with cross-references to specialized policies and grounded internal sources
+- 2025-08-08: Initial comprehensive security policy framework created with cross-references to specialized policies and grounded internal sources
