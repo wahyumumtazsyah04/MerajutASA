@@ -1,7 +1,7 @@
 # ADR-026: Service Mesh Selection
 ## Istio with Child Safety Traffic Policies for Secure Microservices Communication and Advanced Traffic Management
 
-> **Decision Date**: 2025-08-15 | **Status**: Accepted
+> **Decision Date**: 2025-08-08 | **Status**: Accepted
 > **Child Safety Impact**: High | **Stakeholder Impact**: High
 > **Decision Owner**: Platform Architecture Team | **Implementation Lead**: Infrastructure Team
 
@@ -433,5 +433,5 @@ Service Reliability:
 
 ---
 
-*Last Updated: 2025-08-15 | Next Review: 2025-09-15*
+*Last Updated: 2025-08-08 | Next Review: 2025-09-15*
 *This ADR supports our mission of protecting vulnerable children through secure, reliable, and observable microservices communication.*

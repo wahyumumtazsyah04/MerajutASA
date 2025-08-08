@@ -1,7 +1,7 @@
 # ADR-028: Notification Service Platform Selection
 ## Twilio with Child Safety Alert Framework for Multi-Channel Communication and Emergency Response
 
-> **Decision Date**: 2025-08-15 | **Status**: Accepted
+> **Decision Date**: 2025-08-08 | **Status**: Accepted
 > **Child Safety Impact**: High | **Stakeholder Impact**: High
 > **Decision Owner**: Communication Platform Team | **Implementation Lead**: DevOps Integration Team
 
@@ -416,5 +416,5 @@ Protection Compliance:
 
 ---
 
-*Last Updated: 2025-08-15 | Next Review: 2025-09-15*
+*Last Updated: 2025-08-08 | Next Review: 2025-09-15*
 *This ADR supports our mission of protecting vulnerable children through reliable, secure, and comprehensive multi-channel communication and emergency response capabilities.*
