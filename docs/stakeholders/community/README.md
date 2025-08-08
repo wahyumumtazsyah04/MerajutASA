@@ -224,6 +224,8 @@ Leadership Opportunities:
 
 ## 🛡️ Safety & Protection
 
+> **Child Safety First**: All community activities follow strict child protection protocols. For comprehensive safety guidelines, reporting procedures, and emergency contacts, see our [Community Safety Hub](safety/README.md).
+
 ### Community Safety Guidelines
 
 #### Child Interaction Protocols
@@ -283,14 +285,11 @@ Multiple channels for reporting concerns:
 
 ```
 Immediate Concerns:
-- Emergency Hotline: [Phone Number]
-- Crisis Text Line: [Text Number]
-- Online Emergency Form: [Link]
-- Local Emergency Services: [Contact Info]
+For all emergency contacts and response times, see: [SECURITY.md - Emergency Contacts](../../../SECURITY.md#emergency-contacts)
 
 Non-Emergency Issues:
-- Community Concern Form: [Link]
-- Anonymous Tip Line: [Contact]
+- Community Concern Form: support@merajutasa.id
+- Anonymous Tip Line: anonymous@merajutasa.id
 - Chapter Leader Contact: [Directory]
 - Platform Support: [Support Email]
 
@@ -610,26 +609,26 @@ Emergency Contacts:
 - Leadership Team: leadership@merajutasa.id
 
 Regional Coordinators:
-- North Region: [Contact Info]
-- South Region: [Contact Info]
-- East Region: [Contact Info]
-- West Region: [Contact Info]
+- North Region: north@merajutasa.id
+- South Region: south@merajutasa.id
+- East Region: east@merajutasa.id
+- West Region: west@merajutasa.id
 - International: global@merajutasa.id
 ```
 
 ### Community Leadership
 ```
 Community Advisory Board:
-- Board Chair: [Name and Contact]
-- Vice Chair: [Name and Contact]
-- Secretary: [Name and Contact]
-- Community Representatives: [Directory]
+- Board Chair: advisory-chair@merajutasa.id
+- Vice Chair: advisory-vice@merajutasa.id
+- Secretary: advisory-secretary@merajutasa.id
+- Community Representatives: community-reps@merajutasa.id
 
 Program Coordinators:
-- Volunteer Programs: [Coordinator Contact]
-- Educational Services: [Coordinator Contact]
-- Community Events: [Coordinator Contact]
-- Safety & Protection: [Coordinator Contact]
+- Volunteer Programs: volunteer-coordinator@merajutasa.id
+- Educational Services: education-coordinator@merajutasa.id
+- Community Events: events-coordinator@merajutasa.id
+- Safety & Protection: safety-coordinator@merajutasa.id
 ```
 
 ---
@@ -639,16 +638,17 @@ Program Coordinators:
 ### Essential Resources
 - **[Safety Guidelines](safety/README.md)** - Complete safety protocols and reporting
 - **[Getting Started Guide](getting-started/README.md)** - Step-by-step onboarding
-- **[Volunteer Handbook](volunteer-handbook.md)** - Comprehensive volunteer guide
 - **[Community Guidelines](policies/community-guidelines.md)** - Standards and expectations
-- **[Resource Library](resources/README.md)** - Educational materials and tools
+- **[Support Resources](support/faq.md)** - Help and troubleshooting
+- **[Training Materials](support/training-materials.md)** - Educational resources and tools
+
 
 ### Connect With Us
 - **[Community Forum](https://community.merajutasa.id)** - Online discussions and support
-- **[Social Media](social-media-guide.md)** - Follow us and join the conversation
-- **[Newsletter](newsletter-signup.md)** - Stay updated with community news
-- **[Local Chapters](chapters/README.md)** - Find or start a chapter near you
-- **[Events Calendar](events/calendar.md)** - Upcoming events and opportunities
+- **[Social Media Guide](../media/README.md)** - Follow us and join the conversation
+- **[Newsletter Signup](support/contact-information.md)** - Stay updated with community news
+- **[Support Contacts](support/contact-information.md)** - Get help and connect with staff
+- **[Educational Events](support/training-materials.md)** - Upcoming training and workshops
 
 ---
 
