@@ -37,7 +37,7 @@ This framework applies to all business stakeholders engaging with MerajutASA Pla
 - **CSR Impact Analytics Only**: Business partners receive [aggregated CSR impact metrics](../../architecture/security/data-classification.md#business-analytics) with no access to individual child data
 - **Partnership Performance Data**: Corporate partners access [partnership-specific performance analytics](../../architecture/security/access-control.md#business-roles) limited to their own contributions and impact
 - **Financial Transaction Security**: Corporate donations and funding utilize [secure payment processing](../../architecture/security/data-protection.md#financial-security) with PCI DSS compliance
-- **Brand Asset Protection**: Corporate brand assets and communications use [secure content management](../../architecture/security/communication-security.md#business-content) with approval workflows
+- **Brand Asset Protection**: Corporate brand assets and communications use [secure content management](../../architecture/security/communication-security.md#stakeholder-communication-permissions) with approval workflows
 
 ## Implementation Steps for Business Partners
 

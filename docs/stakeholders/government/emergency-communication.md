@@ -29,13 +29,13 @@ This framework applies to government emergency response personnel and coordinati
 
 ### Emergency Communication Architecture Integration
 - **Twilio Platform Implementation**: Government emergency communications use [Twilio platform](../../architecture/decisions/028-notification-service-platform-selection.md) with child safety alert framework
-- **Multi-Channel Delivery**: Government emergency alerts delivered through [SMS, voice, email, and push notifications](../../architecture/security/communication-security.md#multi-channel-emergency) with automatic failover
-- **Secure Communication Channels**: All government emergency communications use [end-to-end encryption](../../architecture/security/communication-security.md#emergency-encryption) with government-certified security protocols
-- **Real-Time Coordination**: Government agencies coordinate through [real-time communication systems](../../architecture/security/communication-security.md#real-time-government) during child safety emergencies
+- **Multi-Channel Delivery**: Government emergency alerts delivered through [SMS, voice, email, and push notifications](../../architecture/security/communication-security.md#emergency-communication-procedures) with automatic failover
+- **Secure Communication Channels**: All government emergency communications use [end-to-end encryption](../../architecture/security/communication-security.md#communication-encryption-framework) with government-certified security protocols
+- **Real-Time Coordination**: Government agencies coordinate through [real-time communication systems](../../architecture/security/communication-security.md#critical-alert-system-architecture) during child safety emergencies
 
 ### Government Emergency Response Integration
-- **Priority Alert System**: Government emergency responders receive [priority notifications](../../architecture/security/communication-security.md#priority-alerts) during child safety incidents
-- **Inter-Agency Coordination**: Government agencies coordinate through [secure communication channels](../../architecture/security/communication-security.md#inter-agency-secure) with automatic message routing
+- **Priority Alert System**: Government emergency responders receive [priority notifications](../../architecture/security/communication-security.md#emergency-alert-classification) during child safety incidents
+- **Inter-Agency Coordination**: Government agencies coordinate through [secure communication channels](../../architecture/security/communication-security.md#emergency-communication-procedures) with automatic message routing
 - **Emergency Authentication**: Government emergency personnel use [rapid authentication systems](../../architecture/security/authentication-architecture.md#emergency-auth) for immediate access during incidents
 - **Audit Trail Maintenance**: All government emergency communications generate [comprehensive audit trails](../../architecture/security/compliance-architecture.md#emergency-auditing) for post-incident review
 
