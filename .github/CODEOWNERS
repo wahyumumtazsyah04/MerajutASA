@@ -1,0 +1,16 @@
+# Minimal CODEOWNERS for MerajutASA (governance)
+# Replace team aliases with actual org teams when available. Including @wahyumumtazsyah04 ensures routing works today.
+
+# Academia-specific stakeholder docs
+/docs/stakeholders/academia/**     @wahyumumtazsyah04 @docs-core
+
+# All stakeholder docs (general)
+/docs/stakeholders/**              @wahyumumtazsyah04 @docs-core
+
+# Compliance & security documentation areas
+/docs/api/architecture/compliance/**  @wahyumumtazsyah04 @security-leads
+/docs/api/architecture/security/**    @wahyumumtazsyah04 @security-leads
+/security/**                          @wahyumumtazsyah04 @security-leads
+
+# Fallback for any docs changes
+/docs/**                           @wahyumumtazsyah04 @docs-core
