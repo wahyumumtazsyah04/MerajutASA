@@ -95,6 +95,8 @@ The security of the MerajutASA Platform is paramount, especially given our respo
 
 ### Security Architecture Overview
 
+Our comprehensive security framework protects child welfare data through multiple layers of defense and systematic threat analysis. For detailed threat assessment and mitigation strategies, see our [Threat Model and Risk Assessment](docs/architecture/security/threat-model.md).
+
 #### Defense in Depth Strategy
 
 **Perimeter Security**

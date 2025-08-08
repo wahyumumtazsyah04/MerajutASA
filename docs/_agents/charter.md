@@ -7,11 +7,6 @@ owner: "docs-core"
 status: "draft"
 version: "0.1.0"
 last_reviewed: "2025-08-08"
-related_docs:
-  - "../STYLE_GUIDE.md"
-  - "../CONTRIBUTING.md"
-  - "../REVIEW_PROCESS.md"
-  - "../GLOSSARY.md"
 tags: ["agent","docs-as-code","grounding","quality-gates"]
 ---
 
@@ -42,3 +37,9 @@ tags: ["agent","docs-as-code","grounding","quality-gates"]
 ## Review
 - Minimal 2 reviewer: domain owner + child-safety/a11y.
 - SLA review: P0 < 48 jam, P1 < 5 hari.
+
+## Related Documentation
+- [Style Guide](../STYLE_GUIDE.md) - Writing standards for documentation
+- [Contributing Guidelines](../CONTRIBUTING.md) - How to contribute to the platform
+- [Review Process](../REVIEW_PROCESS.md) - Documentation review workflow
+- [Glossary](../GLOSSARY.md) - Common terms and definitions
