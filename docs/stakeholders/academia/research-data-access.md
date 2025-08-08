@@ -23,8 +23,10 @@ Memfasilitasi penelitian yang aman dengan dataset teranonymisasi tanpa melanggar
 
 ## Key Facts (Grounded)
 - Privasi-dalam-desain: docs/architecture/compliance/privacy-by-design.md
+- Anonymisasi data: docs/stakeholders/academia/data-anonymization.md
 - Jejak audit: docs/architecture/compliance/audit-trail.md
 - Keamanan data: docs/architecture/security/data-protection.md
+- Klasifikasi data: security/policies/data-classification.md
 - Standar aksesibilitas: docs/architecture/compliance/accessibility-compliance.md
 
 ## Changelog
