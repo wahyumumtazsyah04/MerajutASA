@@ -22,8 +22,8 @@ Ensure public presentations protect children’s privacy, align with ethics and 
 ## Key Facts (Grounded)
 - Ethics & privacy controls – docs/stakeholders/academia/ethics-guidelines.md
 - De‑identification & small‑cell rules – docs/stakeholders/academia/research-data-access.md#6-dataset-provisioning-patterns
-- Accessibility – docs/api/decisions/014-accessibility-standards.md and docs/STYLE_GUIDE.md
-- Security & lawful processing – docs/api/decisions/013-security-framework.md
+- Accessibility – docs/architecture/decisions/014-accessibility-standards.md and docs/STYLE_GUIDE.md
+- Security & lawful processing – docs/architecture/decisions/013-security-framework.md
 
 ## How‑To / Steps
 1) Content selection

@@ -23,8 +23,8 @@ Provide a safe, privacy-preserving pathway for researchers to analyze and publis
 - Small‑cell rule (n<10) and de‑identification patterns are required for research datasets – see Research Data Access → docs/stakeholders/academia/research-data-access.md#6-dataset-provisioning-patterns
 - Data minimization and de‑identification techniques (pseudonymization, generalization, suppression, noise) – see docs/stakeholders/academia/ethics-guidelines.md
 - Privacy‑by‑design principles (purpose limitation, storage minimization) – see docs/architecture/compliance/privacy-by-design.md
-- Security baselines and lawful processing – see docs/api/decisions/013-security-framework.md
-- Accessibility for materials/artifacts – see docs/api/decisions/014-accessibility-standards.md
+- Security baselines and lawful processing – see docs/architecture/decisions/013-security-framework.md
+- Accessibility for materials/artifacts – see docs/architecture/decisions/014-accessibility-standards.md
 
 ## How‑To / Steps
 1) Define purpose and variables

@@ -23,7 +23,7 @@ Enable supervised student learning while upholding child safety, privacy, and do
 - Use de‑identified/synthetic datasets and sandbox APIs – see docs/stakeholders/academia/research-data-access.md
 - Ethics and child protection apply to all student work – see docs/stakeholders/academia/ethics-guidelines.md
 - API usage and limits follow academic v1 – see docs/stakeholders/academia/api-documentation.md
-- Accessibility and localization – see docs/api/decisions/014-accessibility-standards.md and docs/STYLE_GUIDE.md
+- Accessibility and localization – see docs/architecture/decisions/014-accessibility-standards.md and docs/STYLE_GUIDE.md
 
 ## How‑To / Steps
 1) Registration and scope
@@ -33,7 +33,7 @@ Enable supervised student learning while upholding child safety, privacy, and do
 3) Data handling
    - Apply small‑cell rule (n<10); generalize/suppress; no re‑identification attempts – research-data-access.md#6-dataset-provisioning-patterns
 4) Development standards
-   - Follow documentation-first and testing basics aligned with ADR‑012 – docs/api/decisions/012-testing-strategy.md
+   - Follow documentation-first and testing basics aligned with ADR‑012 – docs/architecture/decisions/012-testing-strategy.md
 5) Review and sign‑off
    - Supervisor checks ethics, privacy, accessibility, and documentation quality – REVIEW_PROCESS.md
 6) Publication and sharing
