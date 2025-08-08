@@ -45,6 +45,20 @@ jobs:
             fi
           done
 
+          echo "Checking additional recommended structure files (non-blocking for now)..."
+          rec=(
+            "docs/MAINTENANCE.md"
+            "docs/METRICS.md"
+            "docs/user-guides/README.md"
+          )
+          for f in "${rec[@]}"; do
+            if [[ ! -f "$f" ]]; then
+              echo "::warning file=$f::Recommended file missing (tracked via issues)"
+            else
+              echo "OK (recommended): $f"
+            fi
+          done
+
           echo "Checking optional (non-blocking) files referenced by instructions..."
           opt=(
             "security/policies/security-policy.md"
@@ -62,6 +76,41 @@ jobs:
           if [[ "$missing" -ne 0 ]]; then
             echo "Required files missing"
             exit 1
+          fi
+
+      - name: Check empty critical directories (non-blocking)
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "Scanning for empty critical directories..."
+          dirs=(
+            "docs/operations/maintenance"
+            "docs/operations/incident-response"
+            "docs/user-guides"
+          )
+          for d in "${dirs[@]}"; do
+            if [[ -d "$d" ]]; then
+              if [[ -z "$(find "$d" -type f -maxdepth 1)" ]]; then
+                echo "::warning file=$d::Directory exists but has no files (add README.md or content)"
+              else
+                echo "OK (has files): $d"
+              fi
+            else
+              echo "::warning file=$d::Directory missing (non-blocking)"
+            fi
+          done
+
+      - name: Guard against placeholder language
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "Checking for placeholder/template language..."
+          if grep -RInE "PLACEHOLDER|\\bTBD\\b|TO BE FILLED|Lorem ipsum|\\bWIP\\b|<insert|coming soon" docs/ security/ || true; then
+            hits=$(grep -RInE "PLACEHOLDER|\\bTBD\\b|TO BE FILLED|Lorem ipsum|\\bWIP\\b|<insert|coming soon" docs/ security/ | wc -l || true)
+            if [[ ${hits:-0} -gt 0 ]]; then
+              echo "::error ::Placeholder or template language detected in docs/security; please replace with grounded content."
+              exit 1
+            fi
           fi
 
       - name: Summary
