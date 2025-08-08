@@ -392,7 +392,7 @@ class PTRetailNusantaraCommunityEngagementCaseStudy {
     this.partner = {
       name: "PT. Retail Nusantara",
       sector: "Retail and Consumer Goods",
-      partnership_duration: "18 months (2025-2025)",
+      partnership_duration: "18 months (2023-2025)",
       investment_total: 950000000, // IDR 950 million
       store_locations: 347,
       community_reach: 2800000,

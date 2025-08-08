@@ -535,7 +535,7 @@ Example Response:
     "investment": 291666667,
     "social_value_created": 1371133333,
     "roi_ratio": 4.7,
-    "calculation_methodology": "SROI_standard_2025"
+    "calculation_methodology": "SROI_standard_2023"
   },
   "beneficiary_impact": {
     "direct_beneficiaries": 1247,
