@@ -19,7 +19,7 @@ Set clear, enforceable rules that protect children while enabling accurate repor
 
 ## Prohibited uses
 - Any content that reveals a child's identity; content violating privacy-by-design: docs/architecture/compliance/privacy-by-design.md
-- Anything that violates docs/stakeholders/community/policies/content-policy.md or Terms of Service.
+- Anything that violates docs/stakeholders/community/policies/content-policy.md or terms: docs/stakeholders/community/policies/terms-of-service.md
 
 ## Embargo & attribution
 - Embargoes and attribution must follow Brand Guidelines: docs/stakeholders/media/brand-guidelines.md
