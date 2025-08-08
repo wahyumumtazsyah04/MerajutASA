@@ -1,0 +1,40 @@
+name: Docs Quality
+
+on:
+  pull_request:
+    paths:
+      - 'docs/**'
+      - '**/*.md'
+  push:
+    branches: [ master, main ]
+    paths:
+      - 'docs/**'
+      - '**/*.md'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  markdownlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DavidAnson/markdownlint-cli2-action@v16
+        with:
+          globs: |
+            **/*.md
+          config: .markdownlint.jsonc
+
+  linkcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: lycheeverse/lychee-action@v2
+        with:
+          args: --config .lychee.toml --verbose --no-progress
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

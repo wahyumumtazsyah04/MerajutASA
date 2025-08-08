@@ -1,0 +1,76 @@
+name: "Roadmap Milestone"
+description: "Time-bound deliverable contributing to an epic"
+title: "milestone: <concise title>"
+labels: ["roadmap", "milestone"]
+body:
+  - type: input
+    id: epic
+    attributes:
+      label: Parent Epic
+      description: Link the epic issue (e.g., #123)
+      placeholder: "#<epic-issue-number>"
+    validations:
+      required: false
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: What will be delivered in this milestone.
+      placeholder: "- Deliverable 1\n- Deliverable 2"
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance Criteria
+      description: What must be true to mark this milestone done.
+      placeholder: "- Criteria A\n- Criteria B"
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options: ["priority:P0", "priority:P1", "priority:P2"]
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - "area:frontend"
+        - "area:backend"
+        - "area:gateway"
+        - "area:docs"
+        - "area:infra"
+        - "area:monitoring"
+        - "area:security"
+    validations:
+      required: true
+  - type: dropdown
+    id: stakeholder
+    attributes:
+      label: Primary Stakeholder
+      options:
+        - "stakeholder:government"
+        - "stakeholder:business"
+        - "stakeholder:academia"
+        - "stakeholder:community"
+        - "stakeholder:media"
+    validations:
+      required: true
+  - type: dropdown
+    id: quarter
+    attributes:
+      label: Target Quarter
+      options: ["quarter:2025Q3", "quarter:2025Q4", "quarter:2026Q1", "quarter:2026Q2"]
+    validations:
+      required: false
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks & Mitigations
+      placeholder: "- Risk: ... / Mitigation: ..."
+    validations:
+      required: false

@@ -1,0 +1,14 @@
+verbose = true
+max-redirects = 5
+timeout = 20
+retry-count = 2
+retry-wait-time = 2
+accept = ["200..299", "403"]
+exclude = [
+  "https://localhost",
+  "http://localhost",
+  "http://127.0.0.1",
+  "https://127.0.0.1"
+]
+exclude-path = ["CHANGELOG.md"]
+include-verbatim = true

@@ -1,0 +1,102 @@
+name: Security Belt
+
+on:
+  pull_request:
+    branches: [ master, main ]
+  push:
+    branches: [ master, main ]
+  schedule:
+    - cron: '0 2 * * 1' # Weekly security sweep
+
+permissions:
+  contents: read
+
+concurrency:
+  group: security-belt-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  gitleaks:
+    name: Secrets scan (gitleaks)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        with:
+          args: detect --no-banner --redact --verbose
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  detect-languages:
+    name: Detect repository languages for CodeQL
+    runs-on: ubuntu-latest
+    outputs:
+      has_lang: ${{ steps.detect.outputs.has_lang }}
+      matrix: ${{ steps.detect.outputs.matrix }}
+    steps:
+      - name: Build CodeQL language matrix
+        id: detect
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const allowed = new Set(['javascript','python','go','cpp','csharp','java','ruby','swift']);
+            const mapToCodeQL = new Map([
+              ['TypeScript', 'javascript'],
+              ['JavaScript', 'javascript'],
+              ['Python',     'python'],
+              ['Go',         'go'],
+              ['C',          'cpp'],
+              ['C++',        'cpp'],
+              ['C#',         'csharp'],
+              ['Java',       'java'],
+              ['Kotlin',     'java'],
+              ['Ruby',       'ruby'],
+              ['Swift',      'swift'],
+            ]);
+
+            const { owner, repo } = context.repo;
+            const res = await github.rest.repos.listLanguages({ owner, repo });
+            const langs = Object.keys(res.data || {});
+            core.info(`Detected repository languages: ${langs.join(', ') || '(none)'}`);
+
+            const mapped = [...new Set(langs
+              .map(l => mapToCodeQL.get(l) || l.toLowerCase())
+              .filter(l => allowed.has(l)))];
+
+            if (mapped.length === 0) {
+              core.notice('No CodeQL-supported languages detected; CodeQL job will be skipped.');
+              core.setOutput('has_lang', 'false');
+              core.setOutput('matrix', JSON.stringify({ language: [] }));
+            } else {
+              core.info(`CodeQL languages: ${mapped.join(', ')}`);
+              core.setOutput('has_lang', 'true');
+              core.setOutput('matrix', JSON.stringify({ language: mapped }));
+            }
+
+  codeql:
+    name: CodeQL analysis
+    needs: detect-languages
+    # Only run if we actually have supported languages, and avoid restricted fork PRs
+    if: ${{ needs.detect-languages.outputs.has_lang == 'true' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false) }}
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      contents: read
+      actions: read
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.detect-languages.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+      - uses: github/codeql-action/autobuild@v3
+      - uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:${{ matrix.language }}"
