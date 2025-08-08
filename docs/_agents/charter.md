@@ -6,7 +6,7 @@ stakeholder: ["government","business","academia","community","media"]
 owner: "docs-core"
 status: "draft"
 version: "0.1.0"
-last_reviewed: "YYYY-MM-DD"
+last_reviewed: "2025-08-08"
 related_docs:
   - "../STYLE_GUIDE.md"
   - "../CONTRIBUTING.md"
