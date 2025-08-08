@@ -137,7 +137,7 @@ WhatsApp Groups (Emergency Communication):
   Purpose: Urgent coordination and crisis response
   Users: Core coordination team and emergency contacts
   Groups:
-    Crisis Response Team: Emergency coordination (24/7)
+    Crisis Response Team: Emergency coordination (priority response)
     Operations Team: Daily operational coordination
     Leadership Circle: Senior stakeholder urgent coordination
   
@@ -665,7 +665,7 @@ Media Information Sharing:
 #### Quantitative Communication Metrics
 ```yaml
 Response Time Metrics:
-  Emergency Response: Average <1 hour (Target: 100% within 1 hour)
+  Emergency Response: Average <1 hour (Target: rapid response within 1 hour)
   Urgent Requests: Average <4 hours (Target: 95% within 4 hours)
   Standard Communication: Average <24 hours (Target: 90% within 24 hours)
   Information Requests: Average <48 hours (Target: 85% within 48 hours)

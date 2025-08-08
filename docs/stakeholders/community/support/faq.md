@@ -55,7 +55,7 @@ graph TD
 ```yaml
 Child Protection Measures:
   Data Protection:
-    - All child data encrypted with military-grade AES-256 encryption
+    - All child data encrypted with AES-256 encryption standard
     - No child names or photos shared publicly without explicit consent
     - Data stored only in secure Indonesian data centers
     - Automatic data minimization and retention limits
@@ -79,7 +79,7 @@ Child Protection Measures:
 
 ```yaml
 Immediate Reporting:
-  Emergency Hotline: +62-XXX-XXX-XXXX (24/7)
+  Emergency Hotline: +62-XXX-XXX-XXXX (priority response)
   Emergency Email: emergency@merajutasa.id
   Platform Emergency Button: Available in mobile app
   
@@ -737,7 +737,7 @@ Immediate Emergency Steps:
     5. Follow up with platform security team
   
 Professional Response:
-  - Trained emergency response team available 24/7
+  - Trained emergency response team available for rapid response
   - Coordination with police and medical services
   - Professional crisis counseling and support
   - Follow-up services and long-term support planning
@@ -782,7 +782,7 @@ Support Groups:
 **General Support**: support@merajutasa.id  
 **Community Questions**: community@merajutasa.id  
 **Technical Help**: tech-support@merajutasa.id  
-**Emergency Assistance**: +62-XXX-XXX-XXXX (24/7)
+**Emergency Assistance**: +62-XXX-XXX-XXXX (priority response)
 
 ### Additional Resources
 ```yaml
