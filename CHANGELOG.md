@@ -72,7 +72,7 @@ See [.github/PULL_REQUEST_TEMPLATE/documentation.md](.github/PULL_REQUEST_TEMPLA
 
 ---
 
-## [1.0.0] - 2025-01-28
+## [1.0.0] - 2025-08-08
 
 ### Added
 - Initial platform documentation foundation
