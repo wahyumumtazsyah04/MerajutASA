@@ -403,7 +403,7 @@ Impact Measurement:
 ## 📚 Related Documentation
 
 ### Architecture Documentation
-- [ADR-008: Data Architecture Selection](008-data-architecture-selection.md) - Database and storage integration
+- [ADR-002: Database Strategy Selection](002-database-strategy.md) - Database and storage integration
 - [ADR-019: Analytics Platform Selection](019-analytics-platform-selection.md) - Business intelligence integration
 - [ADR-025: Secrets Management Platform](025-secrets-management-platform-selection.md) - Pipeline security integration
 
