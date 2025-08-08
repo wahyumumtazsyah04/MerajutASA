@@ -37,7 +37,7 @@ This page defines a small, actionable set of metrics to monitor the health and e
 ## Review cadence
 - Weekly: CI summary review for warnings/errors; fix promptly.
 - Monthly: Freshness audit (update last_reviewed where content is validated).
-- Quarterly: Stakeholder alignment check via docs/stakeholders/.
+- Quarterly: Stakeholder alignment check with stakeholder documentation.
 
 ## Links
 - Review Process: docs/REVIEW_PROCESS.md
