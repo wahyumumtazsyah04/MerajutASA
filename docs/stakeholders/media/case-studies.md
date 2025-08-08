@@ -18,7 +18,8 @@ Provide a structure for anonymized, consented case studies that comply with priv
 
 ## Anonymization & consent
 - Follow privacy-by-design: docs/architecture/compliance/privacy-by-design.md
-- Align with data classification and local child protection requirements (to be added to security/...).
+- Align with data classification: security/policies/data-classification.md
+- Observe privacy obligations: docs/stakeholders/community/policies/privacy-policy.md
 
 ## Asset checklist
 - Images/graphics follow a11y and privacy standards.
@@ -28,10 +29,13 @@ Provide a structure for anonymized, consented case studies that comply with priv
 
 ## Key Facts (Grounded)
 - Accessibility and privacy requirements apply to all artifacts: docs/architecture/compliance/accessibility-compliance.md; docs/architecture/compliance/privacy-by-design.md
+- Cite MerajutASA when using materials: CITATION.cff
 
 ## Open Questions
-- security policy files and local regulation mappings referenced in the brief are not present. Add exact links once available.
-- CITATION.cff not present; add once available.
+- The specific local regulation files are not present and outside the current allowlist path:
+  - security/compliance/requirements/local-regulations/indonesia-data-protection.md
+  - security/compliance/requirements/local-regulations/indonesia-child-protection.md
+  Proposal: add these under an approved path or extend the allowlist in a follow-up PR. Until then, reference docs/architecture/compliance/regulatory-mapping.md.
 
 ## Changelog
 - 2025-08-08: Initial draft.

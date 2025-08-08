@@ -23,19 +23,19 @@ Provide narrative frameworks that comply with our style guide, glossary definiti
 
 ## Quotes & attribution policy
 - Follow style guidance for quotes and attributions: docs/STYLE_GUIDE.md
+- Use agreed terminology from: docs/GLOSSARY.md
 
 ## Pre-publication checklist
 - Terms, privacy, and content rules upheld: docs/community/policies (to be added);
+- Terms, privacy, and content rules upheld: docs/stakeholders/community/policies/terms-of-service.md; docs/stakeholders/community/policies/privacy-policy.md; docs/stakeholders/community/policies/content-policy.md
 - Check accessibility (alt text, captions): docs/architecture/compliance/accessibility-compliance.md
 - Verify metrics with impact-metrics: docs/stakeholders/media/impact-metrics.md
-
+- Follow digital safety guidance: security/training/child-safety/digital-safety.md
+ 
 ## Key Facts (Grounded)
 - Privacy-by-design: docs/architecture/compliance/privacy-by-design.md
 - Accessibility compliance: docs/architecture/compliance/accessibility-compliance.md
 - Style and terminology: docs/STYLE_GUIDE.md
-
-## Open Questions
-- docs/GLOSSARY.md and community policies directory are not present; add links once available.
 
 ## Changelog
 - 2025-08-08: Initial draft.

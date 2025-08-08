@@ -18,6 +18,8 @@ Provide safe, official communication paths for media requests.
 
 ## Official contact channels
 - Use addresses published in this repository only; avoid sharing personal contact details. See CODE_OF_CONDUCT.md for expected behavior.
+- Communication security policy: security/policies/communication-security.md
+- Acceptable use: security/policies/acceptable-use.md
 
 ## Availability & briefing process
 - Coordinate interviews via Media Guidelines process: docs/stakeholders/media/media-guidelines.md
@@ -27,6 +29,7 @@ Provide safe, official communication paths for media requests.
 
 ## Key Facts (Grounded)
 - Communication must follow safe practices; observe code of conduct: CODE_OF_CONDUCT.md
+- Governance context: GOVERNANCE.md
 
 ## Changelog
 - 2025-08-08: Initial draft.

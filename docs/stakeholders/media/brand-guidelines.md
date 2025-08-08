@@ -39,6 +39,8 @@ Ensure consistent, accessible, and safe use of brand assets. Follow docs/STYLE_G
 ## Key Facts (Grounded)
 - Follow docs/STYLE_GUIDE.md for capitalization, tone, and formatting.
 - Accessibility and privacy are required: docs/architecture/compliance/accessibility-compliance.md; docs/architecture/compliance/privacy-by-design.md
+- Content rules: docs/stakeholders/community/policies/content-policy.md
+- Licensing: LICENSE
 
 ## Changelog
 - 2025-08-08: Initial draft.

@@ -17,6 +17,7 @@ Define consistent media metrics and where they are sourced.
 - Media Engagement Dashboard: monitoring/dashboards/stakeholder/media/media-engagement-dashboard.md
 - Impact dashboards index: monitoring/dashboards/impact/README.md
 - Metrics catalog: monitoring/analytics/metrics/README.md
+- Compliance mapping: COMPLIANCE_MATRIX.md
 
 ## Update cadence
 - Dashboard refresh guidance described in each dashboard README.
@@ -32,6 +33,7 @@ Define consistent media metrics and where they are sourced.
 
 ## Key Facts (Grounded)
 - Metrics must align with compliance and privacy controls.
+  See COMPLIANCE_MATRIX.md and docs/architecture/compliance/privacy-by-design.md
 
 ## Changelog
 - 2025-08-08: Initial draft.

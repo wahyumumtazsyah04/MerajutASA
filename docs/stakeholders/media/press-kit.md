@@ -36,17 +36,15 @@ Provide a single, safe starting point for media with approved assets and clear u
 - Expert contacts: docs/stakeholders/media/expert-contacts.md
 
 ## Usage rights & licensing
-- See Brand Guidelines for permitted uses and attribution: docs/stakeholders/media/brand-guidelines.md
+- Refer to Brand Guidelines for permitted uses and attribution: docs/stakeholders/media/brand-guidelines.md
+- License: LICENSE
 
 ## Contact & requests
 - Media request and embargo guidance: docs/stakeholders/media/media-guidelines.md
 
 ## Key Facts (Grounded)
 - Privacy-by-design governs what can be published: docs/architecture/compliance/privacy-by-design.md
-- Accessibility and contrast requirements apply to all assets: docs/architecture/compliance/accessibility-compliance.md; docs/STYLE_GUIDE.md
-
-## Open Questions
-- Root LICENSE file not present; once available, add explicit licensing section and per-asset license notices.
+- Accessibility and privacy-by-design requirements apply to all media work: docs/architecture/compliance/accessibility-compliance.md; docs/architecture/compliance/privacy-by-design.md
 
 ## Changelog
-- 2025-08-08: Initial draft with grounded links and placeholder asset directories.
+- 2025-08-08: Initial draft created with grounded links and placeholder asset directories.
