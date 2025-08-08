@@ -1,104 +1,64 @@
 ---
 title: "MerajutASA Platform Roadmap"
-summary: "Strategic milestones and development priorities for the child welfare platform."
-audience: ["leadership", "developers", "stakeholders", "partners"]
+summary: "Development milestones and strategic initiatives for advancing child welfare through penta-helix collaboration"
+audience: ["developers", "administrators", "government", "business", "academia", "community", "media"]
 stakeholder: ["government", "business", "academia", "community", "media"]
-owner: "@project-leads"
+owner: "@wahyumumtazsyah04"
 status: "draft"
-version: "0.2.0"
-last_reviewed: "2025-08-08"
-tags: ["roadmap", "planning", "milestones", "stakeholder-alignment"]
+version: "0.1.0"
+last_reviewed: "2025-01-08"
+tags: ["child-safety", "architecture", "compliance", "roadmap"]
 ---
 
+# MerajutASA Platform Roadmap
+
 ## Purpose
-Provide clear visibility into MerajutASA platform development priorities, ensuring all penta-helix stakeholders understand upcoming features and can plan their engagement accordingly.
+Provide transparent visibility into platform development priorities that advance child welfare outcomes through systematic penta-helix stakeholder collaboration, architectural improvements, and impact measurement capabilities.
 
 ## Scope & Audience
-- **Primary**: Project leadership, development teams, key stakeholders
-- **Secondary**: Partners, funders, and community members planning collaboration
-- **Timeline**: 6-month rolling horizon with quarterly updates
-
-## Current Focus Areas
-
-### Child Safety & Privacy (P0 - Critical)
-- Enhanced data protection controls per security/policies/data-classification.md
-- Trauma-informed interface improvements
-- Emergency response system enhancements
-- Access control refinements for sensitive child data
-
-### Stakeholder Collaboration (P1 - High)
-- Media stakeholder portal improvements: docs/stakeholders/media/
-- Business partnership integration features: docs/stakeholders/business/
-- Government reporting automation: docs/stakeholders/government/
-- Academic research data access controls: docs/stakeholders/academia/
-
-### Platform Foundation (P2 - Medium)
-- API documentation completeness: gateway/documentation/
-- Infrastructure monitoring improvements: monitoring/dashboards/
-- Accessibility compliance validation: docs/architecture/compliance/accessibility-compliance.md
-- Multi-language support expansion
-
-## Key Milestones
-
-### Q1 2025 (Current)
-- [x] Community policy framework completion: docs/stakeholders/community/policies/
-- [x] Media stakeholder documentation: docs/stakeholders/media/
-- [ ] Security policy enhancement: security/policies/
-- [ ] Monitoring dashboard integration: monitoring/dashboards/impact/
-
-### Q2 2025 (Planned)
-- [ ] Business partnership automation
-- [ ] Government compliance reporting
-- [ ] Academic research portal
-- [ ] Performance optimization phase 1
-
-### Q3 2025 (Proposed)
-- [ ] Mobile platform development
-- [ ] Advanced analytics capabilities
-- [ ] Third-party integration expansion
-- [ ] Accessibility enhancement phase 2
-
-## Stakeholder Benefits
-
-### Government Partners
-- Automated compliance reporting and audit trails
-- Real-time child welfare oversight capabilities
-- Interagency collaboration tools
-
-### Business Partners
-- Streamlined CSR impact measurement
-- Automated partnership management
-- Transparent resource allocation tracking
-
-### Academic Partners
-- Anonymized research data access
-- Collaboration tools for child welfare studies
-- Evidence-based outcome measurement
-
-### Community Partners
-- Enhanced resource discovery and coordination
-- Improved volunteer management systems
-- Direct impact visibility and reporting
-
-### Media Partners
-- Verified impact metrics and story resources
-- Ethical reporting guidelines and templates
-- Access to expert contacts and case studies
+- **Covered**: Near-term development milestones, architectural decisions, stakeholder-focused initiatives
+- **Audience**: All penta-helix stakeholders requiring development visibility
+- **Not Covered**: Detailed implementation specifications (see ADRs), operational metrics (see impact dashboards)
 
 ## Key Facts (Grounded)
-- Platform architecture overview: ARCHITECTURE.md
-- Governance structure: GOVERNANCE.md
-- Compliance requirements: COMPLIANCE_MATRIX.md
-- Stakeholder documentation: docs/stakeholders/
-- Technical specifications: docs/architecture/
+- [docs/architecture/decisions/README.md](docs/architecture/decisions/README.md) — Comprehensive architectural decision documentation with 30+ ADRs covering technology stack, security framework, and platform choices
+- [monitoring/dashboards/impact/README.md](monitoring/dashboards/impact/README.md) — Impact dashboard index enabling measurement of child welfare outcomes and stakeholder value
+- [docs/stakeholders/media/README.md](docs/stakeholders/media/README.md) — Media stakeholder documentation referencing roadmap for reporting coordination
+- [docs/instructions.md](docs/instructions.md) — Authoritative documentation standards ensuring grounded, child-safety-first content creation
+- [GOVERNANCE.md](GOVERNANCE.md) — Governance framework establishing stakeholder collaboration structure
 
-## Success Metrics
-- Child safety incident reduction
-- Stakeholder engagement increase
-- Platform availability and performance
-- Compliance audit success rate
-- User satisfaction across all stakeholder groups
+## Near-term Roadmap Items
+
+### Q1 2025: Documentation Platform Maturity
+**Goal**: Complete foundational documentation framework supporting all stakeholder needs
+- **Deliverables**: 
+  - Finalize all core ADR documentation per [docs/architecture/decisions/README.md](docs/architecture/decisions/README.md)
+  - Implement automated link checking and content validation
+  - Complete stakeholder-specific documentation per [docs/stakeholders/](docs/stakeholders/)
+- **Success Criteria**: ≥95% documentation coverage, <0.5% broken link rate
+- **Child Safety Impact**: Enhanced transparency and accountability for child protection measures
+
+### Q2 2025: Impact Measurement Integration  
+**Goal**: Operationalize impact dashboards for real-time child welfare outcome tracking
+- **Deliverables**:
+  - Deploy monitoring infrastructure per [monitoring/dashboards/impact/README.md](monitoring/dashboards/impact/README.md)
+  - Establish baseline metrics for child safety and stakeholder collaboration
+  - Create automated reporting for media and government stakeholders
+- **Success Criteria**: Real-time dashboard availability, stakeholder adoption >80%
+- **Child Safety Impact**: Data-driven optimization of child protection services
+
+## Accessibility & Child Safety
+All roadmap initiatives prioritize:
+- **Child Protection**: Every milestone includes explicit child safety impact assessment
+- **Accessibility**: WCAG 2.1 AA compliance for all stakeholder-facing deliverables  
+- **Privacy by Design**: Implementation follows security policies in [security/](security/) directory
+- **Cultural Sensitivity**: Development respects Indonesian context and community values
+
+## Validation & Monitoring
+- **Monthly Reviews**: Progress assessment against defined success criteria
+- **Stakeholder Feedback**: Quarterly collection via established channels in [docs/stakeholders/](docs/stakeholders/)
+- **Impact Measurement**: Continuous tracking via [monitoring/dashboards/impact/](monitoring/dashboards/impact/)
+- **Course Correction**: Adaptive planning based on child welfare outcome data
 
 ## Changelog
-- 2025-08-08: Enhanced roadmap with stakeholder priorities and grounded references
-- Previous: Initial placeholder with basic milestones
+- 0.1.0 (2025-01-08): Initial roadmap structure with Q1-Q2 2025 milestones linked to architectural decisions and impact measurement capabilities
