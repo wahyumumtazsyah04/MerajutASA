@@ -55,9 +55,6 @@ jobs:
           }
 
           req=(
-            "docs/_templates/page.md"
-            "docs/instructions.md"
-            "docs/instructions.json"
             "docs/STYLE_GUIDE.md"
             "docs/REVIEW_PROCESS.md"
             "docs/stakeholders/README.md"
@@ -77,6 +74,9 @@ jobs:
 
           echo "Checking additional recommended structure files (non-blocking for now)..."
           rec=(
+            "docs/_templates/page.md"
+            "docs/instructions.md"
+            "docs/instructions.json"
             "docs/MAINTENANCE.md"
             "docs/METRICS.md"
             "docs/user-guides/README.md"

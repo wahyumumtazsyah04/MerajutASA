@@ -23,18 +23,47 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: DavidAnson/markdownlint-cli2-action@v16
+      - name: Check config presence
+        id: cfg
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -f .markdownlint.jsonc ]]; then echo "has_mdlint=true" >> "$GITHUB_OUTPUT"; else echo "has_mdlint=false" >> "$GITHUB_OUTPUT"; fi
+      - name: Run markdownlint (with config)
+        if: steps.cfg.outputs.has_mdlint == 'true'
+        uses: DavidAnson/markdownlint-cli2-action@v16
         with:
           globs: |
             **/*.md
           config: .markdownlint.jsonc
+      - name: Run markdownlint (default)
+        if: steps.cfg.outputs.has_mdlint == 'false'
+        uses: DavidAnson/markdownlint-cli2-action@v16
+        with:
+          globs: |
+            **/*.md
 
   linkcheck:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: lycheeverse/lychee-action@v2
+      - name: Check lychee config presence
+        id: lyc
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -f .lychee.toml ]]; then echo "has_lychee=true" >> "$GITHUB_OUTPUT"; else echo "has_lychee=false" >> "$GITHUB_OUTPUT"; fi
+      - name: Lychee (with config)
+        if: steps.lyc.outputs.has_lychee == 'true'
+        uses: lycheeverse/lychee-action@v2
         with:
           args: --config .lychee.toml --verbose --no-progress
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Lychee (default)
+        if: steps.lyc.outputs.has_lychee == 'false'
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --verbose --no-progress
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
