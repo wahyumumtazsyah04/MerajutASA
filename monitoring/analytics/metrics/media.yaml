@@ -1,0 +1,18 @@
+version: 1
+owner: media-analytics
+metrics:
+  - key: media.impressions
+    name: Media Impressions
+    description: Count of article/post impressions linking to MerajutASA. No PII.
+    source: monitoring/dashboards/stakeholder/media/media-engagement-dashboard.md
+    pii: false
+  - key: media.referrals
+    name: Referral Sessions
+    description: Sessions originating from media outlets. Aggregated only.
+    source: monitoring/dashboards/stakeholder/media/media-engagement-dashboard.md
+    pii: false
+  - key: media.mentions
+    name: Verified Media Mentions
+    description: Count of verified mentions (manual curation).
+    source: docs/stakeholders/media/press-kit.md
+    pii: false
