@@ -453,10 +453,11 @@ Customization Standards:
     - Ensure accessibility standards compliance
     
   Content Adaptation:
-    - Replace placeholder data with accurate information
-    - Maintain data accuracy and verification standards
-    - Update source attribution and date information
-    - Ensure cultural sensitivity and appropriateness
+    - Use verified data from [docs/METRICS.md](../../../../../../METRICS.md) for organizational statistics
+    - Source monitoring data from [docs/operations/monitoring/](../../../../../../operations/monitoring/) for real-time metrics
+    - Maintain data accuracy and verification standards per quality assurance process
+    - Update source attribution with specific file references and last_reviewed dates
+    - Ensure cultural sensitivity and appropriateness following Indonesian context guidelines
     
   Technical Requirements:
     - Maintain file resolution and quality standards
@@ -619,6 +620,173 @@ Emergency Response Visualization:
 
 ---
 
+## 📊 Data Sources
+
+### Canonical Data Sources for Infographics
+
+#### Primary Internal Data Sources
+```yaml
+MerajutASA Platform Data:
+  Organizational Metrics:
+    Source: docs/METRICS.md
+    Content: Core KPIs, compliance metrics, documentation quality
+    Update Frequency: Monthly freshness audits, weekly CI summary
+    Usage: Statistical overlays, performance indicators, quality metrics
+    
+  Monitoring and Operations:
+    Source: docs/operations/monitoring/
+    Content: Real-time platform health, service delivery metrics
+    Components: dashboard-setup.md for configuration examples
+    Usage: Live data visualization, system status indicators
+    
+  Service Delivery Data:
+    Collection: Internal service delivery records (aggregated only)
+    Privacy: Individual data never included - aggregated anonymized statistics only
+    Compliance: Child protection and privacy compliance per security/ policies
+    Usage: Impact metrics, outcome visualization, program effectiveness
+```
+
+#### Data Integration Guidelines
+```markdown
+## Using Internal Data Sources
+
+### From docs/METRICS.md
+**Available Metrics**:
+- Documentation quality indicators (lint compliance, link integrity)
+- Review performance (median PR review time ≤ 5 business days)
+- Content freshness (≥ 80% pages with last_reviewed ≤ 180 days)
+- Structure health indicators (missing files, empty directories)
+
+**Implementation Example**:
+- Infographic title: "Documentation Excellence: 99.8% Quality Compliance"
+- Data source attribution: "Source: docs/METRICS.md (last_reviewed: 2025-08-08)"
+- Visual treatment: Progress bars, percentage displays, trend indicators
+
+### From docs/operations/monitoring/
+**Available Data**:
+- Dashboard configurations and setup procedures
+- Service monitoring protocols and health checks
+- System performance baselines and targets
+- Incident response procedures and metrics
+
+**Implementation Example**:
+- Service uptime visualizations using dashboard-setup.md configurations
+- Performance metric displays following monitoring protocols
+- Real-time status indicators based on established monitoring standards
+```
+
+#### Data Verification Process
+```yaml
+Quality Assurance:
+  Source Validation:
+    - Verify data exists in specified internal files
+    - Check last_reviewed dates for freshness
+    - Confirm compliance with privacy and child safety policies
+    - Validate against docs/STYLE_GUIDE.md requirements
+    
+  Data Protection:
+    - Never include individual child information
+    - Use only aggregated, anonymized statistics
+    - Follow security/ policies for data handling
+    - Ensure cultural sensitivity in data representation
+    
+  Attribution Standards:
+    - Include specific file path references
+    - Note last_reviewed or update dates
+    - Link to source files using relative paths
+    - Follow MerajutASA attribution standards
+```
+
+---
+
+## ♿ Accessibility Guidelines
+
+### WCAG 2.1 AA Compliance for Infographics
+
+#### Visual Accessibility Standards
+```yaml
+Color and Contrast:
+  Requirements: 
+    - Normal text: 4.5:1 contrast ratio minimum (per docs/architecture/compliance/accessibility-compliance.md)
+    - Large text: 3:1 contrast ratio minimum
+    - Non-text elements: 3:1 contrast ratio minimum
+    - Never rely on color alone to convey information
+    
+  Implementation:
+    - Use established MerajutASA color palette with verified contrast ratios
+    - Include patterns, textures, or icons alongside color coding
+    - Provide high contrast alternatives for complex visualizations
+    - Test with color blindness simulation tools
+```
+
+#### Alternative Text Standards
+```markdown
+## Infographic Alt Text Requirements
+
+### Descriptive Content
+**Chart and Graph Descriptions**:
+- Describe chart type, data trends, and key findings
+- Include specific data points for critical information
+- Explain relationships and patterns shown
+- Use clear, concise language appropriate for all audiences
+
+**Example Alt Text**:
+"Bar chart showing MerajutASA service delivery metrics: 847 children served this month (up 12% from last month), 98.5% satisfaction rate, and 100% safety compliance. Data source: docs/METRICS.md."
+
+### Content Structure
+**Information Hierarchy**:
+- Lead with chart/infographic type and main finding
+- Include essential data points and comparisons  
+- Reference internal data sources for verification
+- End with context or implications when relevant
+```
+
+#### Child-Friendly Accessibility
+```yaml
+Age-Appropriate Design:
+  Visual Elements:
+    - Large, clear fonts (minimum 12pt as per docs/architecture/compliance/accessibility-compliance.md)
+    - Simple, recognizable icons and symbols
+    - Consistent layout patterns for familiarity
+    - Reduced cognitive load through progressive disclosure
+    
+  Interactive Features:
+    - Large touch targets (minimum 44px, 60px for early childhood)
+    - Clear focus indicators for keyboard navigation
+    - Simple, predictable interaction patterns
+    - Audio descriptions available for complex visuals
+    
+  Multi-Modal Support:
+    - Text-to-speech compatibility
+    - Screen reader optimization
+    - Keyboard navigation support
+    - Voice command integration where applicable
+```
+
+#### Accessibility Validation Process
+```yaml
+Testing Requirements:
+  Automated Testing:
+    - WAVE accessibility evaluation for web-based infographics
+    - Color contrast validation using WebAIM tools
+    - Screen reader compatibility testing
+    - Keyboard navigation verification
+    
+  Manual Review:
+    - Child user testing for age-appropriate design
+    - Multi-language accessibility (Indonesian/English)
+    - Cultural sensitivity review for Indonesian context
+    - Assistive technology compatibility verification
+    
+  Documentation:
+    - Include accessibility features in infographic documentation
+    - Provide alternative format availability information
+    - Document assistive technology tested and supported
+    - Reference docs/architecture/compliance/accessibility-compliance.md compliance
+```
+
+---
+
 ## 🎯 Quality Assurance and Best Practices
 
 ### Content Accuracy and Verification
@@ -629,11 +797,11 @@ Emergency Response Visualization:
 
 ### Source Verification Requirements
 **Primary Data Sources**:
-- Direct service delivery data from verified organizational records
-- Government statistics and official public data sources
-- Academic research and peer-reviewed publication citations
-- International organization reports and standardized measurements
-- Community survey and stakeholder feedback with methodology disclosure
+- Direct service delivery data from verified organizational records (aggregated, anonymized only)
+- Internal metrics from [docs/METRICS.md](../../../../../../METRICS.md) (documentation quality, review performance, content freshness)
+- Monitoring data from [docs/operations/monitoring/](../../../../../../operations/monitoring/) (system health, service delivery)
+- Security compliance data from [security/](../../../../../../security/) policies and procedures
+- Architectural compliance from [docs/architecture/compliance/](../../../../../../architecture/compliance/) standards
 
 **Data Protection and Privacy**:
 - Individual privacy protection and anonymization procedures
