@@ -1,7 +1,7 @@
 # ADR-006: Authentication Provider Selection
 ## Identity Management System for Multi-Stakeholder Child Welfare Platform
 
-> **Decision Date**: 2025-08-15 | **Status**: Accepted
+> **Decision Date**: 2025-08-08 | **Status**: Accepted
 > **Child Safety Impact**: High | **Stakeholder Impact**: High
 > **Decision Owner**: Security Architecture Team | **Implementation Lead**: Identity Management Team
 

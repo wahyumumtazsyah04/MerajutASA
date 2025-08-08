@@ -55,7 +55,10 @@ graph TD
 ```yaml
 Child Protection Measures:
   Data Protection:
-    - All child data encrypted with military-grade AES-256 encryption
+    - Child-identifiable data encrypted using AES-256 with HSM key protection
+    - Data transmission secured with TLS 1.3 and Perfect Forward Secrecy
+    - Field-level encryption with separate keys per data classification level
+    - Hardware Security Module (HSM) key management with regular rotation
     - No child names or photos shared publicly without explicit consent
     - Data stored only in secure Indonesian data centers
     - Automatic data minimization and retention limits
@@ -73,13 +76,19 @@ Child Protection Measures:
     - Anonymous reporting system for safety concerns
 ```
 
+**References:**
+- [SECURITY.md](../../../../SECURITY.md) — Security policy and incident reporting procedures
+- [Communication Security Policy](../../../../security/policies/communication-security.md) — TLS requirements and secure channels
+- [Security Framework ADR](../../../architecture/decisions/013-security-framework.md) — Zero-trust architecture implementation
+- [Data Protection Architecture](../../../architecture/security/data-protection.md) — Comprehensive encryption and key management specifications
+
 ### Q: What should I do if I suspect child abuse or have safety concerns?
 
 **A: Report immediately through our emergency channels:**
 
 ```yaml
 Immediate Reporting:
-  Emergency Hotline: +62-XXX-XXX-XXXX (24/7)
+  Emergency Hotline: +62-XXX-XXX-XXXX (priority response)
   Emergency Email: emergency@merajutasa.id
   Platform Emergency Button: Available in mobile app
   
@@ -737,7 +746,7 @@ Immediate Emergency Steps:
     5. Follow up with platform security team
   
 Professional Response:
-  - Trained emergency response team available 24/7
+  - Trained emergency response team available for rapid response
   - Coordination with police and medical services
   - Professional crisis counseling and support
   - Follow-up services and long-term support planning
@@ -782,7 +791,7 @@ Support Groups:
 **General Support**: support@merajutasa.id  
 **Community Questions**: community@merajutasa.id  
 **Technical Help**: tech-support@merajutasa.id  
-**Emergency Assistance**: +62-XXX-XXX-XXXX (24/7)
+**Emergency Assistance**: +62-XXX-XXX-XXXX (priority response)
 
 ### Additional Resources
 ```yaml

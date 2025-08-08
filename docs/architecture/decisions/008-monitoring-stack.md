@@ -1,7 +1,7 @@
 # ADR-008: Monitoring Stack Selection
 ## Comprehensive Observability Platform for Child Welfare Operations
 
-> **Decision Date**: 2025-08-25 | **Status**: Accepted
+> **Decision Date**: 2025-08-08 | **Status**: Accepted
 > **Child Safety Impact**: High | **Stakeholder Impact**: High
 > **Decision Owner**: DevOps Architecture Team | **Implementation Lead**: Site Reliability Engineering Team
 

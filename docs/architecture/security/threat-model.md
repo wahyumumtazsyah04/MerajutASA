@@ -1,3 +1,15 @@
+---
+title: "Threat Model and Risk Assessment"
+summary: "Comprehensive security threat analysis for child protection platform with systematic threat modeling and mitigation strategies."
+audience: ["developers", "administrators", "security", "government", "business"]
+stakeholder: ["government", "business", "academia", "community", "media"]
+owner: "@security-team"
+status: "approved"
+version: "1.0.0"
+last_reviewed: "2025-08-08"
+tags: ["security", "threat-model", "child-safety", "architecture", "risk-assessment"]
+---
+
 # Threat Model and Risk Assessment
 ## Comprehensive Security Threat Analysis for Child Protection Platform
 
@@ -781,6 +793,41 @@ Child Safety Emergencies:
   Coordination: child-protection@merajutasa.id
   Legal Support: legal-security@merajutasa.id
 ```
+
+---
+
+## 📚 Security Controls and Policies
+
+### Key Facts (Grounded)
+This threat model is implemented through security controls and policies:
+
+- **Acceptable Use Controls**: [security/policies/acceptable-use.md](../../../security/policies/acceptable-use.md) — User behavior guidelines and access restrictions
+- **Communication Security**: [security/policies/communication-security.md](../../../security/policies/communication-security.md) — Secure communication channels and practices
+- **Data Classification**: [security/policies/data-classification.md](../../../security/policies/data-classification.md) — Information handling and protection requirements
+- **Security Framework**: [docs/architecture/decisions/013-security-framework.md](../decisions/013-security-framework.md) — Overall security architecture decisions
+- **Access Control Policy**: [security/policies/access-control.md](../../../security/policies/access-control.md) — Authentication and authorization controls
+
+### Implementation Guidance
+- All threat mitigation strategies must align with established security policies
+- Child data protection measures follow data classification requirements
+- Communication about security threats follows communication security protocols
+- Emergency response procedures integrate with acceptable use enforcement
+
+## Accessibility & Child Safety
+- Threat model considers accessibility requirements for all stakeholders
+- Child safety principles prioritized in all threat assessment and mitigation
+- Accommodations provided for users with disabilities in security procedures
+- Multi-language support available for critical security communications
+
+## Validation & Monitoring
+- Threat model effectiveness reviewed quarterly
+- Security metrics tracked per monitoring/dashboards/security/threat-metrics.md
+- Continuous threat intelligence integration and assessment
+- Regular penetration testing validates threat model assumptions
+
+## Changelog
+- **2025-08-08**: Enhanced from comprehensive analysis to include front matter, policy references, and structured sections per acceptance criteria
+- **Previous**: Initial comprehensive threat model with detailed threat analysis and mitigation strategies
 
 ---
 

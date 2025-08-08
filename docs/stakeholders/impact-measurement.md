@@ -156,7 +156,7 @@ Child Development Outcomes:
       - Chronic health condition management
     Targets:
       - >95% annual health checkup completion
-      - 100% age-appropriate immunization
+      - Full age-appropriate immunization (targeting complete coverage)
       - >80% nutritional status improvement
       - >90% effective chronic condition management
     
@@ -192,7 +192,7 @@ Child Protection and Safety:
     - Emergency response effectiveness
   Targets:
     - Zero tolerance for abuse/neglect (0 incidents)
-    - 100% safety protocol compliance
+    - Full safety protocol compliance (targeting complete adherence)
     - >95% children report feeling safe
     - <30 minutes emergency response time
     

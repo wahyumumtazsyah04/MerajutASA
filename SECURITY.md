@@ -8,17 +8,17 @@ The security of the MerajutASA Platform is paramount, especially given our respo
 #### How to Report Security Issues
 
 **🚨 For Child Safety-Related Security Issues:**
-- Email: child-safety-security@merajutasa.org
+- Email: child-safety-security@merajutasa.id
 - Response Time: Within 1 hour (24/7 monitoring)
 - Escalation: Immediate executive team notification
 
 **🔒 For General Security Vulnerabilities:**
-- Email: security@merajutasa.org
+- Email: security@merajutasa.id
 - Response Time: Within 4 hours
 - Escalation: Within 24 hours for critical issues
 
 **🔐 For Encryption/Data Protection Issues:**
-- Email: data-protection@merajutasa.org
+- Email: data-protection@merajutasa.id
 - Response Time: Within 4 hours
 - PGP Key: [Link to public key]
 
@@ -94,6 +94,8 @@ The security of the MerajutASA Platform is paramount, especially given our respo
 - Incident response procedures
 
 ### Security Architecture Overview
+
+Our comprehensive security framework protects child welfare data through multiple layers of defense and systematic threat analysis. For detailed threat assessment and mitigation strategies, see our [Threat Model and Risk Assessment](docs/architecture/security/threat-model.md).
 
 #### Defense in Depth Strategy
 
@@ -294,26 +296,44 @@ The security of the MerajutASA Platform is paramount, especially given our respo
 #### Security Team
 
 **Chief Information Security Officer (CISO)**
-- Email: ciso@merajutasa.org
+- Email: ciso@merajutasa.id
 - Phone: +[secure-phone-number]
 - Escalation: 24/7 on-call
 
 **Child Safety Security Lead**
-- Email: child-safety-security@merajutasa.org
+- Email: child-safety-security@merajutasa.id
 - Phone: +[secure-phone-number]
 - Availability: 24/7 monitoring
 
 **Security Operations Center**
-- Email: soc@merajutasa.org
+- Email: soc@merajutasa.id
 - Phone: +[secure-phone-number]
 - Monitoring: 24/7/365
 
 #### Emergency Contacts
 
-**Security Incident**: security-incident@merajutasa.org
-**Child Safety Emergency**: child-safety-emergency@merajutasa.org
-**Data Breach**: data-breach@merajutasa.org
-**Executive Escalation**: security-executive@merajutasa.org
+This section serves as the **canonical reference** for all emergency contacts across the MerajutASA platform. All stakeholder documentation links to this section.
+
+**🚨 Child Safety Emergencies**
+- **Email**: child-safety-emergency@merajutasa.id
+- **Response Time**: Within 1 hour (24/7 monitoring)
+- **Escalation**: Immediate executive team notification
+- **Use For**: Immediate child safety concerns, suspected abuse, protection violations
+
+**🔒 Security Incidents**
+- **Email**: security-incident@merajutasa.id
+- **Response Time**: Within 4 hours
+- **Escalation**: Within 24 hours for critical issues
+- **Use For**: Platform security vulnerabilities, data breaches, system compromises
+
+**📞 General Emergency Support**
+- **Email**: emergency@merajutasa.id
+- **Response Time**: Within 4 hours during business hours
+- **Use For**: Urgent operational issues, critical system outages
+
+**⚡ Executive Escalation**
+- **Email**: security-executive@merajutasa.id
+- **Use For**: Issues requiring immediate senior leadership attention
 
 ---
 

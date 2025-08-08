@@ -1,3 +1,15 @@
+---
+title: "Community Portal"
+summary: "Gateway for community members to contribute to child welfare through volunteering, donations, advocacy, and local chapter participation."
+audience: ["community", "volunteers", "donors", "advocates"]
+stakeholder: ["community"]
+owner: "@wahyumumtazsyah04"
+status: "approved"
+version: "1.0.0"
+last_reviewed: "2025-08-08"
+tags: ["community", "volunteers", "child-safety", "donations", "advocacy"]
+---
+
 # Community Portal
 ## Welcome to the MerajutASA Community
 
@@ -593,8 +605,7 @@ General Support:
 - Training Questions: training@merajutasa.org
 
 Emergency Contacts:
-- Child Safety Hotline: [24/7 Phone Number]
-- Crisis Support: [Emergency Contact]
+- See comprehensive emergency contacts and response times: [SECURITY.md - Emergency Contacts](../../../SECURITY.md#emergency-contacts)
 - Platform Security: security@merajutasa.org
 - Leadership Team: leadership@merajutasa.org
 

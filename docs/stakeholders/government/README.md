@@ -1,3 +1,15 @@
+---
+title: "Government Stakeholder Portal"
+summary: "Digital government integration platform facilitating transparency, compliance, and seamless information exchange for child welfare services excellence."
+audience: ["government", "public-sector", "policy-makers", "administrators"]
+stakeholder: ["government"]
+owner: "@wahyumumtazsyah04"
+status: "approved"
+version: "1.0.0"
+last_reviewed: "2025-08-08"
+tags: ["government", "digital-government", "compliance", "child-safety", "transparency"]
+---
+
 # Government Stakeholder Portal
 ## Digital Government Integration for Child Welfare Excellence
 

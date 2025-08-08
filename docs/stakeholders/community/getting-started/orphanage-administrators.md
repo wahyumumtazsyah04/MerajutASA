@@ -27,7 +27,7 @@ Community Integration:
 ### Platform Access for Administrators
 **Primary Portal**: admin.merajutasa.id  
 **Mobile Management App**: MerajutASA Admin (Android/iOS)  
-**Emergency Support**: +62-XXX-XXX-XXXX (24/7)
+**Emergency Support**: See [SECURITY.md - Emergency Contacts](../../../../SECURITY.md#emergency-contacts) for contact information and response times
 
 ---
 
@@ -352,8 +352,8 @@ Operational Customization:
 
 ## 📞 Administrator Support and Resources
 
-### 24/7 Support Infrastructure
-**Emergency Support Hotline**: +62-XXX-XXX-XXXX  
+### Administrator Support Infrastructure
+**Emergency Support**: See [SECURITY.md - Emergency Contacts](../../../../SECURITY.md#emergency-contacts) for contact information and response times  
 **Technical Support**: admin-support@merajutasa.id  
 **Training and Development**: training@merajutasa.id  
 **Compliance Support**: compliance@merajutasa.id
