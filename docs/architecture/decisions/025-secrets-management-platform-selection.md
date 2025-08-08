@@ -387,13 +387,13 @@ Service Reliability:
 
 ### Architecture Documentation
 - [ADR-003: API Gateway Selection](003-api-gateway-selection.md) - Integration with Kong security features
-- [ADR-012: Security Framework Selection](012-security-framework-selection.md) - Zero-trust architecture alignment
-- [ADR-004: Container Orchestration Platform](004-container-orchestration-platform.md) - Kubernetes secrets integration
+- [ADR-012: Security Framework Selection](013-security-framework.md) - Zero-trust architecture alignment
+- [ADR-004: Container Orchestration Platform](004-container-orchestration.md) - Kubernetes secrets integration
 
 ### Implementation Resources
 - [AWS Secrets Manager Developer Guide](https://docs.aws.amazon.com/secretsmanager/)
 - [Kubernetes External Secrets Operator Documentation](https://external-secrets.io/)
-- [Child Data Protection Security Guidelines](../security/child-data-protection.md)
+- [Child Data Protection Security Guidelines](../security/data-protection.md)
 
 ### Stakeholder Resources
 - [Government Security Compliance Framework](../../stakeholders/government/security-compliance.md)

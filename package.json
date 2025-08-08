@@ -1,0 +1,12 @@
+{
+  "name": "merajut-asa",
+  "version": "1.0.0",
+  "description": "MerajutASA Platform Documentation",
+  "scripts": {
+    "lint:markdown": "markdownlint-cli2 docs/**/*.md",
+    "check:links": "lychee docs/**/*.md --offline"
+  },
+  "devDependencies": {
+    "markdownlint-cli2": "^0.18.1"
+  }
+}

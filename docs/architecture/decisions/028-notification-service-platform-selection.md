@@ -386,14 +386,14 @@ Protection Compliance:
 ## 📚 Related Documentation
 
 ### Architecture Documentation
-- [ADR-006: Authentication Provider Selection](006-authentication-provider-selection.md) - User identity integration
+- [ADR-006: Authentication Provider Selection](006-authentication-provider.md) - User identity integration
 - [ADR-027: Data Pipeline Platform Selection](027-data-pipeline-platform-selection.md) - Analytics integration
 - [ADR-025: Secrets Management Platform](025-secrets-management-platform-selection.md) - API key security
 
 ### Implementation Resources
 - [Twilio API Documentation](https://www.twilio.com/docs)
 - [Child Data Protection Communication Guidelines](../security/communication-security.md)
-- [Emergency Response Communication Procedures](../operations/emergency-communication.md)
+- [Emergency Response Communication Procedures](../../operations/emergency-communication.md)
 
 ### Stakeholder Resources
 - [Government Emergency Communication Framework](../../stakeholders/government/emergency-communication.md)
