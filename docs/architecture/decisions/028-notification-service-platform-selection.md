@@ -393,7 +393,7 @@ Protection Compliance:
 ### Implementation Resources
 - [Twilio API Documentation](https://www.twilio.com/docs)
 - [Child Data Protection Communication Guidelines](../security/communication-security.md)
-- [Emergency Response Communication Procedures](../operations/emergency-communication.md)
+- [Emergency Response Communication Procedures](../../operations/emergency-communication.md)
 
 ### Stakeholder Resources
 - [Government Emergency Communication Framework](../../stakeholders/government/emergency-communication.md)
