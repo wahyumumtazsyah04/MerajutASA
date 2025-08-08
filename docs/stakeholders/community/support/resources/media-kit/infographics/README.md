@@ -453,8 +453,8 @@ Customization Standards:
     - Ensure accessibility standards compliance
     
   Content Adaptation:
-    - Use verified data from [docs/METRICS.md](../../../../../../METRICS.md) for organizational statistics
-    - Source monitoring data from [docs/operations/monitoring/](../../../../../../operations/monitoring/) for real-time metrics
+    - Use verified data from [docs/METRICS.md](../../../../../../../docs/METRICS.md) for organizational statistics
+    - Source monitoring data from [docs/operations/monitoring/](../../../../../../../docs/operations/monitoring/) for real-time metrics
     - Maintain data accuracy and verification standards per quality assurance process
     - Update source attribution with specific file references and last_reviewed dates
     - Ensure cultural sensitivity and appropriateness following Indonesian context guidelines
@@ -798,9 +798,9 @@ Testing Requirements:
 ### Source Verification Requirements
 **Primary Data Sources**:
 - Direct service delivery data from verified organizational records (aggregated, anonymized only)
-- Internal metrics from [docs/METRICS.md](../../../../../../METRICS.md) (documentation quality, review performance, content freshness)
-- Monitoring data from [docs/operations/monitoring/](../../../../../../operations/monitoring/) (system health, service delivery)
-- Security compliance data from [security/](../../../../../../security/) policies and procedures
+- Internal metrics from [docs/METRICS.md](../../../../../../../docs/METRICS.md) (documentation quality, review performance, content freshness)
+- Monitoring data from [docs/operations/monitoring/](../../../../../../../docs/operations/monitoring/) (system health, service delivery)
+- Security compliance data from [security/](../../../../../../../security/) policies and procedures
 - Architectural compliance from [docs/architecture/compliance/](../../../../../../architecture/compliance/) standards
 
 **Data Protection and Privacy**:
