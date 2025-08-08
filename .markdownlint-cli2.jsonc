@@ -1,0 +1,10 @@
+{
+  // Use markdownlint rules from this file
+  "config": ".markdownlint.jsonc",
+  // Ignore generated and dependency folders
+  "ignores": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/.git/**"
+  ]
+}

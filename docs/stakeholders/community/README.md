@@ -39,11 +39,11 @@ Building a connected community where every child has access to love, care, and o
 5. **Connect with Others**: Join community discussions and local groups
 
 ### Quick Actions
-- 🎯 **[Find Volunteer Opportunities](getting-started/volunteer-matching.md)**
+- 🎯 **[Find Volunteer Opportunities](features/volunteer-matching.md)**
 - 💝 **[Make a Donation](getting-started/donation-guide.md)**
 - 👥 **[Join Community Groups](getting-started/community-groups.md)**
 - 📢 **[Share Your Story](getting-started/storytelling-guide.md)**
-- 🛡️ **[Report Concerns](../safety/reporting-system.md)**
+- 🛡️ **[Report Concerns](safety/reporting-system.md)**
 
 ## 🤝 Ways to Contribute
 
@@ -641,6 +641,7 @@ Program Coordinators:
 - **[Community Guidelines](policies/community-guidelines.md)** - Standards and expectations
 - **[Support Resources](support/faq.md)** - Help and troubleshooting
 - **[Training Materials](support/training-materials.md)** - Educational resources and tools
+
 
 ### Connect With Us
 - **[Community Forum](https://community.merajutasa.id)** - Online discussions and support

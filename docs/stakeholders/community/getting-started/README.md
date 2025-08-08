@@ -1,3 +1,16 @@
+---
+title: "Getting Started"
+summary: "Start here to onboard into the community safely and effectively."
+audience: ["community"]
+stakeholder: ["community"]
+status: "approved"
+version: "1.0.0"
+last_reviewed: "2025-08-08"
+owner: "@community-leads"
+tags: ["onboarding", "community", "child-safety"]
+---
+
+# Getting Started
 # Getting Started with Community Engagement
 ## Your Path to Making a Difference for Indonesian Children
 
