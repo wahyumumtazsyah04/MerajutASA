@@ -593,8 +593,7 @@ General Support:
 - Training Questions: training@merajutasa.org
 
 Emergency Contacts:
-- Child Safety Hotline: [24/7 Phone Number]
-- Crisis Support: [Emergency Contact]
+- See comprehensive emergency contacts and response times: [SECURITY.md - Emergency Contacts](../../../SECURITY.md#emergency-contacts)
 - Platform Security: security@merajutasa.org
 - Leadership Team: leadership@merajutasa.org
 

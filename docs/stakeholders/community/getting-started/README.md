@@ -272,8 +272,8 @@ Resource Library:
 ## 📞 Getting Help and Support
 
 ### Immediate Support Channels
-**Community Help Desk**: +62-XXX-XXX-XXXX (9 AM - 6 PM WIB)  
-**Emergency Support**: emergency@merajutasa.id (24/7)  
+**Community Help Desk**: help@merajutasa.id (9 AM - 6 PM WIB)  
+**Emergency Support**: See [SECURITY.md - Emergency Contacts](../../../SECURITY.md#emergency-contacts) for contact information and response times  
 **Technical Support**: help@merajutasa.id  
 
 ### Self-Service Resources

@@ -621,9 +621,8 @@ Sector-Specific Support:
   Media: media-support@merajutasa.id
   
 Emergency Support:
-  Child Safety Concerns: emergency@merajutasa.id
+  See comprehensive emergency contacts and response times: [SECURITY.md - Emergency Contacts](../SECURITY.md#emergency-contacts)
   System Issues: tech-support@merajutasa.id
-  Emergency Hotline: +62-21-URGENT (874-368) (priority response)
 ```
 
 #### Support Team Structure
