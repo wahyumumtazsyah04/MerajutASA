@@ -12,8 +12,33 @@ jobs:
   add_to_project:
     runs-on: ubuntu-latest
     steps:
+      - name: Preflight – check inputs
+        id: preflight
+        env:
+          PROJECT_URL: ${{ vars.MERAJUTASA_ROADMAP_URL }}
+          TOKEN: ${{ secrets.PROJECTS_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          can_add=true
+          if [[ -z "${PROJECT_URL:-}" ]]; then
+            echo "::notice ::Missing vars.MERAJUTASA_ROADMAP_URL";
+            can_add=false
+          fi
+          if [[ -z "${TOKEN:-}" ]]; then
+            echo "::notice ::Missing secrets.PROJECTS_TOKEN";
+            can_add=false
+          fi
+          echo "can_add=${can_add}" >> "$GITHUB_OUTPUT"
+
       - name: Add item to MERAJUTASA Strategic Roadmap
+        if: ${{ steps.preflight.outputs.can_add == 'true' }}
         uses: actions/add-to-project@v1.0.1
         with:
           project-url: ${{ vars.MERAJUTASA_ROADMAP_URL }}
           github-token: ${{ secrets.PROJECTS_TOKEN }}
+
+      - name: Notice – missing project URL or token
+        if: ${{ steps.preflight.outputs.can_add != 'true' }}
+        run: |
+          echo "::notice ::Roadmap auto-add skipped (missing MERAJUTASA_ROADMAP_URL or PROJECTS_TOKEN)"
