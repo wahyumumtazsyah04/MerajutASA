@@ -47,4 +47,4 @@ Provide a single, safe starting point for media with approved assets and clear u
 - Accessibility and privacy-by-design requirements apply to all media work: docs/architecture/compliance/accessibility-compliance.md; docs/architecture/compliance/privacy-by-design.md
 
 ## Changelog
-- 2025-08-08: Initial draft created with grounded links and placeholder asset directories.
+- 2025-08-08: Initial draft created with grounded links and prepared asset directories.
